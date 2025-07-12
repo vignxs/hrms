@@ -53,6 +53,7 @@ const AttendanceCard = () => {
   const [userProfile, setUserProfile] = useState(null);
   const [userName, setUserName] = useState('');
   const [employeeId, setEmployeeId] = useState(null);
+  const [reasonApprovalStatus, setReasonApprovalStatus] = useState('');
 
   const [attendanceRecords, setAttendanceRecords] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -156,9 +157,9 @@ const AttendanceCard = () => {
     return formatHours(attendanceRecords.today.hours_worked);
   };
 
-  // Timer effect that runs only when punched in
+  // Timer effect that runs only when punched in and not punched out
   useEffect(() => {
-    if (isPunchedIn) {
+    if (isPunchedIn && !punchOutTime) {
       // Start timer immediately
       const timer = setInterval(() => {
         setElapsedSeconds(prev => prev + 1);
@@ -173,7 +174,7 @@ const AttendanceCard = () => {
       // Return cleanup function
       return () => clearInterval(timer);
     }
-  }, [isPunchedIn]);
+  }, [isPunchedIn, punchOutTime, elapsedSeconds]);
 
   // Update attendance table when punch-in/out changes
   useEffect(() => {
@@ -183,8 +184,8 @@ const AttendanceCard = () => {
         {
           id: Date.now(),
           date: formatDate(new Date()),
-          punchIn: formatTime(new Date()),
-          punchOut: '-',
+          punch_in: formatTime(new Date()),
+          punch_out: '-',
           hours: '00:00:00',
           status: 'Present',
           reason: '',
@@ -230,7 +231,7 @@ const AttendanceCard = () => {
     } else {
       return getTodayHours();
     }
-  }, [isPunchedIn, punchInTime, punchOutTime, attendanceRecords.today?.hours_worked]);
+  }, [isPunchedIn, punchInTime, punchOutTime,getTodayHours]);
 
   // Fetch user profile on component mount54
   useEffect(() => {
@@ -326,104 +327,104 @@ const AttendanceCard = () => {
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
 
-  // Handler for punch-in
-  const handlePunchIn = async () => {
-    try {
-      const token = localStorage.getItem('access_token');
-      if (!token) {
-        setError('Not authenticated');
-        return;
-      }
+  // // Handler for punch-in
+  // const handlePunchIn = async () => {
+  //   try {
+  //     const token = localStorage.getItem('access_token');
+  //     if (!token) {
+  //       setError('Not authenticated');
+  //       return;
+  //     }
 
-      const response = await fetch('http://localhost:8000/api/attendance/punch-in/', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({})
-      });
+  //     const response = await fetch('http://localhost:8000/api/attendance/punch-in/', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Authorization': `Bearer ${token}`,
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({})
+  //     });
 
-      if (response.ok) {
-        const data = await response.json();
-        setPunchInTime(new Date());
-        setIsPunchedIn(true);
-        setSuccess('Punched in successfully!');
+  //     if (response.ok) {
+  //       const data = await response.json();
+  //       setPunchInTime(new Date());
+  //       setIsPunchedIn(true);
+  //       setSuccess('Punched in successfully!');
         
-        // Update the attendance data
-        setAttendanceData(prev => [
-          {
-            id: Date.now(),
-            date: formatDate(new Date()),
-            punchIn: formatTime(new Date()),
-            punchOut: '-',
-            hours: '00:00:00',
-            status: 'Present',
-            reason: '-',
-          },
-          ...prev
-        ]);
-      } else {
-        const errorData = await response.json();
-        setError(errorData.detail || 'Failed to punch in');
-      }
-    } catch (err) {
-      setError('Error occurred while punching in');
-      console.error('Punch in error:', err);
-    }
-  };
+  //       // Update the attendance data
+  //       setAttendanceData(prev => [
+  //         {
+  //           id: Date.now(),
+  //           date: formatDate(new Date()),
+  //           punchIn: formatTime(new Date()),
+  //           punchOut: '-',
+  //           hours: '00:00:00',
+  //           status: 'Present',
+  //           reason: '-',
+  //         },
+  //         ...prev
+  //       ]);
+  //     } else {
+  //       const errorData = await response.json();
+  //       setError(errorData.detail || 'Failed to punch in');
+  //     }
+  //   } catch (err) {
+  //     setError('Error occurred while punching in');
+  //     console.error('Punch in error:', err);
+  //   }
+  // };
 
-  // Handler for punch-out
-  const handlePunchOut = async () => {
-    try {
-      const token = localStorage.getItem('access_token');
-      if (!token) {
-        setError('Not authenticated');
-        return;
-      }
+  // // Handler for punch-out
+  // const handlePunchOut = async () => {
+  //   try {
+  //     const token = localStorage.getItem('access_token');
+  //     if (!token) {
+  //       setError('Not authenticated');
+  //       return;
+  //     }
 
-      const response = await fetch('http://localhost:8000/api/attendance/punch-out/', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({})
-      });
+  //     const response = await fetch('http://localhost:8000/api/attendance/punch-out/', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Authorization': `Bearer ${token}`,
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({})
+  //     });
 
-      if (response.ok) {
-        const data = await response.json();
-        setPunchOutTime(new Date());
-        setIsPunchedIn(false);
-        setSuccess('Punched out successfully!');
+  //     if (response.ok) {
+  //       const data = await response.json();
+  //       setPunchOutTime(new Date());
+  //       setIsPunchedIn(false);
+  //       setSuccess('Punched out successfully!');
         
-        // Update the attendance data
-        setAttendanceData(prev => {
-          const updatedData = [...prev];
-          if (updatedData.length > 0) {
-            const todayIndex = updatedData.findIndex(item => 
-              item.date === formatDate(new Date())
-            );
-            if (todayIndex !== -1) {
-              updatedData[todayIndex] = {
-                ...updatedData[todayIndex],
-                punchOut: formatTime(new Date()),
-                hours: calculateHours(punchInTime, new Date()),
-                status: 'Present'
-              };
-            }
-          }
-          return updatedData;
-        });
-      } else {
-        const errorData = await response.json();
-        setError(errorData.detail || 'Failed to punch out');
-      }
-    } catch (err) {
-      setError('Error occurred while punching out');
-      console.error('Punch out error:', err);
-    }
-  };
+  //       // Update the attendance data
+  //       setAttendanceData(prev => {
+  //         const updatedData = [...prev];
+  //         if (updatedData.length > 0) {
+  //           const todayIndex = updatedData.findIndex(item => 
+  //             item.date === formatDate(new Date())
+  //           );
+  //           if (todayIndex !== -1) {
+  //             updatedData[todayIndex] = {
+  //               ...updatedData[todayIndex],
+  //               punchOut: formatTime(new Date()),
+  //               hours: calculateHours(punchInTime, new Date()),
+  //               status: 'Present'
+  //             };
+  //           }
+  //         }
+  //         return updatedData;
+  //       });
+  //     } else {
+  //       const errorData = await response.json();
+  //       setError(errorData.detail || 'Failed to punch out');
+  //     }
+  //   } catch (err) {
+  //     setError('Error occurred while punching out');
+  //     console.error('Punch out error:', err);
+  //   }
+  // };
 
   // Function to get the greeting based on time
   const getGreeting = () => {
@@ -458,8 +459,8 @@ const AttendanceCard = () => {
         ? data.map(item => ({
             id: item.id,
             date: item.login_time ? new Date(item.login_time).toLocaleDateString('en-GB') : '-',
-            punchIn: item.login_time ? new Date(item.login_time).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) : '-',
-            punchOut: '-',
+            punch_in: item.login_time ? new Date(item.login_time).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) : '-',
+            punch_out: '-',
             hours: '-',
             status: item.is_approved === true ? 'Present' : 'Leave',
             reason: item.reason
@@ -664,13 +665,16 @@ const AttendanceCard = () => {
           const formattedRecords = records.map((record, index) => ({
             id: `record_${record.id}`,
             date: record.date || new Date().toISOString().split('T')[0],
-            punchIn: record.punch_in || record.punch_in_time,
-            punchOut: record.punch_out || record.punch_out_time,
+            punch_in: record.punch_in || record.punch_in_time,
+            punch_out: record.punch_out || record.punch_out_time,
             hours: calculateHours(record.punch_in || record.punch_in_time, record.punch_out || record.punch_out_time),
             status: record.status || 'Unknown',
             reason: record.reason || '',
             user_name: record.user_name || data.user?.email?.split('@')[0] || 'Unknown',
-            created_at: record.created_at
+            created_at: record.created_at,
+            reason_approval_status: record.reason_approval_status,
+            admin_comment: record.admin_comment,
+            approved_by: record.approved_by,
           }));
 
           // Update state with formatted records
@@ -682,6 +686,7 @@ const AttendanceCard = () => {
             setIsPunchOutDisabled(!!data.today.punch_out || !!data.today.punch_out_time);
             setPunchInTime(data.today.punch_in || data.today.punch_in_time);
             setPunchOutTime(data.today.punch_out || data.today.punch_out_time);
+            setReasonApprovalStatus(data.today.reason_approval_status);
           }
         } else {
           const errorData = await response.json().catch(() => ({ error: 'Failed to fetch punch records' }));
@@ -700,20 +705,50 @@ const AttendanceCard = () => {
   }, [employeeId]);
 
   // Update the formatted attendance records to handle both cases
-  const formattedAttendanceRecords = useMemo(() => {
-    if (!attendanceRecords || !Array.isArray(attendanceRecords)) return [];
-    return attendanceRecords.map(record => ({
+const formattedAttendanceRecords = useMemo(() => {
+  const recordsArray = Array.isArray(attendanceRecords)
+    ? attendanceRecords
+    : attendanceRecords?.records;
+
+  if (!recordsArray || !Array.isArray(recordsArray)) return [];
+
+  return recordsArray.map(record => {
+    // If hours is missing, calculate from punch_in and punch_out
+    let computedHours = record.hours;
+    if (
+      (!record.hours || record.hours === 0) &&
+      record.punch_in &&
+      record.punch_out
+    ) {
+      const inTime = new Date(record.punch_in);
+      const outTime = new Date(record.punch_out);
+      const diffMs = outTime - inTime;
+
+      if (!isNaN(diffMs) && diffMs > 0) {
+        computedHours = diffMs / (1000 * 60 * 60); // convert ms to hours
+      }
+    }
+
+    return {
       ...record,
-      punchInDisplay: formatTime(record.punchIn),
-      punchOutDisplay: formatTime(record.punchOut),
+      punchInDisplay: formatTime(record.punch_in),
+      punchOutDisplay: formatTime(record.punch_out),
       dateDisplay: formatDate(record.date),
-      hoursDisplay: formatHours(record.hours),
+      hoursDisplay: formatHours(computedHours),
       statusDisplay: record.status,
       reasonDisplay: record.reason,
-      user_nameDisplay: record.user_name
-    }));
-  }, [attendanceRecords]);
+      user_nameDisplay: record.user_name,
+      reasonApprovalStatus: record.reason_approval_status,
+      adminComment: record.admin_comment,
+      approvedBy: record.approved_by,
+    };
+  });
+}, [attendanceRecords]);
 
+
+
+  console.log("formattedAttendanceRecords",formattedAttendanceRecords)
+  console.log("attendanceRecords",attendanceRecords)
   useEffect(() => {
     const fetchPunchStatus = async () => {
       try {
@@ -871,8 +906,8 @@ const AttendanceCard = () => {
         {
           id: Date.now(),
           date: formatDate(now),
-          punchIn: formatTime(now),
-          punchOut: '-',
+          punch_in: formatTime(now),
+          punch_out: '-',
           hours: '00:00:00',
           status: isLate ? 'Late' : 'Present',
           reason: reason || '',
@@ -964,7 +999,7 @@ const AttendanceCard = () => {
           if (todayIndex !== -1) {
             updatedData[todayIndex] = {
               ...updatedData[todayIndex],
-              punchOut: formatTime(now),
+              punch_out: formatTime(now),
               hours: calculateHours(punchInTime, now),
               status: 'Present'
             };
@@ -989,9 +1024,10 @@ const AttendanceCard = () => {
   const handlePunch = async () => {
     const now = new Date();
     
-    // First check if we've already punched out today
-    if (isPunchOutDisabled) {
-      return; // Don't allow any action if already punched out
+    // Check if we've already punched in and out today
+    if (punchInTime && punchOutTime) {
+      setIsPunchOutDisabled(true);
+      return; // Don't allow any action if already punched in and out
     }
 
     if (!isPunchedIn) {
@@ -1567,6 +1603,8 @@ const AttendanceCard = () => {
                 <TableCell>Hours</TableCell>
                 <TableCell>Status</TableCell>
                 <TableCell>Reason</TableCell>
+                <TableCell>Actions</TableCell>
+                
               </TableRow>
             </TableHead>
             <TableBody>
@@ -1625,6 +1663,8 @@ const AttendanceCard = () => {
                       />
                     </TableCell>
                     <TableCell>{row.reasonDisplay}</TableCell>
+                    <TableCell>{row.reasonApprovalStatus}</TableCell>
+
                   </TableRow>
                 ))
               )}

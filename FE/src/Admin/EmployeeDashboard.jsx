@@ -1,28 +1,56 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
-  Box, Typography, Paper, CircularProgress,
-  TextField, MenuItem, FormControl, InputLabel, Select,
-  Chip, Button, Dialog, DialogTitle, DialogContent,
-  DialogContentText, DialogActions, RadioGroup, FormControlLabel, Radio,
-  IconButton, InputAdornment, ClickAwayListener, Fade, Menu, Collapse
-} from '@mui/material';
-import { DataGrid } from '@mui/x-data-grid';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import SearchIcon from '@mui/icons-material/Search';
-import CloseIcon from '@mui/icons-material/Close';
-import ShareIcon from '@mui/icons-material/Share';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
-import * as XLSX from 'xlsx';
-import { saveAs } from 'file-saver';
-import { Document, Packer, Paragraph, Table, TableRow, TableCell, WidthType } from 'docx';
-import { useNavigate } from 'react-router-dom';
-import GroupIcon from '@mui/icons-material/Group';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import CancelIcon from '@mui/icons-material/Cancel';
+  Box,
+  Typography,
+  Paper,
+  CircularProgress,
+  TextField,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Select,
+  Chip,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  IconButton,
+  InputAdornment,
+  ClickAwayListener,
+  Fade,
+  Menu,
+  Collapse,
+} from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
+import SearchIcon from "@mui/icons-material/Search";
+import CloseIcon from "@mui/icons-material/Close";
+import ShareIcon from "@mui/icons-material/Share";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
+import {
+  Document,
+  Packer,
+  Paragraph,
+  Table,
+  TableRow,
+  TableCell,
+  WidthType,
+} from "docx";
+import { useNavigate } from "react-router-dom";
+import GroupIcon from "@mui/icons-material/Group";
+import FilterListIcon from "@mui/icons-material/FilterList";
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import CancelIcon from "@mui/icons-material/Cancel";
 
 function EmployeeDashboard() {
   const navigate = useNavigate();
@@ -30,328 +58,337 @@ function EmployeeDashboard() {
   const [lastLoginReasons, setLastLoginReasons] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filterStatus, setFilterStatus] = useState('All');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filterStatus, setFilterStatus] = useState("All");
   const [exportDialogOpen, setExportDialogOpen] = useState(false);
-  const [exportFormat, setExportFormat] = useState('excel');
+  const [exportFormat, setExportFormat] = useState("excel");
   const [openDialog, setOpenDialog] = useState(false);
-  const [selectedEmail, setSelectedEmail] = useState('');
-  const [selectedReportContent, setSelectedReportContent] = useState('');
+  const [selectedEmail, setSelectedEmail] = useState("");
+  const [selectedReportContent, setSelectedReportContent] = useState("");
   const [reasonDialogOpen, setReasonDialogOpen] = useState(false);
-  const [selectedReason, setSelectedReason] = useState('');
-  const [selectedName, setSelectedName] = useState('');
+  const [selectedReason, setSelectedReason] = useState("");
+  const [selectedName, setSelectedName] = useState("");
   const [replyMode, setReplyMode] = useState(false);
-  const [replyText, setReplyText] = useState('');
+  const [replyText, setReplyText] = useState("");
   const [lateLoginReasons, setLateLoginReasons] = useState([]);
   const [selectedReasonId, setSelectedReasonId] = useState(null);
   const [shareAnchorEl, setShareAnchorEl] = useState(null);
   const [shareOpen, setShareOpen] = useState(false);
   const [showStatusDropdown, setShowStatusDropdown] = useState(false);
   const [error, setError] = useState(null);
-  const currentUserEmail = localStorage.getItem('user_email');
+  const currentUserEmail = localStorage.getItem("user_email");
   const [selectedReportId, setSelectedReportId] = useState(null);
-
 
   // Define columns for the DataGrid
   const EmployeeColumn = [
     {
-      field: 'first_name',
-      headerName: 'Employee Name',
+      field: "first_name",
+      headerName: "Employee Name",
       flex: 1,
       minWidth: 200,
-      headerAlign: 'left',
-      align: 'left',
+      headerAlign: "left",
+      align: "left",
       renderCell: (params) => {
         const { first_name, last_name } = params.row;
         return (
           <Typography variant="body2">
-            {first_name || ''} {last_name || ''}
+            {first_name || ""} {last_name || ""}
           </Typography>
         );
-      }
+      },
     },
     {
-      field: 'email',
-      headerName: 'Email',
+      field: "email",
+      headerName: "Email",
       width: 250,
-      headerAlign: 'left',
-      align: 'left'
+      headerAlign: "left",
+      align: "left",
     },
     {
-      field: 'punch_in_time',
-      headerName: 'Login',
+      field: "punch_in_time",
+      headerName: "Login",
       width: 170,
-      headerAlign: 'left',
-      align: 'left',
-     
+      headerAlign: "left",
+      align: "left",
     },
     {
-      field: 'punch_out_time',
-      headerName: 'Logout',
+      field: "punch_out_time",
+      headerName: "Logout",
       width: 170,
-      headerAlign: 'left',
-      align: 'left',
+      headerAlign: "left",
+      align: "left",
     },
     {
-      field: 'hours_worked',
-      headerName: 'Hours',
+      field: "hours_worked",
+      headerName: "Hours",
       width: 100,
-      headerAlign: 'left',
-      align: 'left',
+      headerAlign: "left",
+      align: "left",
       renderCell: (params) => (
-        <Typography>{params.value || '0h 0m'}</Typography>
-      )
+        <Typography>{params.value || "0h 0m"}</Typography>
+      ),
     },
     {
-      field: 'status',
-      headerName: 'Status',
+      field: "status",
+      headerName: "Status",
       width: 120,
-      headerAlign: 'left',
-      align: 'left',
+      headerAlign: "left",
+      align: "left",
       renderCell: (params) => {
         // Get punch-in/out times from row data
         const { punch_in_time, punch_out_time } = params.row;
-        
+
         // Determine status based on punch-in/out times
         const isOnline = punch_in_time && !punch_out_time;
-        
+
         return (
           <Chip
-            label={isOnline ? 'Online' : 'Offline'}
-            color={isOnline ? 'success' : 'error'}
+            label={isOnline ? "Online" : "Offline"}
+            color={isOnline ? "success" : "error"}
             size="small"
           />
         );
-      }
+      },
     },
     {
-      field: 'report_status',
-      headerName: 'Daily Report',
+      field: "report_status",
+      headerName: "Daily Report",
       width: 160,
-      headerAlign: 'left',
-      align: 'left',
+      headerAlign: "left",
+      align: "left",
       renderCell: (params) => {
-        const hasReport = params.row.has_report;    
+        const hasReport = params.row.has_report;
         return (
           <Box
             sx={{
-              display: 'flex',
-              alignItems: 'center',
-              cursor: hasReport ? 'pointer' : 'default',
-              color: hasReport ? 'primary.main' : 'text.secondary'
+              display: "flex",
+              alignItems: "center",
+              cursor: hasReport ? "pointer" : "default",
+              color: hasReport ? "primary.main" : "text.secondary",
             }}
             onClick={() => {
               if (hasReport) handleReportClick(params.row);
             }}
           >
             {hasReport ? (
-              <CheckCircleIcon sx={{ color: 'success.main', mr: 1 }} />
+              <CheckCircleIcon sx={{ color: "success.main", mr: 1 }} />
             ) : (
-              <CancelIcon sx={{ color: 'error.main', mr: 1 }} />
+              <CancelIcon sx={{ color: "error.main", mr: 1 }} />
             )}
             <Typography
               sx={{
-                textDecoration: hasReport ? 'underline' : 'none',
+                textDecoration: hasReport ? "underline" : "none",
               }}
             >
-              {hasReport ? 'Sent' : 'Not Submitted'}
+              {hasReport ? "Sent" : "Not Submitted"}
             </Typography>
           </Box>
         );
       },
     },
     {
-    field: 'reason',
-    headerName: 'Reason',
-    width: 200,
-    headerAlign: 'left',
-    align: 'left',
-    renderCell: (params) => {
-      const reason = params.row.reason || '-';
-      const hasReason = reason && reason !== '-';
-      const attendanceId = params.row.id;
-      
-      return (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <Typography variant="body2" color={hasReason ? 'primary' : 'text.secondary'} sx={{ flex: 1 }}>
-            {reason}
-          </Typography>
-          {hasReason && (
-            <>
+      field: "reason",
+      headerName: "Reason",
+      width: 200,
+      headerAlign: "left",
+      align: "left",
+      renderCell: (params) => {
+        const reason = params.row.reason || "No reason provided";
+        const hasReason = reason && reason !== "No reason provided";
+        const attendanceId = params.row.id;
+
+        return (
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <Typography
+              variant="body2"
+              color={hasReason ? "primary" : "text.secondary"}
+              sx={{ flex: 1 }}
+            >
+              {reason}
+            </Typography>
+            {hasReason && (
               <Button
                 variant="outlined"
-                color="success"
+                color="primary"
                 size="small"
-                onClick={() => handleApproveRejectRow(params.row.a_id, true)}
+                onClick={() => {
+                  setSelectedReasonId(params.row.a_id);
+                  setSelectedReason(reason);
+                  setSelectedName(`${params.row.first_name} ${params.row.last_name}`);
+                  setReasonDialogOpen(true);
+                }}
               >
-                Approve
+                View
               </Button>
-              <Button
-                variant="outlined"
-                color="error"
-                size="small"
-                onClick={() => handleApproveRejectRow(params.row.a_id, false)}
-              >
-                Deny
-              </Button>
-            </>
-          )}
-        </Box>
-      );
-    }
-  },
-    
+            )}
+          </Box>
+        );
+      },
+    },
   ];
 
   // Filter data based on search term and status
   const filteredData = React.useMemo(() => {
     if (!employeeData || !Array.isArray(employeeData)) return [];
 
-    return employeeData.filter(emp => {
-      // Skip if employee data is invalid
-      if (!emp || typeof emp !== 'object') return false;
-      // Determine status based on punch-in/out times
-      let displayStatus = 'No Attendance';
-      
-      // Debug logging
-      // console.log('Employee status details:', {
-      //   id: emp.id,
-      //   name: `${emp.first_name} ${emp.last_name}`,
-      //   status: emp.status,
-      //   punch_in: emp.punch_in_time,
-      //   punch_out: emp.punch_out_time
-      // });
-      
-      // Show Online/Offline based on punch-in/out times
-      if (emp.punch_in_time) {
-        displayStatus = emp.punch_out_time ? 'Offline' : 'Online';
-      }
+    return employeeData
+      .filter((emp) => {
+        // Skip if employee data is invalid
+        if (!emp || typeof emp !== "object") return false;
+        // Determine status based on punch-in/out times
+        let displayStatus = "No Attendance";
 
-      return {
-        id: emp.id,
-        name: `${emp.first_name} ${emp.last_name}`,
-        email: emp.email,
-        punch_in: emp.punch_in_time,
-        punch_out: emp.punch_out_time,
-        hours_worked: emp.hours_worked,
-        report_status: emp.report_status || 'Not Submitted',
-        report_details: emp.report_details || 'No details',
-        has_report: emp.has_report || false,
-        status: displayStatus
-      };
-    }).filter(emp => {
-      // Skip if employee data is invalid
-      if (!emp || typeof emp !== 'object') return false;
+        // Debug logging
+        // console.log('Employee status details:', {
+        //   id: emp.id,
+        //   name: `${emp.first_name} ${emp.last_name}`,
+        //   status: emp.status,
+        //   punch_in: emp.punch_in_time,
+        //   punch_out: emp.punch_out_time
+        // });
 
-      // Filter by search term (name or email)
-      const searchLower = searchTerm.toLowerCase();
-      const matchesSearch = !searchTerm || 
-        (emp.name?.toLowerCase().includes(searchLower) ||
-         emp.email?.toLowerCase().includes(searchLower) || emp.first_name?.toLowerCase().includes(searchLower) || emp.last_name?.toLowerCase().includes(searchLower));
+        // Show Online/Offline based on punch-in/out times
+        if (emp.punch_in_time) {
+          displayStatus = emp.punch_out_time ? "Offline" : "Online";
+        }
 
-      // Determine status based on punch-in/out times
-      const isOnline = emp.punch_in_time && !emp.punch_out_time;
-      const employeeStatus = isOnline ? 'Online' : 'Offline';
+        return {
+          id: emp.id,
+          name: `${emp.first_name} ${emp.last_name}`,
+          email: emp.email,
+          punch_in: emp.punch_in_time,
+          punch_out: emp.punch_out_time,
+          hours_worked: emp.hours_worked,
+          report_status: emp.report_status || "Not Submitted",
+          report_details: emp.report_details || "No details",
+          has_report: emp.has_report || false,
+          status: displayStatus,
+        };
+      })
+      .filter((emp) => {
+        // Skip if employee data is invalid
+        if (!emp || typeof emp !== "object") return false;
 
-      // Filter by status
-      const matchesStatus = filterStatus === 'All' || 
-        employeeStatus.toLowerCase() === filterStatus.toLowerCase();
+        // Filter by search term (name or email)
+        const searchLower = searchTerm.toLowerCase();
+        const matchesSearch =
+          !searchTerm ||
+          emp.name?.toLowerCase().includes(searchLower) ||
+          emp.email?.toLowerCase().includes(searchLower) ||
+          emp.first_name?.toLowerCase().includes(searchLower) ||
+          emp.last_name?.toLowerCase().includes(searchLower);
 
-      return matchesSearch && matchesStatus;
-    });
+        // Determine status based on punch-in/out times
+        const isOnline = emp.punch_in_time && !emp.punch_out_time;
+        const employeeStatus = isOnline ? "Online" : "Offline";
+
+        // Filter by status
+        const matchesStatus =
+          filterStatus === "All" ||
+          employeeStatus.toLowerCase() === filterStatus.toLowerCase();
+
+        return matchesSearch && matchesStatus;
+      });
   }, [employeeData, searchTerm, filterStatus]);
 
   const fetchAttendanceData = async () => {
     try {
-      const token = localStorage.getItem('access_token');
+      const token = localStorage.getItem("access_token");
       const response = await fetch(
         `http://localhost:8000/api/admin/attendance/history/`,
         {
           headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': `application/json`,
+            Authorization: `Bearer ${token}`,
+            "Content-Type": `application/json`,
           },
         }
       );
 
       if (!response.ok) {
-        throw new Error('Failed to fetch attendance data');
+        throw new Error("Failed to fetch attendance data");
       }
 
       const data = await response.json();
       console.log("Attendance data sample:", data?.items?.[0]);
-      
+
       // The backend returns data in items array
       setEmployeeData(data.items || []);
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching employee data:', error);
+      console.error("Error fetching employee data:", error);
       setLoading(false);
-      setError('Failed to fetch employee data');
+      setError("Failed to fetch employee data");
     }
   };
   const fetchLastLoginReasons = async () => {
     try {
-      const token = localStorage.getItem('access_token');
+      const token = localStorage.getItem("access_token");
       const response = await fetch(
         `http://localhost:8000/api/admin/attendance/late-login-reasons/`,
         {
           headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': `application/json`,
+            Authorization: `Bearer ${token}`,
+            "Content-Type": `application/json`,
           },
         }
       );
 
       if (!response.ok) {
-        throw new Error('Failed to fetch attendance data');
+        throw new Error("Failed to fetch attendance data");
       }
 
       const data = await response.json();
       console.log("Late Login Reasons data sample:", data);
       console.log("Late Login Reasons data sample:", data?.items?.[0]);
-      
+
       // The backend returns data in items array
       setLateLoginReasons(data || []);
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching late login reasons data:', error);
+      console.error("Error fetching late login reasons data:", error);
       setLoading(false);
-      setError('Failed to fetch late login reasons data');
+      setError("Failed to fetch late login reasons data");
     }
   };
 
   useEffect(() => {
     fetchAttendanceData();
     fetchLastLoginReasons();
+
+
+    const interval = setInterval(() => {
+      fetchAttendanceData();
+    }, 10000); // 10,000 ms = 10 seconds
+    return () => clearInterval(interval); // Cleanup interval on component unmount
+  
   }, []);
 
   const handlePageChange = () => {};
   const handlePageSizeChange = () => {};
 
   const handleReportClick = (row) => {
-    console.log('Clicked row data:', row);
+    console.log("Clicked row data:", row);
 
     // Access report data
     const reportData = row?.report_details;
-    console.log('Report data:', reportData);
+    console.log("Report data:", reportData);
 
     // Get the work details
-    const workDetails = reportData || 'No report submitted';
-    console.log('Work details:', workDetails);
+    const workDetails = reportData || "No report submitted";
+    console.log("Work details:", workDetails);
     setSelectedReportId(row?.report_id);
     setSelectedReportContent(workDetails);
-    setSelectedEmail(row?.email || '');
-    setSelectedName(row?.employee_name || '');
+    setSelectedEmail(row?.email || "");
+    setSelectedName(row?.employee_name || "");
     setReplyMode(false);
-    setReplyText('');
+    setReplyText("");
     setOpenDialog(true);
 
     // Debug full row
-    console.log('Full row data:', {
+    console.log("Full row data:", {
       email: row?.email,
       name: row?.employee_name,
-      report: row?.dailyReportSent
+      report: row?.dailyReportSent,
     });
   };
 
@@ -366,12 +403,12 @@ function EmployeeDashboard() {
         },
       });
     } catch (error) {
-      console.error('Logout error:', error);
+      console.error("Logout error:", error);
     } finally {
-      localStorage.removeItem('access_token');
-      localStorage.removeItem('refresh_token');
-      localStorage.removeItem('user_email');
-      navigate('/');
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("refresh_token");
+      localStorage.removeItem("user_email");
+      navigate("/");
     }
   };
 
@@ -385,198 +422,233 @@ function EmployeeDashboard() {
 
   const handleSendReply = async () => {
     if (!selectedReportId || !replyText.trim()) return;
-  
+
     try {
-            const token = localStorage.getItem("access_token");
+      const token = localStorage.getItem("access_token");
 
-      const res = await fetch(`http://localhost:8000/api/daily-work-reports/${selectedReportId}/`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-                    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      const res = await fetch(
+        `http://localhost:8000/api/daily-work-reports/${selectedReportId}/`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
 
-          // Add auth if needed
-        },
-        body: JSON.stringify({
-          admin_reply: replyText.trim()
-        })
-      });
-  
+            // Add auth if needed
+          },
+          body: JSON.stringify({
+            admin_reply: replyText.trim(),
+          }),
+        }
+      );
+
       if (!res.ok) {
         const err = await res.json();
         console.error("Reply failed:", err);
         alert(err.error || "Failed to send reply");
         return;
       }
-  
+
       const data = await res.json();
       console.log("Reply success:", data);
-  
+
       // Close and reset
       setReplyMode(false);
-      setReplyText('');
+      setReplyText("");
       setOpenDialog(false);
-  
+
       // Optional: Refresh table data or show toast
     } catch (err) {
       console.error("Network error:", err);
       alert("Network error while sending reply");
     }
   };
-  
-
-
 
   const handleExport = (format) => {
     handleShareClose();
-    
+
     // Prepare data for export
-    const exportData = filteredData.map(emp => ({
-      'Name': `${emp.first_name} ${emp.last_name}` || '-',
-      'Email': emp.email || '-',
-      'Department': emp.department || 'N/A',
-      'Position': emp.position || 'N/A',
-      'Status': emp.status || 'No Attendance',
-      'Login': emp.punch_in_time && emp.punch_in_time !== '-' ? 
-        new Date(emp.punch_in_time).toLocaleString() : '-',
-      'Logout': emp.punch_out_time && emp.punch_out_time !== '-' ? 
-        new Date(emp.punch_out_time).toLocaleString() : '-',
-      'Hours Worked': emp.hours_worked || '0h 0m',
-      'Daily Report': emp.report_status || 'Not Submitted',
-      'Report Details': emp.report_details || 'No details',
-      'Has Report': emp.has_report ? 'Yes' : 'No',
-      'Last Updated': new Date().toLocaleString()
+    const exportData = filteredData.map((emp) => ({
+      Name: `${emp.first_name} ${emp.last_name}` || "-",
+      Email: emp.email || "-",
+      Department: emp.department || "N/A",
+      Position: emp.position || "N/A",
+      Status: emp.status || "No Attendance",
+      Login:
+        emp.punch_in_time && emp.punch_in_time !== "-"
+          ? new Date(emp.punch_in_time).toLocaleString()
+          : "-",
+      Logout:
+        emp.punch_out_time && emp.punch_out_time !== "-"
+          ? new Date(emp.punch_out_time).toLocaleString()
+          : "-",
+      "Hours Worked": emp.hours_worked || "0h 0m",
+      "Daily Report": emp.report_status || "Not Submitted",
+      "Report Details": emp.report_details || "No details",
+      "Has Report": emp.has_report ? "Yes" : "No",
+      "Last Updated": new Date().toLocaleString(),
     }));
 
-    if (format === 'excel' || format === 'csv') {
+    if (format === "excel" || format === "csv") {
       try {
         // Check if XLSX is available
-        if (typeof XLSX === 'undefined') {
-          console.error('XLSX library is not available');
+        if (typeof XLSX === "undefined") {
+          console.error("XLSX library is not available");
           return;
         }
-        
+
         const ws = XLSX.utils.json_to_sheet(exportData);
-        
-        if (format === 'excel') {
+
+        if (format === "excel") {
           const wb = XLSX.utils.book_new();
-          XLSX.utils.book_append_sheet(wb, ws, 'Employee Data');
-          XLSX.writeFile(wb, `Employee_Data_${new Date().toISOString().split('T')[0]}.xlsx`);
-        } else { // CSV
+          XLSX.utils.book_append_sheet(wb, ws, "Employee Data");
+          XLSX.writeFile(
+            wb,
+            `Employee_Data_${new Date().toISOString().split("T")[0]}.xlsx`
+          );
+        } else {
+          // CSV
           const csv = XLSX.utils.sheet_to_csv(ws);
           // Add UTF-8 BOM for Excel compatibility
-          const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
-          saveAs(blob, `Employee_Data_${new Date().toISOString().split('T')[0]}.csv`);
+          const blob = new Blob(["\uFEFF" + csv], {
+            type: "text/csv;charset=utf-8;",
+          });
+          saveAs(
+            blob,
+            `Employee_Data_${new Date().toISOString().split("T")[0]}.csv`
+          );
         }
       } catch (error) {
         console.error(`Error exporting to ${format.toUpperCase()}:`, error);
-        alert(`Failed to export data to ${format.toUpperCase()}. Please try again.`);
+        alert(
+          `Failed to export data to ${format.toUpperCase()}. Please try again.`
+        );
       }
-    } else if (format === 'word') {
+    } else if (format === "word") {
       try {
         const doc = new Document({
-          sections: [{
-            properties: {},
-            children: [
-              new Paragraph({
-                text: 'Employee Attendance Report',
-                heading: 'Heading1',
-                spacing: { after: 200 }
-              }),
-              new Paragraph({
-                text: `Generated on: ${new Date().toLocaleString()}`,
-                spacing: { after: 400 }
-              }),
-              new Table({
-                width: { size: 100, type: WidthType.PERCENTAGE },
-                rows: [
-                  // Header row
-                  new TableRow({
-                    children: Object.keys(exportData[0] || {}).map(header => 
-                      new TableCell({
-                        children: [new Paragraph({
-                          text: header,
-                          bold: true
-                        })]
-                      })
-                    )
-                  }),
-                  // Data rows
-                  ...exportData.map(emp => 
+          sections: [
+            {
+              properties: {},
+              children: [
+                new Paragraph({
+                  text: "Employee Attendance Report",
+                  heading: "Heading1",
+                  spacing: { after: 200 },
+                }),
+                new Paragraph({
+                  text: `Generated on: ${new Date().toLocaleString()}`,
+                  spacing: { after: 400 },
+                }),
+                new Table({
+                  width: { size: 100, type: WidthType.PERCENTAGE },
+                  rows: [
+                    // Header row
                     new TableRow({
-                      children: Object.values(emp).map(value => 
-                        new TableCell({
-                          children: [new Paragraph({
-                            text: String(value),
-                            spacing: { line: 300 }
-                          })]
+                      children: Object.keys(exportData[0] || {}).map(
+                        (header) =>
+                          new TableCell({
+                            children: [
+                              new Paragraph({
+                                text: header,
+                                bold: true,
+                              }),
+                            ],
+                          })
+                      ),
+                    }),
+                    // Data rows
+                    ...exportData.map(
+                      (emp) =>
+                        new TableRow({
+                          children: Object.values(emp).map(
+                            (value) =>
+                              new TableCell({
+                                children: [
+                                  new Paragraph({
+                                    text: String(value),
+                                    spacing: { line: 300 },
+                                  }),
+                                ],
+                              })
+                          ),
                         })
-                      )
-                    })
-                  )
-                ]
-              })
-            ]
-          }]
+                    ),
+                  ],
+                }),
+              ],
+            },
+          ],
         });
 
         // Generate and download the Word document
-        Packer.toBlob(doc).then(blob => {
-          saveAs(blob, `Employee_Report_${new Date().toISOString().split('T')[0]}.docx`);
+        Packer.toBlob(doc).then((blob) => {
+          saveAs(
+            blob,
+            `Employee_Report_${new Date().toISOString().split("T")[0]}.docx`
+          );
         });
       } catch (error) {
-        console.error('Error exporting to Word:', error);
-        alert('Failed to export data to Word. Please try again.');
+        console.error("Error exporting to Word:", error);
+        alert("Failed to export data to Word. Please try again.");
       }
     }
   };
-
   const handleApproveReject = async (approved) => {
     if (!selectedReasonId) return;
+  
     try {
-      const token = localStorage.getItem('access_token');
-      await fetch(`http://localhost:8000/api/admin/attendance/reason-approval/${selectedReasonId}/`, {
-        method: 'PUT',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          status: approved ? 'approved' : 'rejected'
-        }),
-      });
+      const token = localStorage.getItem("access_token");
+  
+      const response = await fetch(
+        `http://localhost:8000/api/admin/attendance/reason-approval/${selectedReasonId}/`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            status: approved ? "approved" : "rejected",
+          }),
+        }
+      );
+  
+      if (!response.ok) throw new Error("Update failed");
+  
+      fetchLastLoginReasons();
       setReasonDialogOpen(false);
     } catch (e) {
-      alert('Failed to update reason approval.');
+      alert("Failed to update reason approval.");
+      console.error(e);
     }
   };
-
+  
   const handleApproveRejectRow = async (attendanceId, approve) => {
     try {
-      const token = localStorage.getItem('access_token');
+      const token = localStorage.getItem("access_token");
       const response = await fetch(
         `http://localhost:8000/api/late-login-reasons/${attendanceId}/approve/`,
         {
-          method: 'PUT',
+          method: "PUT",
           headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            status: approve ? 'approved' : 'rejected'
-          })
+            status: approve ? "approved" : "rejected",
+          }),
         }
       );
 
       if (!response.ok) {
-        throw new Error('Failed to update approval status');
+        throw new Error("Failed to update approval status");
       }
-
-      // Refresh the data
+      fetchLastLoginReasons();
       fetchAttendanceData();
     } catch (error) {
-      console.error('Error updating approval:', error);
-      alert('Failed to update approval status. Please try again.');
+      console.error("Error updating approval:", error);
+      alert("Failed to update approval status. Please try again.");
     }
   };
 
@@ -585,82 +657,100 @@ function EmployeeDashboard() {
   };
 
   const handleCloseSearch = () => {
-    setSearchTerm('');
+    setSearchTerm("");
     setIsSearchOpen(false);
   };
 
   const getStatusColor = (status) => {
-    if (!status) return 'default';
+    if (!status) return "default";
     const statusLower = status.toLowerCase();
-    
-    if (statusLower.includes('active') || statusLower.includes('online')) {
-      return 'success';
-    } else if (statusLower.includes('inactive') || statusLower.includes('offline')) {
-      return 'error';
-    } else if (statusLower.includes('leave') || statusLower.includes('away')) {
-      return 'warning';
-    } else if (statusLower.includes('break') || statusLower.includes('lunch')) {
-      return 'info';
+
+    if (statusLower.includes("active") || statusLower.includes("online")) {
+      return "success";
+    } else if (
+      statusLower.includes("inactive") ||
+      statusLower.includes("offline")
+    ) {
+      return "error";
+    } else if (statusLower.includes("leave") || statusLower.includes("away")) {
+      return "warning";
+    } else if (statusLower.includes("break") || statusLower.includes("lunch")) {
+      return "info";
     }
-    return 'default';
+    return "default";
   };
 
   const calculateHours = (login, logout) => {
     // Handle invalid or missing inputs
-    if (!login || !logout || login === '-' || logout === '-') return '-';
-    
+    if (!login || !logout || login === "-" || logout === "-") return "-";
+
     try {
       // Parse dates
       const loginTime = new Date(login);
       const logoutTime = new Date(logout);
-      
+
       // Validate dates
       if (isNaN(loginTime.getTime()) || isNaN(logoutTime.getTime())) {
-        console.warn('Invalid date format in calculateHours');
-        return '-';
+        console.warn("Invalid date format in calculateHours");
+        return "-";
       }
-      
+
       // Calculate difference in milliseconds
       const diffMs = logoutTime - loginTime;
-      
+
       // Handle invalid time difference (negative or invalid)
-      if (isNaN(diffMs) || diffMs < 0) return '-';
-      
+      if (isNaN(diffMs) || diffMs < 0) return "-";
+
       // Calculate hours and minutes
       const totalMinutes = Math.floor(diffMs / (1000 * 60));
       const hours = Math.floor(totalMinutes / 60);
       const minutes = totalMinutes % 60;
-      
+
       // Format the output
       if (hours > 0) {
         return `${hours}h ${minutes}m`;
       }
       return `${minutes}m`;
-      
     } catch (error) {
-      console.error('Error in calculateHours:', error);
-      return '-';
+      console.error("Error in calculateHours:", error);
+      return "-";
     }
   };
 
-  if (loading) return <Box display="flex" justifyContent="center" alignItems="center" height="60vh"><CircularProgress /></Box>;
+  if (loading)
+    return (
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        height="60vh"
+      >
+        <CircularProgress />
+      </Box>
+    );
 
   return (
     <Box sx={{ p: 0 }}>
       <Box display="flex" alignItems="center" mb={2} gap={2} flexWrap="wrap">
-        <Typography variant="h4" fontWeight="bold" flexGrow={1}>Employee Status</Typography>
-       
-        <ClickAwayListener onClickAway={() => {
-          if (!searchTerm) setIsSearchOpen(false);
-        }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
+        <Typography variant="h4" fontWeight="bold" flexGrow={1}>
+          Employee Status
+        </Typography>
+
+        <ClickAwayListener
+          onClickAway={() => {
+            if (!searchTerm) setIsSearchOpen(false);
+          }}
+        >
+          <Box
+            sx={{ display: "flex", alignItems: "center", position: "relative" }}
+          >
             {!isSearchOpen ? (
               <IconButton onClick={handleSearchClick}>
                 <SearchIcon />
               </IconButton>
             ) : (
               <Fade in={isSearchOpen}>
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Box sx={{ display: "flex", alignItems: "center" }}>
                   <TextField
                     variant="standard"
                     size="small"
@@ -674,23 +764,23 @@ function EmployeeDashboard() {
                     }}
                     sx={{
                       width: 200,
-                      '& .MuiInputBase-root': {
-                        padding: '6px 0',
+                      "& .MuiInputBase-root": {
+                        padding: "6px 0",
                       },
-                      '& .MuiInputBase-input': {
-                        padding: '6px 0',
+                      "& .MuiInputBase-input": {
+                        padding: "6px 0",
                       },
                     }}
                   />
                   <Box
                     sx={{
-                      position: 'absolute',
+                      position: "absolute",
                       bottom: 0,
                       left: 0,
                       right: 0,
-                      height: '2px',
-                      background: 'linear-gradient(90deg, #FFA500, #FF8C00)',
-                      borderRadius: '2px',
+                      height: "2px",
+                      background: "linear-gradient(90deg, #FFA500, #FF8C00)",
+                      borderRadius: "2px",
                     }}
                   />
                   <IconButton
@@ -698,11 +788,11 @@ function EmployeeDashboard() {
                     onClick={handleCloseSearch}
                     sx={{
                       ml: 1,
-                      color: 'text.secondary',
-                      '&:hover': {
-                        color: 'error.main',
-                        backgroundColor: 'rgba(244, 67, 54, 0.08)'
-                      }
+                      color: "text.secondary",
+                      "&:hover": {
+                        color: "error.main",
+                        backgroundColor: "rgba(244, 67, 54, 0.08)",
+                      },
                     }}
                   >
                     <CloseIcon fontSize="small" />
@@ -712,22 +802,31 @@ function EmployeeDashboard() {
             )}
           </Box>
         </ClickAwayListener>
-       
-        <Box sx={{ position: 'relative', display: 'inline-flex', alignItems: 'center', ml: 1 }}>
-          <FilterListIcon sx={{ color: 'text.secondary', mr: 0.5, fontSize: 20 }} />
+
+        <Box
+          sx={{
+            position: "relative",
+            display: "inline-flex",
+            alignItems: "center",
+            ml: 1,
+          }}
+        >
+          <FilterListIcon
+            sx={{ color: "text.secondary", mr: 0.5, fontSize: 20 }}
+          />
           <Button
             onClick={() => setShowStatusDropdown(!showStatusDropdown)}
             endIcon={showStatusDropdown ? <ExpandLess /> : <ExpandMore />}
             startIcon={<GroupIcon fontSize="small" />}
             sx={{
               minWidth: 60,
-              justifyContent: 'space-between',
-              textTransform: 'none',
-              borderColor: 'divider',
-              backgroundColor: 'background.paper',
-              '&:hover': {
-                borderColor: 'text.primary',
-                backgroundColor: 'action.hover',
+              justifyContent: "space-between",
+              textTransform: "none",
+              borderColor: "divider",
+              backgroundColor: "background.paper",
+              "&:hover": {
+                borderColor: "text.primary",
+                backgroundColor: "action.hover",
               },
               pl: 1,
               pr: 0.5,
@@ -735,31 +834,50 @@ function EmployeeDashboard() {
           >
             Status
           </Button>
-         
+
           {showStatusDropdown && (
             <ClickAwayListener onClickAway={() => setShowStatusDropdown(false)}>
               <Paper
                 elevation={3}
                 sx={{
-                  position: 'absolute',
-                  top: '100%',
+                  position: "absolute",
+                  top: "100%",
                   left: 0,
                   zIndex: 1,
                   mt: 0.5,
                   minWidth: 150,
                   borderRadius: 1,
-                  overflow: 'hidden',
-                  animation: 'fadeIn 0.2s ease-out',
-                  '@keyframes fadeIn': {
-                    '0%': { opacity: 0, transform: 'translateY(-10px)' },
-                    '100%': { opacity: 1, transform: 'translateY(0)' },
+                  overflow: "hidden",
+                  animation: "fadeIn 0.2s ease-out",
+                  "@keyframes fadeIn": {
+                    "0%": { opacity: 0, transform: "translateY(-10px)" },
+                    "100%": { opacity: 1, transform: "translateY(0)" },
                   },
                 }}
               >
                 {[
-                  { value: 'All', label: 'All', icon: <GroupIcon fontSize="small" /> },
-                  { value: 'Online', label: 'Online', icon: <FiberManualRecordIcon fontSize="small" color="success" /> },
-                  { value: 'Offline', label: 'Offline', icon: <FiberManualRecordIcon fontSize="small" color="disabled" /> },
+                  {
+                    value: "All",
+                    label: "All",
+                    icon: <GroupIcon fontSize="small" />,
+                  },
+                  {
+                    value: "Online",
+                    label: "Online",
+                    icon: (
+                      <FiberManualRecordIcon fontSize="small" color="success" />
+                    ),
+                  },
+                  {
+                    value: "Offline",
+                    label: "Offline",
+                    icon: (
+                      <FiberManualRecordIcon
+                        fontSize="small"
+                        color="disabled"
+                      />
+                    ),
+                  },
                 ].map(({ value, label, icon }) => (
                   <MenuItem
                     key={value}
@@ -769,18 +887,18 @@ function EmployeeDashboard() {
                       setShowStatusDropdown(false);
                     }}
                     sx={{
-                      '&.Mui-selected': {
-                        backgroundColor: 'primary.light',
-                        '&:hover': {
-                          backgroundColor: 'primary.light',
+                      "&.Mui-selected": {
+                        backgroundColor: "primary.light",
+                        "&:hover": {
+                          backgroundColor: "primary.light",
                         },
                       },
-                      '&:hover': {
-                        backgroundColor: 'action.hover',
+                      "&:hover": {
+                        backgroundColor: "action.hover",
                       },
                     }}
                   >
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                       {icon}
                       {label}
                     </Box>
@@ -790,8 +908,15 @@ function EmployeeDashboard() {
             </ClickAwayListener>
           )}
         </Box>
-       
-        <Box sx={{ position: 'relative', display: 'inline-flex', alignItems: 'center', ml: 1 }}>
+
+        <Box
+          sx={{
+            position: "relative",
+            display: "inline-flex",
+            alignItems: "center",
+            ml: 1,
+          }}
+        >
           <Button
             onClick={(e) => {
               e.stopPropagation();
@@ -799,46 +924,46 @@ function EmployeeDashboard() {
             }}
             startIcon={<ShareIcon />}
             sx={{
-              color: 'primary.main',
-              textTransform: 'none',
-              '&:hover': {
-                backgroundColor: 'action.hover',
+              color: "primary.main",
+              textTransform: "none",
+              "&:hover": {
+                backgroundColor: "action.hover",
               },
             }}
             aria-label="export options"
           >
             Export
           </Button>
-         
+
           {shareOpen && (
             <ClickAwayListener onClickAway={() => setShareOpen(false)}>
               <Paper
                 elevation={3}
                 sx={{
-                  position: 'absolute',
-                  top: '100%',
+                  position: "absolute",
+                  top: "100%",
                   right: 0,
                   zIndex: 1,
                   mt: 0.5,
                   borderRadius: 1,
-                  overflow: 'hidden',
+                  overflow: "hidden",
                   minWidth: 150,
-                  animation: 'fadeIn 0.2s ease-out',
-                  '@keyframes fadeIn': {
-                    '0%': { opacity: 0, transform: 'translateY(-10px)' },
-                    '100%': { opacity: 1, transform: 'translateY(0)' },
+                  animation: "fadeIn 0.2s ease-out",
+                  "@keyframes fadeIn": {
+                    "0%": { opacity: 0, transform: "translateY(-10px)" },
+                    "100%": { opacity: 1, transform: "translateY(0)" },
                   },
                 }}
               >
                 <MenuItem
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleExport('word');
+                    handleExport("word");
                     setShareOpen(false);
                   }}
                   sx={{
-                    '&:hover': {
-                      backgroundColor: 'action.hover',
+                    "&:hover": {
+                      backgroundColor: "action.hover",
                     },
                   }}
                 >
@@ -847,12 +972,12 @@ function EmployeeDashboard() {
                 <MenuItem
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleExport('csv');
+                    handleExport("csv");
                     setShareOpen(false);
                   }}
                   sx={{
-                    '&:hover': {
-                      backgroundColor: 'action.hover',
+                    "&:hover": {
+                      backgroundColor: "action.hover",
                     },
                   }}
                 >
@@ -862,56 +987,82 @@ function EmployeeDashboard() {
             </ClickAwayListener>
           )}
         </Box>
-       
+
         <ClickAwayListener onClickAway={() => setShareOpen(false)}>
-          <Box sx={{ display: 'none' }} />
+          <Box sx={{ display: "none" }} />
         </ClickAwayListener>
- 
       </Box>
- 
-      <Paper elevation={3} sx={{ 
-        width: '100%', 
-        mb: 4, 
-        p: 3,
-        backgroundColor: 'background.paper',
-        borderRadius: 2,
-        overflow: 'hidden'
-      }}>
-        <Box sx={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          alignItems: 'center', 
-          mb: 3,
-          padding: 1
-        }}>
-          <Typography variant="h6" sx={{ 
-            fontWeight: 'bold',
-            color: 'text.primary',
-            fontSize: '1.1rem'
-          }}>
+
+      <Paper
+        elevation={3}
+        sx={{
+          width: "100%",
+          mb: 4,
+          p: 3,
+          backgroundColor: "background.paper",
+          borderRadius: 2,
+          overflow: "hidden",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            mb: 3,
+            padding: 1,
+          }}
+        >
+          <Typography
+            variant="h6"
+            sx={{
+              fontWeight: "bold",
+              color: "text.primary",
+              fontSize: "1.1rem",
+            }}
+          >
             Employee Status
           </Typography>
         </Box>
         {loading ? (
-          <Box display="flex" justifyContent="center" alignItems="center" height="500px">
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            height="500px"
+          >
             <CircularProgress />
           </Box>
         ) : error ? (
-          <Box display="flex" justifyContent="center" alignItems="center" height="100px" color="error.main">
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            height="100px"
+            color="error.main"
+          >
             {error}
           </Box>
         ) : employeeData.length === 0 ? (
-          <Box display="flex" justifyContent="center" alignItems="center" height="500px" p={4}>
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            height="500px"
+            p={4}
+          >
             <Typography variant="h6" color="text.secondary">
               No employee data available
             </Typography>
           </Box>
         ) : (
-          <Box sx={{ 
-            height: '400px',
-            width: '100%',
-            overflow: 'auto'
-          }}>
+          <Box
+            sx={{
+              height: "400px",
+              width: "100%",
+              overflow: "auto",
+            }}
+          >
             <DataGrid
               rows={filteredData}
               columns={EmployeeColumn}
@@ -922,10 +1073,10 @@ function EmployeeDashboard() {
               hideFooterSelectedRowCount={true}
               disableColumnMenu
               sx={{
-                '& .MuiDataGrid-root': {
-                  width: '100%',
-                  '& .MuiDataGrid-virtualScroller': {
-                    overflowY: 'auto',
+                "& .MuiDataGrid-root": {
+                  width: "100%",
+                  "& .MuiDataGrid-virtualScroller": {
+                    overflowY: "auto",
                   },
                 },
               }}
@@ -935,37 +1086,50 @@ function EmployeeDashboard() {
       </Paper>
 
       {/* Late Login Reasons Table */}
-      <Typography variant="h6" sx={{ 
-        fontWeight: 'bold', 
-        mt: 6, 
-        mb: 2,
-        color: 'text.primary',
-        fontSize: '1.1rem',
-        paddingLeft: 1
-      }}>
+      <Typography
+        variant="h6"
+        sx={{
+          fontWeight: "bold",
+          mt: 6,
+          mb: 2,
+          color: "text.primary",
+          fontSize: "1.1rem",
+          paddingLeft: 1,
+        }}
+      >
         Late Login Reasons
       </Typography>
-      <Paper elevation={3} sx={{ 
-        width: '100%', 
-        mb: 4, 
-        p: 3,
-        backgroundColor: 'background.paper',
-        borderRadius: 2,
-        overflow: 'hidden'
-      }}>
-        {(loading && lateLoginReasons.length === 0) ? (
-          <Box display="flex" justifyContent="center" alignItems="center" height="400px">
+      <Paper
+        elevation={3}
+        sx={{
+          width: "100%",
+          mb: 4,
+          p: 3,
+          backgroundColor: "background.paper",
+          borderRadius: 2,
+          overflow: "hidden",
+        }}
+      >
+        {loading && lateLoginReasons.length === 0 ? (
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            height="400px"
+          >
             <CircularProgress />
           </Box>
         ) : (
-          <Box sx={{ 
-            height: '400px',
-            width: '100%',
-            overflow: 'auto'
-          }}>
+          <Box
+            sx={{
+              height: "400px",
+              width: "100%",
+              overflow: "auto",
+            }}
+          >
             <DataGrid
               rows={lateLoginReasons.map((r) => {
-                console.log("row:",r)
+                console.log("row:", r);
                 return {
                   id: r.id,
                   name: r.name,
@@ -976,128 +1140,145 @@ function EmployeeDashboard() {
               })}
               components={{
                 NoRowsOverlay: () => (
-                  <Box display="flex" justifyContent="center" alignItems="center" height="400px">
-                    <Typography color="textSecondary">No late login reasons found</Typography>
+                  <Box
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    height="400px"
+                  >
+                    <Typography color="textSecondary">
+                      No late login reasons found
+                    </Typography>
                   </Box>
                 ),
                 LoadingOverlay: () => (
-                  <Box display="flex" justifyContent="center" alignItems="center" height="400px">
+                  <Box
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    height="400px"
+                  >
                     <CircularProgress />
                   </Box>
                 ),
                 NoResultsOverlay: () => (
-                  <Box display="flex" justifyContent="center" alignItems="center" height="400px">
+                  <Box
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    height="400px"
+                  >
                     <Typography>No matching records found</Typography>
                   </Box>
-                )
+                ),
               }}
               sx={{
-                border: 'none',
-                '& .MuiDataGrid-columnHeaders': {
-                  backgroundColor: 'background.default',
-                  borderBottom: '2px solid',
-                  borderColor: 'divider',
-                  '& .MuiDataGrid-columnHeaderTitle': {
-                    fontWeight: 'bold',
-                    color: 'text.primary',
+                border: "none",
+                "& .MuiDataGrid-columnHeaders": {
+                  backgroundColor: "background.default",
+                  borderBottom: "2px solid",
+                  borderColor: "divider",
+                  "& .MuiDataGrid-columnHeaderTitle": {
+                    fontWeight: "bold",
+                    color: "text.primary",
                   },
                 },
-                '& .MuiDataGrid-cell': {
-                  padding: '12px 16px',
-                  borderColor: 'divider',
-                  '&:focus, &:focus-within': {
-                    outline: 'none',
+                "& .MuiDataGrid-cell": {
+                  padding: "12px 16px",
+                  borderColor: "divider",
+                  "&:focus, &:focus-within": {
+                    outline: "none",
                   },
                 },
-                '& .MuiDataGrid-row': {
-                  '&:nth-of-type(odd)': {
-                    backgroundColor: 'background.default',
+                "& .MuiDataGrid-row": {
+                  "&:nth-of-type(odd)": {
+                    backgroundColor: "background.default",
                   },
-                  '&:hover': {
-                    backgroundColor: 'action.hover',
+                  "&:hover": {
+                    backgroundColor: "action.hover",
                   },
-                  '&.Mui-selected': {
-                    backgroundColor: 'action.selected',
-                    '&:hover': {
-                      backgroundColor: 'action.hover',
+                  "&.Mui-selected": {
+                    backgroundColor: "action.selected",
+                    "&:hover": {
+                      backgroundColor: "action.hover",
                     },
                   },
                 },
-                '& .MuiDataGrid-footerContainer': {
-                  borderTop: '1px solid',
-                  borderColor: 'divider',
+                "& .MuiDataGrid-footerContainer": {
+                  borderTop: "1px solid",
+                  borderColor: "divider",
                   mt: 1,
                 },
-                '& .MuiDataGrid-virtualScroller': {
-                  minHeight: '300px',
+                "& .MuiDataGrid-virtualScroller": {
+                  minHeight: "300px",
                 },
-                '& .MuiDataGrid-overlay': {
-                  height: '300px',
-                  backgroundColor: 'background.default',
+                "& .MuiDataGrid-overlay": {
+                  height: "300px",
+                  backgroundColor: "background.default",
                 },
-                '& .MuiDataGrid-columnHeader, & .MuiDataGrid-cell': {
-                  '&:not(:last-child)': {
-                    borderRight: '1px solid',
-                    borderColor: 'divider',
+                "& .MuiDataGrid-columnHeader, & .MuiDataGrid-cell": {
+                  "&:not(:last-child)": {
+                    borderRight: "1px solid",
+                    borderColor: "divider",
                   },
                 },
-                '& .MuiDataGrid-columnSeparator': {
-                  display: 'none',
+                "& .MuiDataGrid-columnSeparator": {
+                  display: "none",
                 },
               }}
               columns={[
-                { 
-                  field: 'name', 
-                  headerName: 'Employee', 
+                {
+                  field: "name",
+                  headerName: "Employee",
                   width: 220,
-                  headerAlign: 'left',
-                  align: 'left',
+                  headerAlign: "left",
+                  align: "left",
                   renderCell: (params) => (
-                    <Typography variant="body2">
-                      {params.row.name}
-                    </Typography>
-                  )
+                    <Typography variant="body2">{params.row.name}</Typography>
+                  ),
                 },
-                { 
-                  field: 'reason', 
-                  headerName: 'Reason', 
+                {
+                  field: "reason",
+                  headerName: "Reason",
                   width: 300,
-                  headerAlign: 'left',
-                  align: 'left',
+                  headerAlign: "left",
+                  align: "left",
                   renderCell: (params) => (
-                    <Typography variant="body2">
-                      {params.row.reason}
-                    </Typography>
-                  )
+                    <Typography variant="body2">{params.row.reason}</Typography>
+                  ),
                 },
-                { 
-                  field: 'login_time', 
-                  headerName: 'Login Time', 
+                {
+                  field: "login_time",
+                  headerName: "Login Time",
                   width: 200,
-                  headerAlign: 'center',
-                  align: 'center',
+                  headerAlign: "center",
+                  align: "center",
                   renderCell: (params) => (
                     <Typography variant="body2">
                       {params.row.login_time}
                     </Typography>
-                  )
+                  ),
                 },
-                { 
-                  field: 'actions', 
-                  headerName: 'Status', 
+                {
+                  field: "actions",
+                  headerName: "Status",
                   width: 150,
-                  headerAlign: 'center',
-                  align: 'center',
+                  headerAlign: "center",
+                  align: "center",
                   renderCell: (params) => (
                     <Chip
                       label={params.row.is_approved}
-                      color={params.row.is_approved === 'approved' ? 'success' : 
-                             params.row.is_approved === 'rejected' ? 'error' : 'warning'}
+                      color={
+                        params.row.is_approved === "approved"
+                          ? "success"
+                          : params.row.is_approved === "rejected"
+                          ? "error"
+                          : "warning"
+                      }
                       size="small"
                     />
-                  )
+                  ),
                 },
-      
               ]}
               hideFooterPagination={true}
               hideFooterSelectedRowCount={true}
@@ -1107,25 +1288,34 @@ function EmployeeDashboard() {
           </Box>
         )}
       </Paper>
- 
+
       {/* Daily Report Dialog with Reply */}
-      <Dialog open={openDialog} onClose={() => setOpenDialog(false)} maxWidth="sm" fullWidth>
+      <Dialog
+        open={openDialog}
+        onClose={() => setOpenDialog(false)}
+        maxWidth="sm"
+        fullWidth
+      >
         <DialogTitle>Email Report</DialogTitle>
         <DialogContent>
-          <DialogContentText sx={{ whiteSpace: 'pre-line' }}>
+          <DialogContentText sx={{ whiteSpace: "pre-line" }}>
             <b>To:</b> {selectedEmail}
-            {"\n"}<b>Subject:</b> Daily Report
+            {"\n"}
+            <b>Subject:</b> Daily Report
             {"\n\n"}Hello,
             {"\n"}Please find attached your daily attendance and task summary.
             {"\n\n"}Report Content:
-            {"\n"}{selectedReportContent || '-'}
+            {"\n"}
+            {selectedReportContent || "-"}
             {"\n\n"}Regards,
             {"\n"}Admin Team
           </DialogContentText>
- 
+
           {!replyMode ? (
             <Box mt={2}>
-              <Button variant="outlined" onClick={() => setReplyMode(true)}>Reply</Button>
+              <Button variant="outlined" onClick={() => setReplyMode(true)}>
+                Reply
+              </Button>
             </Box>
           ) : (
             <Box mt={2}>
@@ -1138,40 +1328,71 @@ function EmployeeDashboard() {
                 onChange={(e) => setReplyText(e.target.value)}
               />
               <Box mt={2} display="flex" gap={2}>
-                <Button variant="contained" color="primary" onClick={handleSendReply}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleSendReply}
+                >
                   Send
                 </Button>
-                <Button variant="outlined" onClick={() => {
-                  setReplyMode(false);
-                  setReplyText('');
-                }}>
+                <Button
+                  variant="outlined"
+                  onClick={() => {
+                    setReplyMode(false);
+                    setReplyText("");
+                  }}
+                >
                   Cancel
                 </Button>
               </Box>
             </Box>
           )}
         </DialogContent>
- 
+
         <DialogActions>
           {!replyMode && (
             <Button onClick={() => setOpenDialog(false)}>Close</Button>
           )}
         </DialogActions>
       </Dialog>
- 
+
       {/* Reason Dialog */}
-      <Dialog open={reasonDialogOpen} onClose={() => setReasonDialogOpen(false)} maxWidth="sm" fullWidth>
-        <DialogTitle>Reason Message</DialogTitle>
+      <Dialog
+        open={reasonDialogOpen}
+        onClose={() => setReasonDialogOpen(false)}
+        maxWidth="sm"
+        fullWidth
+      >
+        <DialogTitle>Reason Details</DialogTitle>
         <DialogContent>
-          <DialogContentText sx={{ whiteSpace: 'pre-line' }}>
-            <b>From:</b> {selectedName}
-            {"\n"}<b>Reason:</b> {selectedReason}
+          <DialogContentText sx={{ whiteSpace: "pre-line" }}>
+            <b>Employee:</b> {selectedName}
+            {"\n"}
+            <b>Reason:</b> {selectedReason}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button color="success" variant="contained" onClick={() => handleApproveReject(true)}>Approve</Button>
-          <Button color="error" variant="contained" onClick={() => handleApproveReject(false)}>Reject</Button>
-          <Button onClick={() => setReasonDialogOpen(false)}>Close</Button>
+          <Button
+            color="success"
+            variant="contained"
+            onClick={() => {
+              handleApproveRejectRow(selectedReasonId, true);
+              setReasonDialogOpen(false);
+            }}
+          >
+            Approve
+          </Button>
+          <Button
+            color="error"
+            variant="contained"
+            onClick={() => {
+              handleApproveRejectRow(selectedReasonId, false);
+              setReasonDialogOpen(false);
+            }}
+          >
+            Reject
+          </Button>
+          <Button onClick={() => setReasonDialogOpen(false)}>Cancel</Button>
         </DialogActions>
       </Dialog>
     </Box>

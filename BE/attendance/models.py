@@ -102,11 +102,6 @@ class Attendance(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
-        # Format punch times
-        if self.punch_in:
-            self.punch_in_time = self.punch_in.strftime('%I:%M %p')
-        if self.punch_out:
-            self.punch_out_time = self.punch_out.strftime('%I:%M %p')
 
         # Calculate worked hours
         if self.punch_in and self.punch_out:

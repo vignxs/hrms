@@ -867,8 +867,9 @@ class PunchInView(APIView):
             attendance = existing if existing else Attendance(user=user, date=today)
             # Store time in IST
             attendance.punch_in = now
+            attendance.punch_in_time = now.strftime('%I:%M %p')
             attendance.reason = reason if is_late else ''
-            attendance.status = 'Late' if is_late else 'Present'
+            attendance.status = 'Present' if is_late else 'Present'
             attendance.save()
             
             return Response(AttendancePunchSerializer(attendance).data, status=status.HTTP_201_CREATED)
@@ -888,6 +889,7 @@ class PunchOutView(APIView):
             user_tz = pytz.timezone('Asia/Kolkata')
             now = timezone.now().astimezone(user_tz)
             today = now.date()
+            print("user",now)
             
             record = Attendance.objects.filter(user=user, date=today, punch_out__isnull=True).first()
             if not record or not record.punch_in:
@@ -895,24 +897,21 @@ class PunchOutView(APIView):
             
             # Get reason from request body if provided
             reason = request.data.get('reason', '').strip()
-            
-            # Make sure punch_in is timezone-aware
-            punch_in_time = record.punch_in.astimezone(user_tz)
-            
-            # Check if punch-out is before punch-in
-            if now <= punch_in_time:
-                return Response({"error": "Punch-out time cannot be before punch-in time"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        
             
             # Check if punch-out is too early (before 5 PM IST)
-            early_departure_time = user_tz.localize(datetime.combine(today, time(17, 0)))
+            early_departure_time = user_tz.localize(datetime.combine(today, time(18, 30)))
             is_early_departure = now < early_departure_time
             
             if is_early_departure and not reason:
-                return Response({"error": "Early departure! Reason required before 5:00 PM."}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({"error": "Early departure! Reason required before 6:30 PM."}, status=status.HTTP_400_BAD_REQUEST)
             
             record.punch_out = now
+            record.punch_out_time = now.strftime('%I:%M %p')
             record.reason = reason if is_early_departure else ''
-            record.status = 'Left Early' if is_early_departure else 'Full Day'
+            record.status = 'Present' if is_early_departure else 'Present'
+            print("record",record.punch_in_time)
             record.save()
             
             return Response(AttendancePunchSerializer(record).data, status=status.HTTP_200_OK)
@@ -1530,7 +1529,7 @@ class AdminAttendanceHistoryView(APIView):
                 'punch_out_time': attendance.punch_out_time if attendance else '',
                 'hours_worked': attendance.hours_worked if attendance else '0h 0m',
                 'status': attendance.status if attendance else 'No Attendance',
-                'reason': attendance.reason if attendance and attendance.status == 'Late' else '',
+                'reason': attendance.reason if attendance and attendance.reason else '',
                 'a_id': attendance.id if attendance else "",
                 'reason_status': reason_approval.status if reason_approval else 'pending',
                 'has_punchout': bool(attendance and attendance.punch_out) if attendance else False,
