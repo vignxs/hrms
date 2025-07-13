@@ -812,6 +812,11 @@ class EmployeePunchRecordView(APIView):
                     'user_name': record.user.get_full_name(),
                     'status': record.status,
                     'reason': record.reason,
+                    "approval_status": (
+    today_record.reason_approval.status 
+    if hasattr(today_record, 'reason_approval') and today_record.reason_approval 
+    else None
+),
                     'created_at': record.created_at.astimezone(user_tz) if record.created_at else None
                 })
             
@@ -892,11 +897,14 @@ class PunchOutView(APIView):
             print("user",now)
             
             record = Attendance.objects.filter(user=user, date=today, punch_out__isnull=True).first()
+            print("record",record)
+            print("record",record.__dict__)
             if not record or not record.punch_in:
                 return Response({"error": "No punch-in record found for today"}, status=status.HTTP_400_BAD_REQUEST)
             
             # Get reason from request body if provided
             reason = request.data.get('reason', '').strip()
+            print("reason",reason)
         
         
             
@@ -912,8 +920,22 @@ class PunchOutView(APIView):
             record.reason = reason if is_early_departure else ''
             record.status = 'Present' if is_early_departure else 'Present'
             print("record",record.punch_in_time)
+            print("record",record.__dict__)
             record.save()
-            
+            # if record.reason:
+            reason_approval = AttendanceReasonApproval.objects.filter(attendance=record).first()
+            if reason_approval:
+                print("Updating existing approval")   
+                reason_approval.status = 'pending'
+                reason_approval.admin_comment = '' 
+                reason_approval.save()
+            else:
+                print("Creating new approval")
+                AttendanceReasonApproval.objects.create(
+                    attendance=record,
+                    status='pending'
+                )
+
             return Response(AttendancePunchSerializer(record).data, status=status.HTTP_200_OK)
             
         except User.DoesNotExist:

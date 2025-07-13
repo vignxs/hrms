@@ -91,7 +91,6 @@ urlpatterns = [
     path('admin/attendance/history/', AdminAttendanceHistoryView.as_view(), name='admin-attendance-history'),
     path('admin/attendance/late-login-reasons/', AttendanceReasonListView.as_view(), name='admin-late-login-reasons'),
     
-    
     # Punch in/out
     path('attendance/punch-in/<int:user_id>/', PunchInView.as_view(), name='punch-in'),
     path('attendance/punch-out/<int:user_id>/', PunchOutView.as_view(), name='punch-out'),
@@ -101,6 +100,5 @@ urlpatterns = [
     # Password Reset URLs
     path('auth/password-reset/request/', PasswordResetRequestView.as_view(), name='password-reset-request'),
     path('auth/reset-password/<str:token>/', PasswordResetConfirmView.as_view(), name='password-reset-confirm'),
-    
     path('attendance/debug/<int:user_id>/', debug_punchin),
 ]
