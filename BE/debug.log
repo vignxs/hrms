@@ -19146,3 +19146,15 @@ INFO 2025-07-16 00:45:26,269 autoreload F:\hrms\BE\attendance\serializers_auth.p
 INFO 2025-07-16 00:45:27,748 autoreload Watching for file changes with StatReloader
 INFO 2025-07-16 00:45:29,907 autoreload F:\hrms\BE\attendance\serializers_auth.py changed, reloading.
 INFO 2025-07-16 00:45:31,675 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 00:45:45,671 basehttp "POST /api/auth/login/user/ HTTP/1.1" 200 598
+WARNING 2025-07-16 00:45:47,583 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 00:45:47,583 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+INFO 2025-07-16 00:45:47,594 basehttp "GET /api/auth/me/ HTTP/1.1" 200 101
+WARNING 2025-07-16 00:45:47,605 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 00:45:47,615 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+INFO 2025-07-16 00:45:47,699 basehttp "GET /api/auth/me/ HTTP/1.1" 200 101
+INFO 2025-07-16 00:45:47,775 basehttp "GET /api/auth/me/ HTTP/1.1" 200 101
+INFO 2025-07-16 00:45:47,843 basehttp "GET /api/auth/me/ HTTP/1.1" 200 101
+INFO 2025-07-16 00:45:48,228 basehttp "GET /api/attendance/punch-records/207/ HTTP/1.1" 200 319
+INFO 2025-07-16 00:45:48,297 basehttp "GET /api/attendance/punch-records/207/ HTTP/1.1" 200 319
+INFO 2025-07-16 00:45:48,467 basehttp "GET /api/attendance/punch-records/207/ HTTP/1.1" 200 319
