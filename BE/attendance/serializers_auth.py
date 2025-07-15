@@ -81,6 +81,7 @@ class AdminLoginSerializer(TokenObtainPairSerializer):
         return data
 
 
+
 class UserLoginSerializer(TokenObtainPairSerializer):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -96,13 +97,12 @@ class UserLoginSerializer(TokenObtainPairSerializer):
 
         # Use email if provided
         attrs['username'] = email or username
-        data = super().validate(attrs)
 
-        if self.user.is_staff or self.user.is_superuser:
-            raise serializers.ValidationError({"detail": "Please use admin login"})
+        data = super().validate(attrs)
 
         refresh = self.get_token(self.user)
         data['refresh'] = str(refresh)
         data['access'] = str(refresh.access_token)
         data['user'] = UserSerializer(self.user).data
         return data
+

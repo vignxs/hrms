@@ -221,8 +221,11 @@ const AttendanceCard = () => {
         if (todayIndex !== -1) {
           updatedData[todayIndex] = {
             ...updatedData[todayIndex],
-            punchOut: formatTime(new Date()),
+            punch_out: formatTime(new Date()),
             hours: totalHours,
+            punch_out_reason: reasonText || "",
+            punch_out_reason_status: "Pending",
+            punch_out_admin_comment: "",
           };
         }
         return updatedData;
@@ -256,28 +259,36 @@ const AttendanceCard = () => {
     }
   }, [isPunchedIn, punchInTime, punchOutTime, getTodayHours]);
 
-  // Fetch user profile on component mount54
+  // Fetch user profile on component mount
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
         const token = localStorage.getItem("access_token");
-        const response = await fetch("http://localhost:8000/api/auth/me/", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          setUserProfile(data);
-          setUserName(
-            data.first_name && data.last_name
-              ? `${data.first_name} ${data.last_name}`
-              : data.first_name || data.email.split("@")[0]
-          );
-          setEmployeeId(data.employee_id || data.id);
+        if (!token) {
+          console.error("No authentication token found");
+          return;
         }
+
+        const response = await fetch(
+          "http://localhost:8000/api/auth/me/",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (!response.ok) {
+          const error = await response.json().catch(() => ({}));
+          throw new Error(error.detail || "Failed to fetch user profile");
+        }
+
+        const profileData = await response.json();
+        setUserProfile(profileData);
+        setUserName(profileData.get_full_name || profileData.email);
+        setEmployeeId(profileData.id);
+        setReasonApprovalStatus(profileData.reason_approval_status || "");
       } catch (error) {
         console.error("Error fetching user profile:", error);
       }
@@ -722,20 +733,40 @@ const AttendanceCard = () => {
           const formattedRecords = records.map((record, index) => ({
             id: `record_${record.id}`,
             date: record.date || new Date().toISOString().split("T")[0],
+            dateDisplay: formatDate(record.date),
+            
             punch_in: record.punch_in || record.punch_in_time,
             punch_out: record.punch_out || record.punch_out_time,
+            
+            punch_in_display: formatTime(record.punch_in),
+            punch_out_display: formatTime(record.punch_out),
+            
             hours: calculateHours(
               record.punch_in || record.punch_in_time,
-              record.punch_out || record.punch_out_time
+              record.punch_out || record.punch_out_time 
             ),
-            status: record.status || "Unknown",
-            reason: record.reason || "",
-            user_name:
-              record.user_name || data.user?.email?.split("@")[0] || "Unknown",
+            hoursDisplay: formatHours(calculateHours(
+              record.punch_in || record.punch_in_time,
+              record.punch_out || record.punch_out_time
+            )),
+            
+            punch_in_reason: record.punch_in_reason || "",
+            punch_out_reason: record.punch_out_reason || "",
+            punch_in_reason_status: record.punch_in_reason_status || "pending",
+            punch_out_reason_status: record.punch_out_reason_status || "pending",
+            
+            punch_in_admin_comment: record.punch_in_admin_comment || "",
+            punch_out_admin_comment: record.punch_out_admin_comment || "",
+            
+            status: record.status || "Pending",
+            statusDisplay: record.status,
+            
+            user_name: record.user_name || data.user?.email?.split("@")[0] || "Unknown",
+            
+            is_late: record.is_late || false,
+            hours_worked: record.hours_worked || "0h 0m",
+            
             created_at: record.created_at,
-            reason_approval_status: record.approval_status,
-            admin_comment: record.admin_comment,
-            approved_by: record.approved_by,
           }));
 
           // Update state with formatted records
@@ -796,14 +827,19 @@ const AttendanceCard = () => {
 
       return {
         ...record,
-        punchInDisplay: formatTime(record.punch_in),
-        punchOutDisplay: formatTime(record.punch_out),
+        punchInDisplay: formatTime(record.punch_in_time),
+        punchOutDisplay: formatTime(record.punch_out_time),
         dateDisplay: formatDate(record.date),
         hoursDisplay: formatHours(computedHours),
         statusDisplay: record.status,
         reasonDisplay: record.reason,
+        punch_in_reason: record.punch_in_reason,
+        punch_out_reason :record.punch_out_reason,
+        punch_in_reason_status: record.punch_in_reason_status,
+        punch_out_reason_status: record.punch_out_reason_status,
         user_nameDisplay: record.user_name,
-        reasonApprovalStatus: record.approval_status ? record.approval_status : record.reason_approval_status,
+        reasonApprovalStatus: record.reason_approval_status,
+        adminComment: record.admin_comment,
         adminComment: record.admin_comment,
         approvedBy: record.approved_by,
       };
@@ -911,6 +947,11 @@ const AttendanceCard = () => {
 
   const updateAttendanceRecords = async (data) => {
     try {
+      if (!employeeId) {
+        console.error("No employee ID available");
+        return;
+      }
+
       const token = localStorage.getItem("access_token");
       const response = await fetch(
         `http://localhost:8000/api/attendance/punch-records/${employeeId}/`,
@@ -925,7 +966,11 @@ const AttendanceCard = () => {
       if (response.ok) {
         const records = await response.json();
         setAttendanceRecords(records);
-        console.log(records);
+        console.log("Attendance records:", records);
+      } else {
+        console.error("Failed to fetch attendance records");
+        const errorData = await response.json().catch(() => ({}));
+        console.error("Error data:", errorData);
       }
     } catch (error) {
       console.error("Error updating attendance records:", error);
@@ -971,8 +1016,7 @@ const AttendanceCard = () => {
 
       // Prepare request
       const requestBody = {
-        reason: reason || "",
-        status: isLate ? "Late" : "Present",
+        punch_in_reason: reason || "",
       };
 
       const response = await fetch(
@@ -1010,8 +1054,9 @@ const AttendanceCard = () => {
           punch_out: "-",
           hours: "00:00:00",
           status: isLate ? "Late" : "Present",
-          reason: reason || "",
-          approval_status: "Pending",
+          punch_in_reason: reason || "",
+          punch_in_reason_status: "Pending",
+          punch_in_admin_comment: "",
         },
         ...prev,
       ]);
@@ -1026,8 +1071,6 @@ const AttendanceCard = () => {
       alert(error.message || "Error punching in");
     }
   };
-
-  
 
   const punchOut = async (reason = "") => {
     try {
@@ -1070,11 +1113,9 @@ const AttendanceCard = () => {
 
       // Prepare request
       const requestBody = {
-        reason: reason || "",
-        status: "Present",
+        punch_out_reason: reason || "",
       };
 
-      
       const response = await fetch(
         `http://localhost:8000/api/attendance/punch-out/${employeeId}/`,
         {
@@ -1114,8 +1155,9 @@ const AttendanceCard = () => {
               punch_out: formatTime(now),
               hours: calculateHours(punchInTime, now),
               status: "Present",
-          reason: reason || "",
-              approval_status: "Pending",
+              punch_out_reason: reason || "",
+              punch_out_reason_status: "Pending",
+              punch_out_admin_comment: "",
             };
           }
         }
@@ -1311,7 +1353,7 @@ const AttendanceCard = () => {
                 color="textSecondary"
                 sx={{ color: theme.palette.grey[600] }}
               >
-                {isPunchedIn ? "Today" : "Total"} Hours
+                {isPunchedIn ? "Today's" : "Total"} Hours
               </Typography>
               <Typography
                 variant="h6"
@@ -1998,8 +2040,10 @@ const AttendanceCard = () => {
                 <TableCell>Punch Out</TableCell>
                 <TableCell>Hours</TableCell>
                 <TableCell>Status</TableCell>
-                <TableCell>Reason</TableCell>
-                <TableCell>Actions</TableCell>
+                <TableCell>Punch In Reason</TableCell>
+                <TableCell>Punch In Status</TableCell>
+                <TableCell>Punch Out Reason</TableCell>
+                <TableCell>Punch Out Status</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -2041,20 +2085,20 @@ const AttendanceCard = () => {
                     }}
                   >
                     <TableCell>{row.dateDisplay}</TableCell>
-                    <TableCell>{row.punchInDisplay}</TableCell>
-                    <TableCell>{row.punchOutDisplay}</TableCell>
+                    <TableCell>{row.punch_in_display}</TableCell>
+                    <TableCell>{row.punch_out_display}</TableCell>
                     <TableCell>{row.hoursDisplay}</TableCell>
                     <TableCell>
                       <Chip
-                        label={row.statusDisplay}
+                        label={row.status}
                         size="small"
                         sx={{
                           backgroundColor:
-                            row.statusDisplay === "Present"
+                            row.status === "Present"
                               ? theme.palette.success.light
                               : theme.palette.error.light,
                           color:
-                            row.statusDisplay === "Present"
+                            row.status === "Present"
                               ? theme.palette.success.dark
                               : "#1b5e20",
                           fontWeight: "bold",
@@ -2062,8 +2106,10 @@ const AttendanceCard = () => {
                         }}
                       />
                     </TableCell>
-                    <TableCell>{row.reasonDisplay}</TableCell>
-                    <TableCell>{row.reasonApprovalStatus}</TableCell>
+                    <TableCell>{row.punch_in_reason}</TableCell>
+                    <TableCell>{row.punch_in_reason_status}</TableCell>
+                    <TableCell>{row.punch_out_reason}</TableCell>
+                    <TableCell>{row.punch_out_reason_status}</TableCell>
                   </TableRow>
                 ))
               )}

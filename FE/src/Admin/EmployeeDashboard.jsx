@@ -51,6 +51,9 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 function EmployeeDashboard() {
   const navigate = useNavigate();
@@ -65,6 +68,10 @@ function EmployeeDashboard() {
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedEmail, setSelectedEmail] = useState("");
   const [selectedReportContent, setSelectedReportContent] = useState("");
+
+  const [selectedPunchInReason, setSelectedPunchInReason] = useState("");
+  const [selectedPunchOutReason, setSelectedPunchOutReason] = useState("");
+
   const [reasonDialogOpen, setReasonDialogOpen] = useState(false);
   const [selectedReason, setSelectedReason] = useState("");
   const [selectedName, setSelectedName] = useState("");
@@ -72,10 +79,12 @@ function EmployeeDashboard() {
   const [replyText, setReplyText] = useState("");
   const [lateLoginReasons, setLateLoginReasons] = useState([]);
   const [selectedReasonId, setSelectedReasonId] = useState(null);
+  const [selectedReasonType, setSelectedReasonType] = useState(null);
   const [shareAnchorEl, setShareAnchorEl] = useState(null);
   const [shareOpen, setShareOpen] = useState(false);
   const [showStatusDropdown, setShowStatusDropdown] = useState(false);
   const [error, setError] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const currentUserEmail = localStorage.getItem("user_email");
   const [selectedReportId, setSelectedReportId] = useState(null);
 
@@ -91,9 +100,11 @@ function EmployeeDashboard() {
       renderCell: (params) => {
         const { first_name, last_name } = params.row;
         return (
-          <Typography variant="body2">
-            {first_name || ""} {last_name || ""}
-          </Typography>
+          <Box sx={{ display: "flex", alignItems: "center", height: "100%" }}>
+            <Typography variant="body2">
+              {first_name || ""} {last_name || ""}
+            </Typography>
+          </Box>
         );
       },
     },
@@ -125,7 +136,9 @@ function EmployeeDashboard() {
       headerAlign: "left",
       align: "left",
       renderCell: (params) => (
-        <Typography>{params.value || "0h 0m"}</Typography>
+        <Box sx={{ display: "flex", alignItems: "center", height: "100%" }}>
+          <Typography>{params.value || "0h 0m"}</Typography>
+        </Box>
       ),
     },
     {
@@ -162,7 +175,8 @@ function EmployeeDashboard() {
           <Box
             sx={{
               display: "flex",
-              alignItems: "center",
+              alignItems: "center", // vertical alignment
+              height: "100%", // make it fill cell height
               cursor: hasReport ? "pointer" : "default",
               color: hasReport ? "primary.main" : "text.secondary",
             }}
@@ -193,20 +207,19 @@ function EmployeeDashboard() {
       headerAlign: "left",
       align: "left",
       renderCell: (params) => {
-        const reason = params.row.reason || "No reason provided";
-        const hasReason = reason && reason !== "No reason provided";
-        const attendanceId = params.row.id;
+        const reason =
+          params.row.punch_in_reason || params.row.punch_out_reason || null;
 
         return (
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <Typography
-              variant="body2"
-              color={hasReason ? "primary" : "text.secondary"}
-              sx={{ flex: 1 }}
-            >
-              {reason}
-            </Typography>
-            {hasReason && (
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center", // vertically center
+              height: "100%", // fill full cell height
+              gap: 1,
+            }}
+          >
+            {reason ? (
               <Button
                 variant="outlined"
                 color="primary"
@@ -214,12 +227,26 @@ function EmployeeDashboard() {
                 onClick={() => {
                   setSelectedReasonId(params.row.a_id);
                   setSelectedReason(reason);
-                  setSelectedName(`${params.row.first_name} ${params.row.last_name}`);
+                  setSelectedName(
+                    `${params.row.first_name} ${params.row.last_name}`
+                  );
                   setReasonDialogOpen(true);
+                  setSelectedPunchInReason(params.row.punch_in_reason);
+                  setSelectedPunchOutReason(params.row.punch_out_reason);
+                  // Set reason type based on which reason exists
+                  if (params.row.punch_in_reason) {
+                    setSelectedReasonType("punch_in");
+                  } else if (params.row.punch_out_reason) {
+                    setSelectedReasonType("punch_out");
+                  }
                 }}
               >
                 View
               </Button>
+            ) : (
+              <Typography variant="body2" color="text.secondary">
+                No reason provided
+              </Typography>
             )}
           </Box>
         );
@@ -262,6 +289,10 @@ function EmployeeDashboard() {
           report_status: emp.report_status || "Not Submitted",
           report_details: emp.report_details || "No details",
           has_report: emp.has_report || false,
+          punch_in_reason: emp.punch_in_reason || "",
+          punch_out_reason: emp.punch_out_reason || "",
+          punch_in_reason_status: emp.punch_in_reason_status || "pending",
+          punch_out_reason_status: emp.punch_out_reason_status || "pending",
           status: displayStatus,
         };
       })
@@ -294,6 +325,7 @@ function EmployeeDashboard() {
   const fetchAttendanceData = async () => {
     try {
       const token = localStorage.getItem("access_token");
+
       const response = await fetch(
         `http://localhost:8000/api/admin/attendance/history/`,
         {
@@ -309,10 +341,10 @@ function EmployeeDashboard() {
       }
 
       const data = await response.json();
-      console.log("Attendance data sample:", data?.items?.[0]);
+      console.log("Attendance data sample:", data.items.length);
 
       // The backend returns data in items array
-      setEmployeeData(data.items || []);
+      setEmployeeData(data.items);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching employee data:", error);
@@ -320,6 +352,14 @@ function EmployeeDashboard() {
       setError("Failed to fetch employee data");
     }
   };
+
+  console.log("length of employeeData", employeeData.length);
+  // console.log("employeeData", employeeData);
+
+  useEffect(() => {
+    fetchAttendanceData();
+  }, []);
+
   const fetchLastLoginReasons = async () => {
     try {
       const token = localStorage.getItem("access_token");
@@ -355,16 +395,13 @@ function EmployeeDashboard() {
     fetchAttendanceData();
     fetchLastLoginReasons();
 
-
     const interval = setInterval(() => {
       fetchAttendanceData();
+      fetchLastLoginReasons();
+
     }, 10000); // 10,000 ms = 10 seconds
     return () => clearInterval(interval); // Cleanup interval on component unmount
-  
   }, []);
-
-  const handlePageChange = () => {};
-  const handlePageSizeChange = () => {};
 
   const handleReportClick = (row) => {
     console.log("Clicked row data:", row);
@@ -594,61 +631,50 @@ function EmployeeDashboard() {
       }
     }
   };
-  const handleApproveReject = async (approved) => {
-    if (!selectedReasonId) return;
-  
+
+  const handleReasonApproval = async (approvalStatus, reasonType) => {
     try {
       const token = localStorage.getItem("access_token");
-  
-      const response = await fetch(
-        `http://localhost:8000/api/admin/attendance/reason-approval/${selectedReasonId}/`,
-        {
-          method: "PUT",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            status: approved ? "approved" : "rejected",
-          }),
-        }
-      );
-  
-      if (!response.ok) throw new Error("Update failed");
-  
-      fetchLastLoginReasons();
-      setReasonDialogOpen(false);
-    } catch (e) {
-      alert("Failed to update reason approval.");
-      console.error(e);
-    }
-  };
-  
-  const handleApproveRejectRow = async (attendanceId, approve) => {
-    try {
-      const token = localStorage.getItem("access_token");
-      const response = await fetch(
-        `http://localhost:8000/api/late-login-reasons/${attendanceId}/approve/`,
-        {
-          method: "PUT",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            status: approve ? "approved" : "rejected",
-          }),
-        }
-      );
+      
+      const url = `http://localhost:8000/api/attendance/approve-reason/${selectedReasonId}/`;
+
+      const payload = {
+        status: approvalStatus, // "approved" or "rejected"
+        reason_type: reasonType, // "punch_in" or "punch_out"
+        admin_comment: replyText.trim() || null, // Optional admin comment
+      };
+
+      const response = await fetch(url, {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
 
       if (!response.ok) {
-        throw new Error("Failed to update approval status");
+        throw new Error(data.error || `Failed to update ${reasonType} reason status`);
       }
-      fetchLastLoginReasons();
-      fetchAttendanceData();
+
+      // Refresh data
+      await fetchAttendanceData();
+      await fetchLastLoginReasons();
+      
+      // Reset state
+      setReasonDialogOpen(false);
+      setSelectedReasonId(null);
+      setSelectedReason(null);
+      setSelectedReasonType(null);
+      setSelectedName(null);
+      setSelectedPunchInReason(null);
+      setSelectedPunchOutReason(null);
+      setReplyText("");
     } catch (error) {
-      console.error("Error updating approval:", error);
-      alert("Failed to update approval status. Please try again.");
+      console.error("Reason approval failed:", error);
+      setError(error.message || "Something went wrong");
     }
   };
 
@@ -1064,7 +1090,7 @@ function EmployeeDashboard() {
             }}
           >
             <DataGrid
-              rows={filteredData}
+              rows={employeeData}
               columns={EmployeeColumn}
               disableSelectionOnClick
               getRowId={(row) => row.id}
@@ -1135,7 +1161,14 @@ function EmployeeDashboard() {
                   name: r.name,
                   reason: r.reason,
                   login_time: r.login_time,
-                  is_approved: r.action,
+                  action: r.action,
+                  email: r.email,
+                  punch_in_time: r.punch_in_time,
+                  punch_out_time: r.punch_out_time,
+                  punch_in_reason_status: r.punch_in_reason_status,
+                  punch_out_reason_status: r.punch_out_reason_status,
+                  punch_in_reason: r.punch_in_reason,
+                  punch_out_reason: r.punch_out_reason,
                 };
               })}
               components={{
@@ -1226,60 +1259,148 @@ function EmployeeDashboard() {
                   display: "none",
                 },
               }}
-              columns={[
+              const columns = {[
                 {
                   field: "name",
                   headerName: "Employee",
+                  width: 200,
+                  headerAlign: "left",
+                  align: "left",
+                  renderCell: (params) => (
+                    <Box sx={{ display: "flex", alignItems: "center", height: "100%" }}>
+                      <Typography variant="body2">{params.row.name}</Typography>
+                    </Box>
+                  ),
+                },
+                {
+                  field: "email",
+                  headerName: "Email",
                   width: 220,
                   headerAlign: "left",
                   align: "left",
                   renderCell: (params) => (
-                    <Typography variant="body2">{params.row.name}</Typography>
+                    <Box sx={{ display: "flex", alignItems: "center", height: "100%" }}>
+                      <Typography variant="body2">{params.row.email}</Typography>
+                    </Box>
                   ),
                 },
                 {
-                  field: "reason",
-                  headerName: "Reason",
-                  width: 300,
+                  field: "hours",
+                  headerName: "Hours",
+                  width: 100,
+                  headerAlign: "center",
+                  align: "center",
+                  renderCell: (params) => (
+                    <Box sx={{ display: "flex", alignItems: "center", height: "100%", justifyContent: "center" }}>
+                      <Typography variant="body2">{params.row.hours}</Typography>
+                    </Box>
+                  ),
+                },
+                {
+                  field: "punch_in_time",
+                  headerName: "Punch-in Time",
+                  width: 140,
+                  headerAlign: "center",
+                  align: "center",
+                  renderCell: (params) => (
+                    <Box sx={{ display: "flex", alignItems: "center", height: "100%", justifyContent: "center" }}>
+                      <Typography variant="body2">{params.row.punch_in_time || "--"}</Typography>
+                    </Box>
+                  ),
+                },
+                {
+                  field: "punch_in_reason",
+                  headerName: "Punch-in Reason",
+                  width: 220,
                   headerAlign: "left",
                   align: "left",
                   renderCell: (params) => (
-                    <Typography variant="body2">{params.row.reason}</Typography>
+                    <Box sx={{ display: "flex", alignItems: "center", height: "100%" }}>
+                      <Typography variant="body2">
+                        {params.row.punch_in_reason || "—"}
+                      </Typography>
+                    </Box>
                   ),
                 },
                 {
-                  field: "login_time",
-                  headerName: "Login Time",
-                  width: 200,
+                  field: "punch_in_status",
+                  headerName: "Punch-in Status",
+                  width: 160,
                   headerAlign: "center",
                   align: "center",
                   renderCell: (params) => (
-                    <Typography variant="body2">
-                      {params.row.login_time}
-                    </Typography>
+                    <Box sx={{ display: "flex", alignItems: "center", height: "100%", justifyContent: "center" }}>
+                      <Chip
+                        label={params.row.punch_in_reason_status}
+                        color={
+                          params.row.punch_in_reason_status === "approved"
+                            ? "success"
+                            : params.row.punch_in_reason_status === "rejected"
+                            ? "error"
+                            : "warning"
+                        }
+                        size="small"
+                      />
+                    </Box>
                   ),
                 },
                 {
-                  field: "actions",
-                  headerName: "Status",
-                  width: 150,
+                  field: "punch_out_time",
+                  headerName: "Punch-out Time",
+                  width: 140,
                   headerAlign: "center",
                   align: "center",
                   renderCell: (params) => (
-                    <Chip
-                      label={params.row.is_approved}
-                      color={
-                        params.row.is_approved === "approved"
-                          ? "success"
-                          : params.row.is_approved === "rejected"
-                          ? "error"
-                          : "warning"
-                      }
-                      size="small"
-                    />
+                    <Box sx={{ display: "flex", alignItems: "center", height: "100%", justifyContent: "center" }}>
+                      <Typography variant="body2">{params.row.punch_out_time || "--"}</Typography>
+                    </Box>
+                  ),
+                },
+                {
+                  field: "punch_out_reason",
+                  headerName: "Punch-out Reason",
+                  width: 220,
+                  headerAlign: "left",
+                  align: "left",
+                  renderCell: (params) => (
+                    <Box sx={{ display: "flex", alignItems: "center", height: "100%" }}>
+                      <Typography variant="body2">
+                        {params.row.punch_out_reason || "—"}
+                      </Typography>
+                    </Box>
+                  ),
+                },
+                {
+                  field: "punch_out_status",
+                  headerName: "Punch-out Status",
+                  width: 160,
+                  headerAlign: "center",
+                  align: "center",
+                  renderCell: (params) => (
+                    <Box sx={{ display: "flex", alignItems: "center", height: "100%", justifyContent: "center" }}>
+                      <Chip
+                        label={params.row.punch_out_reason_status}
+                        color={
+                          params.row.punch_out_reason_status === "approved"
+                            ? "success"
+                            : params.row.punch_out_reason_status === "rejected"
+                            ? "error"
+                            : "warning"
+                        }
+                        size="small"
+                      />
+                    </Box>
                   ),
                 },
               ]}
+
+              
+
+
+
+
+              
+                            
               hideFooterPagination={true}
               hideFooterSelectedRowCount={true}
               disableColumnMenu
@@ -1359,40 +1480,110 @@ function EmployeeDashboard() {
       {/* Reason Dialog */}
       <Dialog
         open={reasonDialogOpen}
-        onClose={() => setReasonDialogOpen(false)}
+        onClose={() => {
+          setReasonDialogOpen(false);
+          setSelectedReasonId(null);
+          setSelectedReason(null);
+          setSelectedReasonType(null);
+          setSelectedName(null);
+          setSelectedPunchInReason(null);
+          setSelectedPunchOutReason(null);
+        }}
         maxWidth="sm"
         fullWidth
       >
         <DialogTitle>Reason Details</DialogTitle>
         <DialogContent>
-          <DialogContentText sx={{ whiteSpace: "pre-line" }}>
-            <b>Employee:</b> {selectedName}
-            {"\n"}
-            <b>Reason:</b> {selectedReason}
-          </DialogContentText>
+          <Box sx={{ mb: 2 }}>
+            <Typography variant="h6" gutterBottom>
+              {selectedName}
+            </Typography>
+
+            {/* Punch-in reason section */}
+            <Box
+              sx={{ mb: 2, border: "1px solid #e0e0e0", p: 2, borderRadius: 1 }}
+            >
+              <Typography
+                variant="subtitle2"
+                color="textSecondary"
+                sx={{ mb: 1 }}
+              >
+                Punch-in Reason
+              </Typography>
+              <Typography variant="body1" sx={{ mb: 2 }}>
+                {selectedPunchInReason || "No punch-in reason provided"}
+              </Typography>
+              <Box sx={{ display: "flex", gap: 1, mb: 1 }}>
+                <Button
+                  variant="contained"
+                  color="success"
+                  disabled={!selectedPunchInReason}
+                  onClick={() => handleReasonApproval("approved", "punch_in")}
+                >
+                  Approve Punch-in
+                </Button>
+                <Button
+                  variant="contained"
+                  color="error"
+                  disabled={!selectedPunchInReason}
+                  onClick={() => handleReasonApproval("rejected", "punch_in")}
+                >
+                  Reject Punch-in
+                </Button>
+              </Box>
+            </Box>
+
+            {/* Punch-out reason section */}
+            <Box
+              sx={{ mb: 2, border: "1px solid #e0e0e0", p: 2, borderRadius: 1 }}
+            >
+              <Typography
+                variant="subtitle2"
+                color="textSecondary"
+                sx={{ mb: 1 }}
+              >
+                Punch-out Reason
+              </Typography>
+              <Typography variant="body1" sx={{ mb: 2 }}>
+                {selectedPunchOutReason || "No punch-out reason provided"}
+              </Typography>
+              <Box sx={{ display: "flex", gap: 1, mb: 1 }}>
+                <Button
+                  variant="contained"
+                  color="success"
+                  disabled={!selectedPunchOutReason}
+                  onClick={() => handleReasonApproval("approved", "punch_out")}
+                >
+                  Approve Punch-out
+                </Button>
+                <Button
+                  variant="contained"
+                  color="error"
+                  disabled={!selectedPunchOutReason}
+                  onClick={() => handleReasonApproval("rejected", "punch_out")}
+                >
+                  Reject Punch-out
+                </Button>
+              </Box>
+            </Box>
+          </Box>
         </DialogContent>
         <DialogActions>
           <Button
-            color="success"
-            variant="contained"
+            variant="outlined"
+            color="inherit"
             onClick={() => {
-              handleApproveRejectRow(selectedReasonId, true);
               setReasonDialogOpen(false);
+              setSelectedReasonId(null);
+              setSelectedReason(null);
+              setSelectedReasonType(null);
+              setSelectedName(null);
+              setSelectedPunchInReason(null);
+              setSelectedPunchOutReason(null);
             }}
           >
-            Approve
+            Cancel
           </Button>
-          <Button
-            color="error"
-            variant="contained"
-            onClick={() => {
-              handleApproveRejectRow(selectedReasonId, false);
-              setReasonDialogOpen(false);
-            }}
-          >
-            Reject
-          </Button>
-          <Button onClick={() => setReasonDialogOpen(false)}>Cancel</Button>
         </DialogActions>
       </Dialog>
     </Box>

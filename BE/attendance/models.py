@@ -83,6 +83,7 @@ class AdminReply(models.Model):
 from django.db import models
 from datetime import timedelta
 
+
 class Attendance(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='attendances')
 
@@ -94,48 +95,31 @@ class Attendance(models.Model):
     punch_out_time = models.CharField(max_length=20, blank=True)
 
     is_late = models.BooleanField(default=False)
-    reason = models.CharField(max_length=255, blank=True, null=True)
 
-    status = models.CharField(max_length=20, default='Pending')
+    # 🔽 Separate reasons for punch in and punch out
+    punch_in_reason = models.CharField(max_length=255, blank=True, null=True)
+    punch_out_reason = models.CharField(max_length=255, blank=True, null=True)
+
+    # 🔽 Separate approval status
+    punch_in_reason_status = models.CharField(max_length=20, choices=[('pending', 'Pending'), ('approved', 'Approved'), ('rejected', 'Rejected')], default='pending')
+    punch_out_reason_status = models.CharField(max_length=20, choices=[('pending', 'Pending'), ('approved', 'Approved'), ('rejected', 'Rejected')], default='pending')
+
+    # Optional admin comments
+    punch_in_admin_comment = models.TextField(blank=True, null=True)
+    punch_out_admin_comment = models.TextField(blank=True, null=True)
+
+    status = models.CharField(max_length=20, default='Pending')  # general attendance status
     hours_worked = models.CharField(max_length=20, blank=True, default='0h 0m')
 
     created_at = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
-
-        # Calculate worked hours
         if self.punch_in and self.punch_out:
             delta = self.punch_out - self.punch_in
             hours = int(delta.total_seconds() // 3600)
             minutes = int((delta.total_seconds() % 3600) // 60)
             self.hours_worked = f"{hours}h {minutes}m"
-
-        # We'll handle AttendanceReasonApproval creation through a post_save signal
-
         super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.user.get_full_name()} - {self.date}"
-
-
-class AttendanceReasonApproval(models.Model):
-    STATUS_CHOICES = [
-        ('pending', 'Pending'),
-        ('approved', 'Approved'),
-        ('rejected', 'Rejected')
-    ]
-
-    attendance = models.OneToOneField('Attendance', on_delete=models.CASCADE, related_name='reason_approval')
-    approved_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='approved_reasons')
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
-    admin_comment = models.TextField(blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        ordering = ['-created_at']
-
-    def __str__(self):
-        return f"{self.attendance.user.get_full_name()} - {self.attendance.date}"
-
-        

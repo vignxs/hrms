@@ -18,7 +18,7 @@ from .views import (
     CheckPunchOutStatusView,
     AdminAttendanceHistoryView,
     UserAdminRepliesView,
-    AttendanceReasonListView,
+    AttendanceReasonListView,AttendanceReasonApprovalView,  
     UserSearchView,
     test_email
 )
@@ -96,6 +96,8 @@ urlpatterns = [
     path('attendance/punch-out/<int:user_id>/', PunchOutView.as_view(), name='punch-out'),
     path('attendance/check-punch-out/<int:user_id>/', CheckPunchOutStatusView.as_view(), name='check-punch-out'),
     path('attendance/punch-records/<int:user_id>/', EmployeePunchRecordView.as_view(), name='employee-punch-records'),
+    path('attendance/approve-reason/<int:pk>/', AttendanceReasonApprovalView.as_view(), name='approve-reason'),
+
     
     # Password Reset URLs
     path('auth/password-reset/request/', PasswordResetRequestView.as_view(), name='password-reset-request'),

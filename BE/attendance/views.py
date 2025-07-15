@@ -50,7 +50,7 @@ import secrets
 import string
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User, Group
-from .models import  DailyWorkReport, AdminReply, Attendance, AttendanceReasonApproval
+from .models import  DailyWorkReport, AdminReply, Attendance
 from .models import PasswordResetToken
 from .serializers import (
     UserSerializer, 
@@ -58,8 +58,9 @@ from .serializers import (
     AttendancePunchSerializer,
     UserSearchSerializer,
     AdminReplySerializer, AttendancePunchSerializer, PasswordResetRequestSerializer, PasswordResetConfirmSerializer,
-    EmployeeAttendanceHistorySerializer
+    EmployeeAttendanceHistorySerializer, AttendanceReasonApprovalSerializer
 )
+
 from django.utils.dateparse import parse_date
 from django.db.models.functions import Now, TruncDate
 from django.db.models import Q
@@ -811,12 +812,10 @@ class EmployeePunchRecordView(APIView):
                     'punch_out': record.punch_out.astimezone(user_tz) if record.punch_out else None,
                     'user_name': record.user.get_full_name(),
                     'status': record.status,
-                    'reason': record.reason,
-                    "approval_status": (
-    today_record.reason_approval.status 
-    if hasattr(today_record, 'reason_approval') and today_record.reason_approval 
-    else None
-),
+                    'punch_in_reason': record.punch_in_reason,  # Fixed field name
+                    'punch_out_reason': record.punch_out_reason,  # Fixed field name
+                    'punch_in_reason_status': record.punch_in_reason_status,  # Fixed field name
+                    'punch_out_reason_status': record.punch_out_reason_status,  # Fixed field name
                     'created_at': record.created_at.astimezone(user_tz) if record.created_at else None
                 })
             
@@ -831,7 +830,10 @@ class EmployeePunchRecordView(APIView):
                     "has_punched_out": has_punched_out,
                     "hours_worked": hours_worked,
                     "status": today_record.status if today_record else None,
-                    "reason": today_record.reason if today_record else None,
+                    "punch_in_reason": today_record.punch_in_reason if today_record else None,
+                    "punch_in_reason_status": today_record.punch_in_reason_status if today_record else None,
+                    "punch_out_reason": today_record.punch_out_reason if today_record else None,
+                    "punch_out_reason_status": today_record.punch_out_reason_status if today_record else None,
                     "punch_in_time": today_record.punch_in.astimezone(user_tz) if has_punched_in else None,
                     "punch_out_time": today_record.punch_out.astimezone(user_tz) if has_punched_out else None
                 },
@@ -844,41 +846,41 @@ class EmployeePunchRecordView(APIView):
             logger.error(f"Error in EmployeePunchRecordView: {str(e)}")
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+
 class PunchInView(APIView):
     permission_classes = [IsAuthenticated]
-    
+
     def post(self, request, user_id):
         try:
             user = User.objects.get(id=user_id)
-            # Get current time in IST
             user_tz = pytz.timezone('Asia/Kolkata')
             now = timezone.now().astimezone(user_tz)
             today = now.date()
-            
+
             existing = Attendance.objects.filter(user=user, date=today).first()
             if existing and existing.punch_in:
                 return Response({"error": "Already punched in today"}, status=status.HTTP_400_BAD_REQUEST)
-            
-            # Get reason from request body if provided
-            reason = request.data.get('reason', '').strip()
-            
-            # Make sure late_time is timezone-aware
+
+            reason = request.data.get('punch_in_reason', '').strip()  # 
             late_time = user_tz.localize(datetime.combine(today, time(9, 30)))
             is_late = now > late_time
-            
+
             if is_late and not reason:
                 return Response({"error": "Late login! Reason required after 9:30 AM."}, status=status.HTTP_400_BAD_REQUEST)
-            
+
             attendance = existing if existing else Attendance(user=user, date=today)
-            # Store time in IST
             attendance.punch_in = now
             attendance.punch_in_time = now.strftime('%I:%M %p')
-            attendance.reason = reason if is_late else ''
-            attendance.status = 'Present' if is_late else 'Present'
+
+            if is_late:
+                attendance.punch_in_reason = reason
+                attendance.punch_in_reason_status = 'pending'
+
+            attendance.status = 'Present'
             attendance.save()
-            
+
             return Response(AttendancePunchSerializer(attendance).data, status=status.HTTP_201_CREATED)
-            
+
         except User.DoesNotExist:
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
@@ -886,58 +888,37 @@ class PunchInView(APIView):
 
 class PunchOutView(APIView):
     permission_classes = [IsAuthenticated]
-    
+
     def post(self, request, user_id):
         try:
             user = User.objects.get(id=user_id)
-            # Get current time in IST
             user_tz = pytz.timezone('Asia/Kolkata')
             now = timezone.now().astimezone(user_tz)
             today = now.date()
-            print("user",now)
-            
+
             record = Attendance.objects.filter(user=user, date=today, punch_out__isnull=True).first()
-            print("record",record)
-            print("record",record.__dict__)
             if not record or not record.punch_in:
                 return Response({"error": "No punch-in record found for today"}, status=status.HTTP_400_BAD_REQUEST)
-            
-            # Get reason from request body if provided
-            reason = request.data.get('reason', '').strip()
-            print("reason",reason)
-        
-        
-            
-            # Check if punch-out is too early (before 5 PM IST)
+
+            reason = request.data.get('punch_out_reason', '').strip()  # 
             early_departure_time = user_tz.localize(datetime.combine(today, time(18, 30)))
             is_early_departure = now < early_departure_time
-            
+
             if is_early_departure and not reason:
                 return Response({"error": "Early departure! Reason required before 6:30 PM."}, status=status.HTTP_400_BAD_REQUEST)
-            
+
             record.punch_out = now
             record.punch_out_time = now.strftime('%I:%M %p')
-            record.reason = reason if is_early_departure else ''
-            record.status = 'Present' if is_early_departure else 'Present'
-            print("record",record.punch_in_time)
-            print("record",record.__dict__)
+
+            if is_early_departure:
+                record.punch_out_reason = reason
+                record.punch_out_reason_status = 'pending'
+
+            record.status = 'Present'
             record.save()
-            # if record.reason:
-            reason_approval = AttendanceReasonApproval.objects.filter(attendance=record).first()
-            if reason_approval:
-                print("Updating existing approval")   
-                reason_approval.status = 'pending'
-                reason_approval.admin_comment = '' 
-                reason_approval.save()
-            else:
-                print("Creating new approval")
-                AttendanceReasonApproval.objects.create(
-                    attendance=record,
-                    status='pending'
-                )
 
             return Response(AttendancePunchSerializer(record).data, status=status.HTTP_200_OK)
-            
+
         except User.DoesNotExist:
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
@@ -1517,27 +1498,22 @@ class AdminAttendanceHistoryView(APIView):
     permission_classes = [IsAuthenticated, IsAdminUser]
 
     def get(self, request):
-        today = timezone.localdate()  # ✅ FIXED here
+        today = timezone.localdate()  
         print(f"\nFetching attendance data for {today}")
 
         employees = User.objects.all().prefetch_related('attendances', 'daily_reports')
         attendance_records = Attendance.objects.filter(date=today)
         daily_reports = DailyWorkReport.objects.filter(date=today)
-        reason_approvals = AttendanceReasonApproval.objects.filter(
-            attendance__date=today
-        )
 
         print(f"Found {employees.count()} employees")
         print(f"Found {attendance_records.count()} attendance records")
         print(f"Found {daily_reports.count()} daily reports")
-        print(f"Found {reason_approvals.count()} reason approvals")
 
         data = []
 
         for employee in employees:
             attendance = attendance_records.filter(user=employee).first()
             report = daily_reports.filter(user=employee).first()
-            reason_approval = reason_approvals.filter(attendance__user=employee, attendance__date=today).first()
 
             user_data = {
                 'id': employee.id,
@@ -1551,33 +1527,30 @@ class AdminAttendanceHistoryView(APIView):
                 'punch_out_time': attendance.punch_out_time if attendance else '',
                 'hours_worked': attendance.hours_worked if attendance else '0h 0m',
                 'status': attendance.status if attendance else 'No Attendance',
-                'reason': attendance.reason if attendance and attendance.reason else '',
+                'punch_in_reason': attendance.punch_in_reason if attendance else '',
+                'punch_out_reason': attendance.punch_out_reason if attendance else '',
+                'punch_in_reason_status': attendance.punch_in_reason_status if attendance else 'pending',
+                'punch_out_reason_status': attendance.punch_out_reason_status if attendance else 'pending',
                 'a_id': attendance.id if attendance else "",
-                'reason_status': reason_approval.status if reason_approval else 'pending',
                 'has_punchout': bool(attendance and attendance.punch_out) if attendance else False,
                 'last_login': employee.last_login.isoformat() if employee.last_login else None,
                 'created_at': attendance.created_at.isoformat() if attendance and attendance.created_at else None
             }
 
-            report_data = {
-                'report_status': '✔️ Sent' if report and report.status == 'sent' else '❌ Not Submitted',
-                'report_details': report.work_details[:100] + '...' if report else None,
-                'report_id': report.id if report else None,
-            }
-
-            full_data = {**user_data, **attendance_data, **report_data, 'has_report': report is not None}
+            full_data = {**user_data, **attendance_data}
             data.append(full_data)
 
         # Sort
         data.sort(key=lambda x: (
             x['punch_in_time'] == '',
             x['punch_out_time'] == '',
-            x['created_at'] or '',  # Sort by empty string if no created_at
+            x['created_at'] or '',  
             x['first_name']
         ))
 
         print(f"\nFinal queryset length: {len(data)}")
         print(f"First item structure: {data[0] if data else 'No items'}")
+        # print(data)
 
         return Response({
             'items': data
@@ -1585,83 +1558,45 @@ class AdminAttendanceHistoryView(APIView):
         })
 
 
-
 class AttendanceReasonApprovalView(APIView):
     permission_classes = [IsAuthenticated, IsAdminUser]
 
-    def get(self, request, attendance_id):
+    def patch(self, request, pk):
         try:
-            approval = AttendanceReasonApproval.objects.get(attendance_id=attendance_id)
-            return Response({
-                'id': approval.id,
-                'status': approval.status,
-                'admin_comment': approval.admin_comment,
-                'approved_by': approval.approved_by.username if approval.approved_by else None,
-                'created_at': approval.created_at,
-                'updated_at': approval.updated_at
-            })
-        except AttendanceReasonApproval.DoesNotExist:
-            return Response({"error": "Approval record not found"}, status=404)
-
-    def put(self, request, attendance_id):
-        try:
-            approval = AttendanceReasonApproval.objects.get(attendance_id=attendance_id)
-            status = request.data.get('status')
-            comment = request.data.get('comment')
-            
-            if status not in ['approved', 'rejected']:
-                return Response({"error": "Invalid status"}, status=400)
-            
-            approval.status = status
-            approval.admin_comment = comment
-            approval.approved_by = request.user
-            approval.save()
-            
-            # Update attendance reason status
-            attendance = approval.attendance
-            attendance.reason_status = status
-            attendance.save()
-            
-            return Response({
-                'id': approval.id,
-                'status': approval.status,
-                'admin_comment': approval.admin_comment,
-                'approved_by': approval.approved_by.username,
-                'created_at': approval.created_at,
-                'updated_at': approval.updated_at
-            })
-        except AttendanceReasonApproval.DoesNotExist:
-            return Response({"error": "Approval record not found"}, status=404)
-        except Exception as e:
-            return Response({"error": str(e)}, status=400)
-
-    def post(self, request, attendance_id):
-        """
-        Create a new approval entry for an attendance reason
-        """
-        try:
-            attendance = Attendance.objects.get(id=attendance_id)
-            if not attendance.reason or not attendance.reason.strip():
-                return Response({"error": "No reason provided for this attendance"}, status=400)
-            
-            approval = AttendanceReasonApproval.objects.create(
-                attendance=attendance,
-                status='pending',
-                approved_by=None
-            )
-            
-            return Response({
-                'id': approval.id,
-                'status': approval.status,
-                'admin_comment': approval.admin_comment,
-                'approved_by': None,
-                'created_at': approval.created_at,
-                'updated_at': approval.updated_at
-            }, status=201)
+            attendance = Attendance.objects.get(pk=pk)
         except Attendance.DoesNotExist:
-            return Response({"error": "Attendance record not found"}, status=404)
-        except Exception as e:
-            return Response({"error": str(e)}, status=400)
+            return Response({"error": "Attendance record not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        # Validate required fields
+        if 'status' not in request.data:
+            return Response({"error": "Status is required"}, status=status.HTTP_400_BAD_REQUEST)
+        if 'reason_type' not in request.data:
+            return Response({"error": "Reason type is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Validate status value
+        if request.data['status'] not in ['approved', 'rejected']:
+            return Response({"error": "Invalid status value. Must be 'approved' or 'rejected'"}, 
+                          status=status.HTTP_400_BAD_REQUEST)
+
+        # Validate reason type
+        if request.data['reason_type'] not in ['punch_in', 'punch_out']:
+            return Response({"error": "Invalid reason type. Must be 'punch_in' or 'punch_out'"}, 
+                          status=status.HTTP_400_BAD_REQUEST)
+
+        # Update the appropriate fields based on reason type
+        if request.data['reason_type'] == 'punch_in':
+            attendance.punch_in_reason_status = request.data['status']
+            if 'admin_comment' in request.data:
+                attendance.punch_in_admin_comment = request.data['admin_comment']
+        else:  # punch_out
+            attendance.punch_out_reason_status = request.data['status']
+            if 'admin_comment' in request.data:
+                attendance.punch_out_admin_comment = request.data['admin_comment']
+
+        attendance.save()
+        
+        serializer = AttendanceReasonApprovalSerializer(attendance)
+        return Response(serializer.data)
 
 
 class AttendanceReasonListView(APIView):
@@ -1670,8 +1605,13 @@ class AttendanceReasonListView(APIView):
     def get(self, request):
         today = timezone.localdate()
 
-        records = Attendance.objects.select_related('user', 'reason_approval') \
-            .filter(date=today, reason__isnull=False).exclude(reason='')
+        # Only get attendance records for today with either reason filled
+        records = Attendance.objects.select_related('user').filter(
+            date=today
+        ).filter(
+            Q(punch_in_reason__isnull=False) & ~Q(punch_in_reason__exact='') |
+            Q(punch_out_reason__isnull=False) & ~Q(punch_out_reason__exact='')
+        )
 
         data = []
 
@@ -1679,9 +1619,14 @@ class AttendanceReasonListView(APIView):
             data.append({
                 "id": record.id,
                 "name": record.user.get_full_name(),
-                "login_time": record.punch_in_time or "",
-                "reason": record.reason,
-                "action": record.reason_approval.status if hasattr(record, 'reason_approval') else "pending"
+                "email": record.user.email,
+                "punch_in_time": record.punch_in_time or "",
+                "punch_out_time": record.punch_out_time or "",
+                "hours": record.hours_worked,
+                "punch_in_reason": record.punch_in_reason or "",
+                "punch_in_reason_status": record.punch_in_reason_status,
+                "punch_out_reason": record.punch_out_reason or "",
+                "punch_out_reason_status": record.punch_out_reason_status,
             })
 
         return Response(data)

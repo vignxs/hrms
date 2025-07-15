@@ -137,17 +137,26 @@ class AttendancePunchSerializer(serializers.ModelSerializer):
     punch_out_time = serializers.SerializerMethodField()
     hours_worked = serializers.SerializerMethodField()
     status = serializers.SerializerMethodField()
-    reason = serializers.CharField(required=False, allow_blank=True)
+
+    punch_in_reason = serializers.CharField(required=False, allow_blank=True)
+    punch_out_reason = serializers.CharField(required=False, allow_blank=True)
+    punch_in_reason_status = serializers.CharField(required=False)
+    punch_out_reason_status = serializers.CharField(required=False)
 
     class Meta:
         model = Attendance
         fields = [
             'id', 'user', 'user_name', 'date',
             'punch_in', 'punch_out', 'punch_in_time', 'punch_out_time',
-            'is_late', 'hours_worked', 'status', 'reason',
+            'is_late', 'hours_worked', 'status',
+            'punch_in_reason', 'punch_out_reason',
+            'punch_in_reason_status', 'punch_out_reason_status',
             'created_at'
         ]
-        read_only_fields = ['user_name', 'punch_in_time', 'punch_out_time', 'is_late', 'hours_worked', 'created_at', 'status']
+        read_only_fields = [
+            'user_name', 'punch_in_time', 'punch_out_time',
+            'is_late', 'hours_worked', 'created_at', 'status'
+        ]
 
     def get_punch_in_time(self, obj):
         if obj.punch_in:
@@ -173,6 +182,16 @@ class AttendancePunchSerializer(serializers.ModelSerializer):
             return "Punched In"
         return "Punched Out"
 
+        
+class AttendanceReasonApprovalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Attendance
+        fields = [
+            'id',
+            'punch_in_reason', 'punch_in_reason_status', 'punch_in_admin_comment',
+            'punch_out_reason', 'punch_out_reason_status', 'punch_out_admin_comment',
+        ]
+        read_only_fields = ['punch_in_reason', 'punch_out_reason']
 
 class PasswordResetRequestSerializer(serializers.Serializer):
     email = serializers.EmailField()

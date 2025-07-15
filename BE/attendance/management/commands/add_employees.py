@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
-from attendance.models import Employee
+# from attendance.models import Employee
 import pandas as pd
 from django.core.exceptions import ValidationError
 import sys
