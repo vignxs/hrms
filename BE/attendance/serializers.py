@@ -228,7 +228,8 @@ class EmployeeAttendanceHistorySerializer(serializers.ModelSerializer):
     punch_out = serializers.DateTimeField(required=False)
     employee_id = serializers.IntegerField(source='user.id')
     id = serializers.CharField()
-    reason = serializers.CharField(required=False)
+    punch_in_reason = serializers.CharField(required=False)
+    punch_out_reason = serializers.CharField(required=False)
     lastLogin = serializers.SerializerMethodField()
     lastLogout = serializers.SerializerMethodField()
     hours = serializers.SerializerMethodField()
@@ -238,22 +239,18 @@ class EmployeeAttendanceHistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Attendance
         fields = [
-            'id',
-            'employee_id',
-            'employee_name',
-            'email',
-            'punch_in',
-            'punch_out',
-            'punch_in_time',
-            'punch_out_time',
-            'hours_worked',
-            'status',
-            'reason',
-            'date',
-            'lastLogin',
-            'lastLogout',
-            'hours',
-            'dailyReportSent'
+            'id', 'user', 'employee_name', 'email', 'date',
+            'punch_in', 'punch_out', 'punch_in_time', 'punch_out_time',
+            'hours_worked', 'status', 'employee_id',
+            'punch_in_reason', 'punch_out_reason',
+            'lastLogin', 'lastLogout', 'hours', 'dailyReportSent',
+            'created_at'
+        ]
+        read_only_fields = [
+            'employee_name', 'email', 'date', 'punch_in_time',
+            'punch_out_time', 'hours_worked', 'status', 'employee_id',
+            'lastLogin', 'lastLogout', 'hours', 'dailyReportSent',
+            'created_at'
         ]
 
     def get_dailyReportSent(self, obj):

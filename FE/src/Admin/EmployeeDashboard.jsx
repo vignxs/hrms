@@ -88,21 +88,80 @@ function EmployeeDashboard() {
   const currentUserEmail = localStorage.getItem("user_email");
   const [selectedReportId, setSelectedReportId] = useState(null);
 
+  // Transform data into a consistent format
+  const transformedData = React.useMemo(() => {
+    if (!employeeData || !Array.isArray(employeeData)) return [];
+
+    return employeeData.map((emp) => {
+      if (!emp || typeof emp !== "object") return null;
+      
+      // Determine status based on punch-in/out times
+      let displayStatus = "No Attendance";
+      if (emp.punch_in_time) {
+        displayStatus = emp.punch_out_time ? "Offline" : "Online";
+      }
+
+      return {
+        id: emp.id,
+        name: `${emp.first_name || ''} ${emp.last_name || ''}`.trim(),
+        email: emp.email || '',
+        punch_in: emp.punch_in_time || '',
+        punch_out: emp.punch_out_time || '',
+        hours_worked: emp.hours_worked || '0h 0m',
+        report_status: emp.report_status || "Not Submitted",
+        report_details: emp.report_details || "No details",
+        has_report: emp.has_report || false,
+        punch_in_reason: emp.punch_in_reason || "",
+        punch_out_reason: emp.punch_out_reason || "",
+        punch_in_reason_status: emp.punch_in_reason_status || "pending",
+        punch_out_reason_status: emp.punch_out_reason_status || "pending",
+        status: displayStatus,
+      };
+    }).filter(Boolean); // Remove null entries
+  }, [employeeData]);
+
+  // Filter data based on search term and status
+  const filteredData = React.useMemo(() => {
+    if (!transformedData || !Array.isArray(transformedData)) return [];
+
+    return transformedData.filter((emp) => {
+      // Skip if employee data is invalid
+      if (!emp || typeof emp !== "object") return false;
+
+      // Filter by search term
+      const searchTermLower = searchTerm?.toLowerCase() || '';
+      const matchesSearch =
+        !searchTerm ||
+        emp.name.toLowerCase().includes(searchTermLower) ||
+        emp.email.toLowerCase().includes(searchTermLower) ||
+        emp.status.toLowerCase().includes(searchTermLower) ||
+        emp.punch_in_reason.toLowerCase().includes(searchTermLower) ||
+        emp.punch_out_reason.toLowerCase().includes(searchTermLower);
+
+      // Filter by status
+      const matchesStatus =
+        filterStatus === "All" ||
+        emp.status.toLowerCase() === filterStatus.toLowerCase();
+
+      return matchesSearch && matchesStatus;
+    });
+  }, [transformedData, searchTerm, filterStatus]);
+
   // Define columns for the DataGrid
   const EmployeeColumn = [
     {
-      field: "first_name",
+      field: "name",
       headerName: "Employee Name",
       flex: 1,
       minWidth: 200,
       headerAlign: "left",
       align: "left",
       renderCell: (params) => {
-        const { first_name, last_name } = params.row;
+        const { name } = params.row;
         return (
           <Box sx={{ display: "flex", alignItems: "center", height: "100%" }}>
             <Typography variant="body2">
-              {first_name || ""} {last_name || ""}
+              {name || ""}
             </Typography>
           </Box>
         );
@@ -116,14 +175,14 @@ function EmployeeDashboard() {
       align: "left",
     },
     {
-      field: "punch_in_time",
+      field: "punch_in",
       headerName: "Login",
       width: 170,
       headerAlign: "left",
       align: "left",
     },
     {
-      field: "punch_out_time",
+      field: "punch_out",
       headerName: "Logout",
       width: 170,
       headerAlign: "left",
@@ -149,10 +208,10 @@ function EmployeeDashboard() {
       align: "left",
       renderCell: (params) => {
         // Get punch-in/out times from row data
-        const { punch_in_time, punch_out_time } = params.row;
+        const { punch_in, punch_out } = params.row;
 
         // Determine status based on punch-in/out times
-        const isOnline = punch_in_time && !punch_out_time;
+        const isOnline = punch_in && !punch_out;
 
         return (
           <Chip
@@ -201,14 +260,13 @@ function EmployeeDashboard() {
       },
     },
     {
-      field: "reason",
+      field: "punch_in_reason",
       headerName: "Reason",
       width: 200,
       headerAlign: "left",
       align: "left",
       renderCell: (params) => {
-        const reason =
-          params.row.punch_in_reason || params.row.punch_out_reason || null;
+        const reason = params.row.punch_in_reason || params.row.punch_out_reason || null;
 
         return (
           <Box
@@ -225,7 +283,7 @@ function EmployeeDashboard() {
                 color="primary"
                 size="small"
                 onClick={() => {
-                  setSelectedReasonId(params.row.a_id);
+                  setSelectedReasonId(params.row.id);
                   setSelectedReason(reason);
                   setSelectedName(
                     `${params.row.first_name} ${params.row.last_name}`
@@ -253,74 +311,6 @@ function EmployeeDashboard() {
       },
     },
   ];
-
-  // Filter data based on search term and status
-  const filteredData = React.useMemo(() => {
-    if (!employeeData || !Array.isArray(employeeData)) return [];
-
-    return employeeData
-      .filter((emp) => {
-        // Skip if employee data is invalid
-        if (!emp || typeof emp !== "object") return false;
-        // Determine status based on punch-in/out times
-        let displayStatus = "No Attendance";
-
-        // Debug logging
-        // console.log('Employee status details:', {
-        //   id: emp.id,
-        //   name: `${emp.first_name} ${emp.last_name}`,
-        //   status: emp.status,
-        //   punch_in: emp.punch_in_time,
-        //   punch_out: emp.punch_out_time
-        // });
-
-        // Show Online/Offline based on punch-in/out times
-        if (emp.punch_in_time) {
-          displayStatus = emp.punch_out_time ? "Offline" : "Online";
-        }
-
-        return {
-          id: emp.id,
-          name: `${emp.first_name} ${emp.last_name}`,
-          email: emp.email,
-          punch_in: emp.punch_in_time,
-          punch_out: emp.punch_out_time,
-          hours_worked: emp.hours_worked,
-          report_status: emp.report_status || "Not Submitted",
-          report_details: emp.report_details || "No details",
-          has_report: emp.has_report || false,
-          punch_in_reason: emp.punch_in_reason || "",
-          punch_out_reason: emp.punch_out_reason || "",
-          punch_in_reason_status: emp.punch_in_reason_status || "pending",
-          punch_out_reason_status: emp.punch_out_reason_status || "pending",
-          status: displayStatus,
-        };
-      })
-      .filter((emp) => {
-        // Skip if employee data is invalid
-        if (!emp || typeof emp !== "object") return false;
-
-        // Filter by search term (name or email)
-        const searchLower = searchTerm.toLowerCase();
-        const matchesSearch =
-          !searchTerm ||
-          emp.name?.toLowerCase().includes(searchLower) ||
-          emp.email?.toLowerCase().includes(searchLower) ||
-          emp.first_name?.toLowerCase().includes(searchLower) ||
-          emp.last_name?.toLowerCase().includes(searchLower);
-
-        // Determine status based on punch-in/out times
-        const isOnline = emp.punch_in_time && !emp.punch_out_time;
-        const employeeStatus = isOnline ? "Online" : "Offline";
-
-        // Filter by status
-        const matchesStatus =
-          filterStatus === "All" ||
-          employeeStatus.toLowerCase() === filterStatus.toLowerCase();
-
-        return matchesSearch && matchesStatus;
-      });
-  }, [employeeData, searchTerm, filterStatus]);
 
   const fetchAttendanceData = async () => {
     try {
@@ -407,13 +397,13 @@ function EmployeeDashboard() {
     console.log("Clicked row data:", row);
 
     // Access report data
-    const reportData = row?.report_details;
+    const reportData = row?.dailyReportSent?.work_details;
     console.log("Report data:", reportData);
 
     // Get the work details
     const workDetails = reportData || "No report submitted";
     console.log("Work details:", workDetails);
-    setSelectedReportId(row?.report_id);
+    setSelectedReportId(row.dailyReportSent.report_id);
     setSelectedReportContent(workDetails);
     setSelectedEmail(row?.email || "");
     setSelectedName(row?.employee_name || "");
@@ -426,6 +416,7 @@ function EmployeeDashboard() {
       email: row?.email,
       name: row?.employee_name,
       report: row?.dailyReportSent,
+      report_id: row?.dailyReportSent?.report_id,
     });
   };
 
@@ -458,48 +449,48 @@ function EmployeeDashboard() {
   };
 
   const handleSendReply = async () => {
+   console.log("Selected report ID:", selectedReportId);
+   console.log("Reply text:", replyText);
     if (!selectedReportId || !replyText.trim()) return;
-
+  
     try {
       const token = localStorage.getItem("access_token");
-
+  
       const res = await fetch(
-        `http://localhost:8000/api/daily-work-reports/${selectedReportId}/`,
+        `http://localhost:8000/api/admin/reports/${selectedReportId}/reply/`,
         {
-          method: "PATCH",
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
-            ...(token ? { Authorization: `Bearer ${token}` } : {}),
-
-            // Add auth if needed
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({
-            admin_reply: replyText.trim(),
+            message: replyText.trim(),
           }),
         }
       );
-
+  
       if (!res.ok) {
         const err = await res.json();
         console.error("Reply failed:", err);
         alert(err.error || "Failed to send reply");
         return;
       }
-
+  
       const data = await res.json();
       console.log("Reply success:", data);
-
-      // Close and reset
+  
       setReplyMode(false);
       setReplyText("");
       setOpenDialog(false);
-
-      // Optional: Refresh table data or show toast
+  
+      // TODO: Optionally trigger data refresh or toast
     } catch (err) {
       console.error("Network error:", err);
       alert("Network error while sending reply");
     }
   };
+  
 
   const handleExport = (format) => {
     handleShareClose();
@@ -632,7 +623,7 @@ function EmployeeDashboard() {
     }
   };
 
-  const handleReasonApproval = async (approvalStatus, reasonType) => {
+  const handlePunchinPunchoutReasonApproval = async (approvalStatus, reasonType) => {
     try {
       const token = localStorage.getItem("access_token");
       
@@ -1069,7 +1060,7 @@ function EmployeeDashboard() {
           >
             {error}
           </Box>
-        ) : employeeData.length === 0 ? (
+        ) : transformedData.length === 0 ? (
           <Box
             display="flex"
             justifyContent="center"
@@ -1090,7 +1081,7 @@ function EmployeeDashboard() {
             }}
           >
             <DataGrid
-              rows={employeeData}
+              rows={filteredData}
               columns={EmployeeColumn}
               disableSelectionOnClick
               getRowId={(row) => row.id}
@@ -1155,7 +1146,6 @@ function EmployeeDashboard() {
           >
             <DataGrid
               rows={lateLoginReasons.map((r) => {
-                console.log("row:", r);
                 return {
                   id: r.id,
                   name: r.name,
@@ -1169,6 +1159,7 @@ function EmployeeDashboard() {
                   punch_out_reason_status: r.punch_out_reason_status,
                   punch_in_reason: r.punch_in_reason,
                   punch_out_reason: r.punch_out_reason,
+                  hours: r.hours,
                 };
               })}
               components={{
@@ -1518,7 +1509,7 @@ function EmployeeDashboard() {
                   variant="contained"
                   color="success"
                   disabled={!selectedPunchInReason}
-                  onClick={() => handleReasonApproval("approved", "punch_in")}
+                  onClick={() => handlePunchinPunchoutReasonApproval("approved", "punch_in")}
                 >
                   Approve Punch-in
                 </Button>
@@ -1526,7 +1517,7 @@ function EmployeeDashboard() {
                   variant="contained"
                   color="error"
                   disabled={!selectedPunchInReason}
-                  onClick={() => handleReasonApproval("rejected", "punch_in")}
+                  onClick={() => handlePunchinPunchoutReasonApproval("rejected", "punch_in")}
                 >
                   Reject Punch-in
                 </Button>
@@ -1552,7 +1543,7 @@ function EmployeeDashboard() {
                   variant="contained"
                   color="success"
                   disabled={!selectedPunchOutReason}
-                  onClick={() => handleReasonApproval("approved", "punch_out")}
+                  onClick={() => handlePunchinPunchoutReasonApproval("approved", "punch_out")}
                 >
                   Approve Punch-out
                 </Button>
@@ -1560,7 +1551,7 @@ function EmployeeDashboard() {
                   variant="contained"
                   color="error"
                   disabled={!selectedPunchOutReason}
-                  onClick={() => handleReasonApproval("rejected", "punch_out")}
+                  onClick={() => handlePunchinPunchoutReasonApproval("rejected", "punch_out")}
                 >
                   Reject Punch-out
                 </Button>

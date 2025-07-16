@@ -286,7 +286,7 @@ const AttendanceCard = () => {
 
         const profileData = await response.json();
         setUserProfile(profileData);
-        setUserName(profileData.get_full_name || profileData.email);
+        setUserName(profileData.first_name || profileData.last_name);
         setEmployeeId(profileData.id);
         setReasonApprovalStatus(profileData.reason_approval_status || "");
       } catch (error) {
@@ -365,106 +365,9 @@ const AttendanceCard = () => {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
 
-  // // Handler for punch-in
-  // const handlePunchIn = async () => {
-  //   try {
-  //     const token = localStorage.getItem('access_token');
-  //     if (!token) {
-  //       setError('Not authenticated');
-  //       return;
-  //     }
+  const [isPunchingIn, setIsPunchingIn] = useState(false);
+  const [isPunchingOut, setIsPunchingOut] = useState(false);
 
-  //     const response = await fetch('http://localhost:8000/api/attendance/punch-in/', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Authorization': `Bearer ${token}`,
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({})
-  //     });
-
-  //     if (response.ok) {
-  //       const data = await response.json();
-  //       setPunchInTime(new Date());
-  //       setIsPunchedIn(true);
-  //       setSuccess('Punched in successfully!');
-
-  //       // Update the attendance data
-  //       setAttendanceData(prev => [
-  //         {
-  //           id: Date.now(),
-  //           date: formatDate(new Date()),
-  //           punchIn: formatTime(new Date()),
-  //           punchOut: '-',
-  //           hours: '00:00:00',
-  //           status: 'Present',
-  //           reason: '-',
-  //         },
-  //         ...prev
-  //       ]);
-  //     } else {
-  //       const errorData = await response.json();
-  //       setError(errorData.detail || 'Failed to punch in');
-  //     }
-  //   } catch (err) {
-  //     setError('Error occurred while punching in');
-  //     console.error('Punch in error:', err);
-  //   }
-  // };
-
-  // // Handler for punch-out
-  // const handlePunchOut = async () => {
-  //   try {
-  //     const token = localStorage.getItem('access_token');
-  //     if (!token) {
-  //       setError('Not authenticated');
-  //       return;
-  //     }
-
-  //     const response = await fetch('http://localhost:8000/api/attendance/punch-out/', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Authorization': `Bearer ${token}`,
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({})
-  //     });
-
-  //     if (response.ok) {
-  //       const data = await response.json();
-  //       setPunchOutTime(new Date());
-  //       setIsPunchedIn(false);
-  //       setSuccess('Punched out successfully!');
-
-  //       // Update the attendance data
-  //       setAttendanceData(prev => {
-  //         const updatedData = [...prev];
-  //         if (updatedData.length > 0) {
-  //           const todayIndex = updatedData.findIndex(item =>
-  //             item.date === formatDate(new Date())
-  //           );
-  //           if (todayIndex !== -1) {
-  //             updatedData[todayIndex] = {
-  //               ...updatedData[todayIndex],
-  //               punchOut: formatTime(new Date()),
-  //               hours: calculateHours(punchInTime, new Date()),
-  //               status: 'Present'
-  //             };
-  //           }
-  //         }
-  //         return updatedData;
-  //       });
-  //     } else {
-  //       const errorData = await response.json();
-  //       setError(errorData.detail || 'Failed to punch out');
-  //     }
-  //   } catch (err) {
-  //     setError('Error occurred while punching out');
-  //     console.error('Punch out error:', err);
-  //   }
-  // };
-
-  // Function to get the greeting based on time
   const getGreeting = () => {
     const hour = currentTime.getHours();
     if (hour >= 5 && hour < 12) {
@@ -530,34 +433,34 @@ const AttendanceCard = () => {
     }
   };
 
-  // Post late login reason
-  const postLateLoginReason = async (reasonText) => {
-    try {
-      const token = localStorage.getItem("access_token");
-      const response = await fetch(
-        "http://localhost:8000/api/late-login-reasons/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            ...(token ? { Authorization: `Bearer ${token}` } : {}),
-          },
-          body: JSON.stringify({ reason: reasonText }),
-        }
-      );
-      if (response.ok) {
-        await fetchLateLoginReasons();
-        alert("Reason submitted successfully!");
-        setOpenReasonDialog(false);
-        setReasonText("");
-      } else {
-        alert("Failed to submit reason");
-      }
-    } catch (e) {
-      console.error("Error submitting reason:", e);
-      alert("Error submitting reason");
-    }
-  };
+  // // Post late login reason
+  // const postLateLoginReason = async (reasonText) => {
+  //   try {
+  //     const token = localStorage.getItem("access_token");
+  //     const response = await fetch(
+  //       "http://localhost:8000/api/late-login-reasons/",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           ...(token ? { Authorization: `Bearer ${token}` } : {}),
+  //         },
+  //         body: JSON.stringify({ reason: reasonText }),
+  //       }
+  //     );
+  //     if (response.ok) {
+  //       await fetchLateLoginReasons();
+  //       alert("Reason submitted successfully!");
+  //       setOpenReasonDialog(false);
+  //       setReasonText("");
+  //     } else {
+  //       alert("Failed to submit reason");
+  //     }
+  //   } catch (e) {
+  //     console.error("Error submitting reason:", e);
+  //     alert("Error submitting reason");
+  //   }
+  // };
 
   // Send daily report
   const sendDailyReport = async (reportText) => {
@@ -689,7 +592,111 @@ const AttendanceCard = () => {
     setSelectedDateForNote(null);
   };
   // --- End Calendar Note Functions ---
+  const fetchPunchRecords = async () => {
+    if (!employeeId) {
+      console.log("No employee ID available");
+      setLoading(false);
+      setAttendanceRecords([]);
+      return;
+    }
 
+    try {
+      console.log("Fetching punch records for employee ID:", employeeId);
+
+      const token = localStorage.getItem("access_token");
+      if (!token) {
+        console.error("No JWT token found");
+        setLoading(false);
+        setAttendanceRecords([]);
+        return;
+      }
+
+      const response = await fetch(
+        `http://localhost:8000/api/attendance/punch-records/${employeeId}/`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log("Response status:", response.status);
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Raw response data:", data);
+
+        // Extract records array from response
+        const records = data.records || [];
+
+        // Format all records from the database
+        const formattedRecords = records.map((record, index) => ({
+          id: `record_${record.id}`,
+          date: record.date || new Date().toISOString().split("T")[0],
+          dateDisplay: formatDate(record.date),
+          
+          punch_in: record.punch_in || record.punch_in_time,
+          punch_out: record.punch_out || record.punch_out_time,
+          
+          punch_in_display: formatTime(record.punch_in),
+          punch_out_display: formatTime(record.punch_out),
+          
+          hours: calculateHours(
+            record.punch_in || record.punch_in_time,
+            record.punch_out || record.punch_out_time 
+          ),
+          hoursDisplay: formatHours(calculateHours(
+            record.punch_in || record.punch_in_time,
+            record.punch_out || record.punch_out_time
+          )),
+          
+          punch_in_reason: record.punch_in_reason || "",
+          punch_out_reason: record.punch_out_reason || "",
+          punch_in_reason_status: record.punch_in_reason_status || "pending",
+          punch_out_reason_status: record.punch_out_reason_status || "pending",
+          
+          punch_in_admin_comment: record.punch_in_admin_comment || "",
+          punch_out_admin_comment: record.punch_out_admin_comment || "",
+          
+          status: record.status || "Pending",
+          statusDisplay: record.status,
+          
+          user_name: record.user_name || data.user?.email?.split("@")[0] || "Unknown",
+          
+          is_late: record.is_late || false,
+          hours_worked: record.hours_worked || "0h 0m",
+          
+          created_at: record.created_at,
+        }));
+
+        // Update state with formatted records
+        setAttendanceRecords(formattedRecords);
+
+        // Update today's punch status using todayRecord
+        if (data.today) {
+          setIsPunchedIn(!!data.today.punch_in || !!data.today.punch_in_time);
+          setIsPunchOutDisabled(
+            !!data.today.punch_out || !!data.today.punch_out_time
+          );
+          setPunchInTime(data.today.punch_in || data.today.punch_in_time);
+          setPunchOutTime(data.today.punch_out || data.today.punch_out_time);
+          setReasonApprovalStatus(data.today.reason_approval_status);
+        }
+      } else {
+        const errorData = await response
+          .json()
+          .catch(() => ({ error: "Failed to fetch punch records" }));
+        console.error("Failed to fetch punch records:", errorData);
+        setAttendanceRecords([]);
+      }
+    } catch (error) {
+      console.error("Error fetching punch records:", error);
+      setAttendanceRecords([]);
+    } finally {
+      setLoading(false);
+    }
+  };
   useEffect(() => {
     const fetchPunchRecords = async () => {
       if (!employeeId) {
@@ -980,6 +987,7 @@ const AttendanceCard = () => {
   console.log(attendanceRecords);
   const punchIn = async (reason = "") => {
     try {
+      setIsPunchingIn(true);
       const token = localStorage.getItem("access_token");
       if (!token) {
         throw new Error("No authentication token found");
@@ -1039,9 +1047,9 @@ const AttendanceCard = () => {
       }
 
       const data = await response.json();
-
-      // Update UI state immediately
+      fetchPunchRecords();
       setPunchInTime(now);
+
       setIsPunchedIn(true);
       setSuccess(`Successfully punched in at ${now.toLocaleTimeString()}`);
 
@@ -1063,17 +1071,19 @@ const AttendanceCard = () => {
 
       // Update the records in the background
       await updateAttendanceRecords(data);
-
       return data;
     } catch (error) {
       console.error("Punch in error:", error);
       setError(error.message || "Failed to punch in");
       alert(error.message || "Error punching in");
+    } finally {
+      setIsPunchingIn(false);
     }
   };
 
   const punchOut = async (reason = "") => {
     try {
+      setIsPunchingOut(true);
       const token = localStorage.getItem("access_token");
       if (!token) {
         throw new Error("No authentication token found");
@@ -1138,6 +1148,7 @@ const AttendanceCard = () => {
       const data = await response.json();
 
       // Update UI state immediately
+      fetchPunchRecords();
       setPunchOutTime(now);
       setIsPunchedIn(false);
       setSuccess(`Successfully punched out at ${now.toLocaleTimeString()}`);
@@ -1172,6 +1183,8 @@ const AttendanceCard = () => {
       console.error("Punch out error:", error);
       setError(error.message || "Failed to punch out");
       alert(error.message || "Error punching out");
+    } finally {
+      setIsPunchingOut(false);
     }
   };
 
@@ -1220,6 +1233,13 @@ const AttendanceCard = () => {
   const isAfterTime = (hour, minute, date) =>
     date.getHours() > hour ||
     (date.getHours() === hour && date.getMinutes() > minute);
+
+  const formatReasonStatus = (reason, status) => {
+    if (!reason || reason.trim() === '') {
+      return '-';
+    }
+    return status;
+  };
 
   return (
     <Box height="100%" p={3} sx={{ backgroundColor: theme.palette.grey[50] }}>
@@ -1407,7 +1427,7 @@ const AttendanceCard = () => {
             variant="contained"
             fullWidth
             onClick={handlePunch}
-            disabled={isPunchOutDisabled && isPunchedIn}
+            disabled={isPunchOutDisabled && isPunchedIn || isPunchingIn || isPunchingOut}
             sx={{
               backgroundColor: isPunchedIn ? "#1b5e20" : "#1b5e20",
               color: "white",
@@ -2085,8 +2105,8 @@ const AttendanceCard = () => {
                     }}
                   >
                     <TableCell>{row.dateDisplay}</TableCell>
-                    <TableCell>{row.punch_in_display}</TableCell>
-                    <TableCell>{row.punch_out_display}</TableCell>
+                    <TableCell>{formatTime(row.punch_in)}</TableCell>
+                    <TableCell>{formatTime(row.punch_out)}</TableCell>
                     <TableCell>{row.hoursDisplay}</TableCell>
                     <TableCell>
                       <Chip
@@ -2107,9 +2127,9 @@ const AttendanceCard = () => {
                       />
                     </TableCell>
                     <TableCell>{row.punch_in_reason}</TableCell>
-                    <TableCell>{row.punch_in_reason_status}</TableCell>
+                    <TableCell>{formatReasonStatus(row.punch_in_reason, row.punch_in_reason_status)}</TableCell>
                     <TableCell>{row.punch_out_reason}</TableCell>
-                    <TableCell>{row.punch_out_reason_status}</TableCell>
+                    <TableCell>{formatReasonStatus(row.punch_out_reason, row.punch_out_reason_status)}</TableCell>
                   </TableRow>
                 ))
               )}

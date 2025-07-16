@@ -7,17 +7,6 @@ from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 import pytz
 
-@receiver(post_save, sender='attendance.Attendance')
-def create_attendance_reason_approval(sender, instance, created, **kwargs):
-    """Create or update AttendanceReasonApproval after Attendance is saved"""
-    if created and instance.reason and instance.reason.strip():
-        approval, created = AttendanceReasonApproval.objects.get_or_create(
-            attendance=instance,
-            defaults={'status': 'pending'}
-        )
-        if not created:
-            approval.status = 'pending'
-            approval.save()
 
 
 class DailyWorkReport(models.Model):

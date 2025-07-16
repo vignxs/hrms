@@ -721,7 +721,7 @@ class AdminReplyView(APIView):
             reply = AdminReply.objects.create(
                 report=report,
                 admin=request.user,
-                message=serializer.validated_data.get('message')
+                message=serializer.validated_data['message']
             )
             
             # Prepare email content
@@ -774,6 +774,8 @@ class AdminReplyView(APIView):
                 {"error": "An error occurred while processing your request"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
+
+
 class EmployeePunchRecordView(APIView):
     permission_classes = [IsAuthenticated]
     
@@ -861,7 +863,7 @@ class PunchInView(APIView):
             if existing and existing.punch_in:
                 return Response({"error": "Already punched in today"}, status=status.HTTP_400_BAD_REQUEST)
 
-            reason = request.data.get('punch_in_reason', '').strip()  # 
+            reason = request.data.get('punch_in_reason', '').strip()  
             late_time = user_tz.localize(datetime.combine(today, time(9, 30)))
             is_late = now > late_time
 
@@ -884,6 +886,8 @@ class PunchInView(APIView):
         except User.DoesNotExist:
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
+            import traceback
+            traceback.print_exc()
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 class PunchOutView(APIView):
@@ -900,7 +904,7 @@ class PunchOutView(APIView):
             if not record or not record.punch_in:
                 return Response({"error": "No punch-in record found for today"}, status=status.HTTP_400_BAD_REQUEST)
 
-            reason = request.data.get('punch_out_reason', '').strip()  # 
+            reason = request.data.get('punch_out_reason', '').strip()  
             early_departure_time = user_tz.localize(datetime.combine(today, time(18, 30)))
             is_early_departure = now < early_departure_time
 
@@ -909,6 +913,13 @@ class PunchOutView(APIView):
 
             record.punch_out = now
             record.punch_out_time = now.strftime('%I:%M %p')
+
+            # Calculate hours worked
+            if record.punch_in and record.punch_out:
+                delta = record.punch_out - record.punch_in
+                hours = int(delta.total_seconds() // 3600)
+                minutes = int((delta.total_seconds() % 3600) // 60)
+                record.hours_worked = f"{hours}h {minutes}m"
 
             if is_early_departure:
                 record.punch_out_reason = reason
@@ -1009,12 +1020,10 @@ class AdminReplyToReportView(APIView):
             reply = AdminReply.objects.create(
                 report=report,
                 admin=request.user,
-                message=message
+                message=message,
             )
             
             # Update the report's replied_at timestamp
-            report.replied_at = timezone.now()
-            report.replied_by = request.user
             report.save()
             
             # Log the action
@@ -1525,7 +1534,7 @@ class AdminAttendanceHistoryView(APIView):
             attendance_data = {
                 'punch_in_time': attendance.punch_in_time if attendance else '',
                 'punch_out_time': attendance.punch_out_time if attendance else '',
-                'hours_worked': attendance.hours_worked if attendance else '0h 0m',
+                'hours_worked': attendance.hours_worked if attendance else '0h qqqw',
                 'status': attendance.status if attendance else 'No Attendance',
                 'punch_in_reason': attendance.punch_in_reason if attendance else '',
                 'punch_out_reason': attendance.punch_out_reason if attendance else '',
@@ -1536,6 +1545,15 @@ class AdminAttendanceHistoryView(APIView):
                 'last_login': employee.last_login.isoformat() if employee.last_login else None,
                 'created_at': attendance.created_at.isoformat() if attendance and attendance.created_at else None
             }
+
+            if report:
+                attendance_data['dailyReportSent'] = {
+                    'report_id': report.id,
+                    'status': report.status,
+                    'work_details': report.work_details
+                }
+            else:
+                attendance_data['dailyReportSent'] = None
 
             full_data = {**user_data, **attendance_data}
             data.append(full_data)

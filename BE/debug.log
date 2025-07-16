@@ -19158,3 +19158,1653 @@ INFO 2025-07-16 00:45:47,843 basehttp "GET /api/auth/me/ HTTP/1.1" 200 101
 INFO 2025-07-16 00:45:48,228 basehttp "GET /api/attendance/punch-records/207/ HTTP/1.1" 200 319
 INFO 2025-07-16 00:45:48,297 basehttp "GET /api/attendance/punch-records/207/ HTTP/1.1" 200 319
 INFO 2025-07-16 00:45:48,467 basehttp "GET /api/attendance/punch-records/207/ HTTP/1.1" 200 319
+INFO 2025-07-16 19:26:56,545 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 19:29:40,759 basehttp "OPTIONS /api/auth/login/user/ HTTP/1.1" 200 0
+INFO 2025-07-16 19:29:45,366 basehttp "POST /api/auth/login/user/ HTTP/1.1" 200 630
+INFO 2025-07-16 19:29:46,852 basehttp "OPTIONS /api/auth/me/ HTTP/1.1" 200 0
+INFO 2025-07-16 19:29:46,852 basehttp "OPTIONS /api/late-login-reasons/ HTTP/1.1" 200 0
+WARNING 2025-07-16 19:29:47,479 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 19:29:47,480 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+WARNING 2025-07-16 19:29:47,508 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 19:29:47,516 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+INFO 2025-07-16 19:29:49,390 basehttp "GET /api/auth/me/ HTTP/1.1" 200 133
+INFO 2025-07-16 19:29:49,652 basehttp "OPTIONS /api/attendance/punch-records/132/ HTTP/1.1" 200 0
+INFO 2025-07-16 19:29:49,768 basehttp "GET /api/auth/me/ HTTP/1.1" 200 133
+INFO 2025-07-16 19:29:49,875 basehttp "GET /api/auth/me/ HTTP/1.1" 200 133
+INFO 2025-07-16 19:29:50,235 basehttp "GET /api/auth/me/ HTTP/1.1" 200 133
+INFO 2025-07-16 19:29:56,508 basehttp "GET /api/attendance/punch-records/132/ HTTP/1.1" 200 676
+INFO 2025-07-16 19:29:56,627 basehttp "GET /api/attendance/punch-records/132/ HTTP/1.1" 200 676
+INFO 2025-07-16 19:29:56,845 basehttp "GET /api/attendance/punch-records/132/ HTTP/1.1" 200 676
+INFO 2025-07-16 19:29:59,114 basehttp "GET /api/auth/me/ HTTP/1.1" 200 133
+INFO 2025-07-16 19:29:59,193 basehttp "OPTIONS /api/attendance/punch-in/132/ HTTP/1.1" 200 0
+WARNING 2025-07-16 19:29:59,359 log Bad Request: /api/attendance/punch-in/132/
+WARNING 2025-07-16 19:29:59,360 basehttp "POST /api/attendance/punch-in/132/ HTTP/1.1" 400 57
+INFO 2025-07-16 19:31:26,145 autoreload F:\hrms\BE\attendance\serializers.py changed, reloading.
+INFO 2025-07-16 19:31:28,940 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 19:31:35,136 basehttp "GET /api/auth/me/ HTTP/1.1" 200 133
+WARNING 2025-07-16 19:31:35,328 log Bad Request: /api/attendance/punch-in/132/
+WARNING 2025-07-16 19:31:35,329 basehttp "POST /api/attendance/punch-in/132/ HTTP/1.1" 400 36
+WARNING 2025-07-16 19:31:45,496 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 19:31:45,497 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+WARNING 2025-07-16 19:31:45,514 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 19:31:45,515 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+INFO 2025-07-16 19:31:45,562 basehttp "GET /api/auth/me/ HTTP/1.1" 200 133
+INFO 2025-07-16 19:31:45,651 basehttp "GET /api/auth/me/ HTTP/1.1" 200 133
+INFO 2025-07-16 19:31:45,749 basehttp "GET /api/auth/me/ HTTP/1.1" 200 133
+INFO 2025-07-16 19:31:45,826 basehttp "GET /api/auth/me/ HTTP/1.1" 200 133
+INFO 2025-07-16 19:31:46,162 basehttp "GET /api/attendance/punch-records/132/ HTTP/1.1" 200 1041
+INFO 2025-07-16 19:31:46,261 basehttp "GET /api/attendance/punch-records/132/ HTTP/1.1" 200 1041
+INFO 2025-07-16 19:31:46,378 basehttp "GET /api/attendance/punch-records/132/ HTTP/1.1" 200 1041
+INFO 2025-07-16 19:31:57,756 basehttp "OPTIONS /api/daily-work-reports/ HTTP/1.1" 200 0
+DEBUG 2025-07-16 19:31:57,831 views DailyWorkReportViewSet POST accessed by user 132 (Admin: False
+DEBUG 2025-07-16 19:31:57,831 views Creating daily work report for user 132
+INFO 2025-07-16 19:31:57,850 views Daily work report created successfully for user 132
+INFO 2025-07-16 19:31:57,888 basehttp "POST /api/daily-work-reports/ HTTP/1.1" 201 310
+INFO 2025-07-16 19:32:26,682 basehttp "OPTIONS /api/auth/login/admin/ HTTP/1.1" 200 0
+INFO 2025-07-16 19:32:27,988 basehttp "POST /api/auth/login/admin/ HTTP/1.1" 200 598
+INFO 2025-07-16 19:32:29,094 basehttp "OPTIONS /api/admin/attendance/history/ HTTP/1.1" 200 0
+INFO 2025-07-16 19:32:29,095 basehttp "OPTIONS /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 0
+INFO 2025-07-16 19:32:29,095 basehttp "OPTIONS /api/admin/attendance/history/ HTTP/1.1" 200 0
+INFO 2025-07-16 19:32:29,098 basehttp "OPTIONS /api/admin/attendance/history/ HTTP/1.1" 200 0
+INFO 2025-07-16 19:32:29,100 basehttp "OPTIONS /api/admin/attendance/history/ HTTP/1.1" 200 0
+INFO 2025-07-16 19:32:29,109 basehttp "OPTIONS /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 0
+INFO 2025-07-16 19:32:29,255 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:32:29,389 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:32:29,576 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:32:29,925 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:32:30,265 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:32:30,725 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:32:40,114 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:32:40,384 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:32:50,104 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:32:50,381 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:33:00,130 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:33:00,545 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:33:09,194 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:33:09,596 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:33:12,439 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:33:12,576 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:33:12,826 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:33:13,235 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:33:13,584 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:33:13,912 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:33:23,107 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:33:23,353 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:33:33,096 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:33:33,388 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:33:43,105 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:33:43,379 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:33:53,336 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:33:53,811 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:34:03,104 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:34:03,420 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:34:13,089 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:34:13,503 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:34:25,151 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:34:25,528 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:35:25,123 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:35:25,402 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:36:24,299 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:36:24,556 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:36:26,609 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:36:26,785 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:36:26,962 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:36:27,302 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:36:27,624 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:36:27,974 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:36:37,743 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:36:37,777 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:36:46,554 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:36:46,925 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:36:56,593 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:36:56,855 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:37:06,558 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:37:06,872 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:37:16,549 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:37:16,916 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:37:27,141 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:37:27,411 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:37:37,101 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:37:37,342 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:37:47,120 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:37:47,378 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:37:57,088 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:37:57,329 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:38:07,097 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:38:07,346 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:38:17,110 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:38:17,348 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:39:25,215 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:39:25,519 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 37050
+INFO 2025-07-16 19:40:06,852 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 19:40:09,565 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 19:40:11,595 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 19:40:12,937 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 19:40:17,635 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:40:17,941 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:40:21,772 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:40:21,988 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:40:22,386 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:40:22,833 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:40:23,190 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:40:23,658 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:40:33,063 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:40:33,338 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:40:42,097 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:40:42,359 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:40:52,365 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:40:52,672 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:41:01,698 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:41:02,001 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:41:12,104 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:41:12,427 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:41:22,104 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:41:22,755 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:41:32,097 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:41:32,382 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:41:42,110 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:41:42,403 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:41:52,112 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:41:52,392 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:42:02,097 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:42:02,405 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:42:19,336 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:42:20,451 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:42:22,022 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:42:22,667 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:42:32,091 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:42:32,427 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:42:42,105 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:42:42,434 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:42:52,098 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:42:52,451 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:43:01,959 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:43:03,109 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:43:06,808 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:43:07,062 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:43:07,554 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:43:08,556 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:43:08,886 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:43:09,262 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:43:20,072 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:43:20,852 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:43:31,269 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:43:31,322 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:44:02,282 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:44:02,569 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:44:04,383 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 19:44:07,791 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 19:44:09,232 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:44:09,263 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:44:17,102 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:44:17,398 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:44:27,129 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:44:27,452 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:44:37,423 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:44:37,712 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:44:47,133 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:44:47,460 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:44:53,263 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 19:44:55,835 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 19:44:57,107 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:44:57,646 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:44:59,883 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:45:00,745 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:45:01,067 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:45:01,323 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:45:01,631 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:45:02,003 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:45:09,721 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:45:09,986 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:45:20,086 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:45:20,341 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:45:30,110 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:45:30,477 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:45:40,116 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:45:40,361 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:45:48,640 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 19:45:51,312 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 19:45:55,256 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 19:45:57,616 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 19:45:58,496 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:45:58,577 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:45:59,603 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 19:46:02,603 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 19:46:03,245 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:46:03,588 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:46:10,090 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:46:10,362 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:46:15,211 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 19:46:18,535 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 19:46:20,750 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:46:20,981 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:46:21,152 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39387
+INFO 2025-07-16 19:46:21,557 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39387
+INFO 2025-07-16 19:46:22,018 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39387
+INFO 2025-07-16 19:46:22,440 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39387
+INFO 2025-07-16 19:46:30,583 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:46:31,005 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39387
+INFO 2025-07-16 19:46:37,056 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 19:46:39,029 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 19:46:41,437 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+ERROR 2025-07-16 19:46:41,737 log Internal Server Error: /api/admin/attendance/history/
+Traceback (most recent call last):
+  File "F:\hrms\BE\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "F:\hrms\BE\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\hrms\BE\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "F:\hrms\BE\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\hrms\BE\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "F:\hrms\BE\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "F:\hrms\BE\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "F:\hrms\BE\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "F:\hrms\BE\attendance\views.py", line 1534, in get
+    'hours_worked': calculate_hours_worked(attendance.punch_in_time, attendance.punch_out_time) if attendance else '0h 0m',
+                    ^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'calculate_hours_worked' is not defined
+ERROR 2025-07-16 19:46:41,744 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 500 109625
+INFO 2025-07-16 19:46:51,106 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+ERROR 2025-07-16 19:46:51,235 log Internal Server Error: /api/admin/attendance/history/
+Traceback (most recent call last):
+  File "F:\hrms\BE\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "F:\hrms\BE\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\hrms\BE\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "F:\hrms\BE\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\hrms\BE\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "F:\hrms\BE\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "F:\hrms\BE\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "F:\hrms\BE\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "F:\hrms\BE\attendance\views.py", line 1534, in get
+    'hours_worked': calculate_hours_worked(attendance.punch_in_time, attendance.punch_out_time) if attendance else '0h 0m',
+                    ^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'calculate_hours_worked' is not defined
+ERROR 2025-07-16 19:46:51,239 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 500 109625
+INFO 2025-07-16 19:47:01,109 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+ERROR 2025-07-16 19:47:01,247 log Internal Server Error: /api/admin/attendance/history/
+Traceback (most recent call last):
+  File "F:\hrms\BE\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "F:\hrms\BE\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\hrms\BE\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "F:\hrms\BE\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\hrms\BE\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "F:\hrms\BE\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "F:\hrms\BE\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "F:\hrms\BE\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "F:\hrms\BE\attendance\views.py", line 1534, in get
+    'hours_worked': calculate_hours_worked(attendance.punch_in_time, attendance.punch_out_time) if attendance else '0h 0m',
+                    ^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'calculate_hours_worked' is not defined
+ERROR 2025-07-16 19:47:01,250 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 500 109625
+ERROR 2025-07-16 19:47:11,932 log Internal Server Error: /api/admin/attendance/history/
+Traceback (most recent call last):
+  File "F:\hrms\BE\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "F:\hrms\BE\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\hrms\BE\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "F:\hrms\BE\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\hrms\BE\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "F:\hrms\BE\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "F:\hrms\BE\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "F:\hrms\BE\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "F:\hrms\BE\attendance\views.py", line 1534, in get
+NameError: name 'calculate_hours_worked' is not defined
+ERROR 2025-07-16 19:47:11,937 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 500 106163
+INFO 2025-07-16 19:47:11,945 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:47:12,225 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 19:47:14,506 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 19:47:16,371 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 19:47:17,616 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 19:47:21,446 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:47:21,705 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39385
+INFO 2025-07-16 19:47:28,454 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 19:47:29,866 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 19:47:31,288 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:47:31,708 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39482
+INFO 2025-07-16 19:47:35,811 basehttp "OPTIONS /api/employees/logout/ HTTP/1.1" 200 0
+WARNING 2025-07-16 19:47:35,814 log Method Not Allowed: /api/employees/logout/
+WARNING 2025-07-16 19:47:35,814 basehttp "POST /api/employees/logout/ HTTP/1.1" 405 41
+INFO 2025-07-16 19:47:53,754 basehttp "POST /api/auth/login/admin/ HTTP/1.1" 200 598
+INFO 2025-07-16 19:47:55,009 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:47:55,166 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:47:55,340 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39482
+INFO 2025-07-16 19:47:55,707 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39482
+INFO 2025-07-16 19:47:56,045 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39482
+INFO 2025-07-16 19:47:56,352 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39482
+INFO 2025-07-16 19:48:04,968 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:48:05,397 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39482
+INFO 2025-07-16 19:48:15,098 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:48:15,439 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39482
+INFO 2025-07-16 19:48:24,229 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 19:48:27,765 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 19:48:35,439 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:48:35,710 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 40064
+INFO 2025-07-16 19:48:45,107 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:48:45,415 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 40064
+INFO 2025-07-16 19:48:55,118 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:48:55,406 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 40064
+INFO 2025-07-16 19:49:05,095 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:49:05,369 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 40064
+INFO 2025-07-16 19:49:15,102 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:49:15,380 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 40064
+INFO 2025-07-16 19:49:25,094 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:49:25,387 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 40064
+INFO 2025-07-16 19:49:35,153 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:49:35,465 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 40064
+INFO 2025-07-16 19:49:45,094 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:49:45,369 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 40064
+INFO 2025-07-16 19:49:55,243 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:49:55,541 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 40064
+INFO 2025-07-16 19:50:20,544 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 19:50:22,347 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 19:50:23,339 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:50:23,720 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39579
+INFO 2025-07-16 19:50:25,112 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 796
+INFO 2025-07-16 19:50:25,370 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39579
+WARNING 2025-07-16 19:50:26,987 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 19:50:26,989 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+WARNING 2025-07-16 19:50:27,005 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 19:50:27,016 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+INFO 2025-07-16 19:50:27,048 basehttp "GET /api/auth/me/ HTTP/1.1" 200 101
+INFO 2025-07-16 19:50:27,122 basehttp "GET /api/auth/me/ HTTP/1.1" 200 101
+INFO 2025-07-16 19:50:27,217 basehttp "GET /api/auth/me/ HTTP/1.1" 200 101
+INFO 2025-07-16 19:50:27,296 basehttp "GET /api/auth/me/ HTTP/1.1" 200 101
+INFO 2025-07-16 19:50:27,579 basehttp "OPTIONS /api/attendance/punch-records/207/ HTTP/1.1" 200 0
+INFO 2025-07-16 19:50:27,580 basehttp "OPTIONS /api/attendance/punch-records/207/ HTTP/1.1" 200 0
+INFO 2025-07-16 19:50:27,732 basehttp "GET /api/attendance/punch-records/207/ HTTP/1.1" 200 319
+INFO 2025-07-16 19:50:27,807 basehttp "GET /api/attendance/punch-records/207/ HTTP/1.1" 200 319
+INFO 2025-07-16 19:50:27,896 basehttp "GET /api/attendance/punch-records/207/ HTTP/1.1" 200 319
+WARNING 2025-07-16 19:50:31,719 log Method Not Allowed: /api/employees/logout/
+WARNING 2025-07-16 19:50:31,719 basehttp "POST /api/employees/logout/ HTTP/1.1" 405 41
+WARNING 2025-07-16 19:50:35,031 log Unauthorized: /api/admin/attendance/history/
+WARNING 2025-07-16 19:50:35,035 log Unauthorized: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 19:50:35,037 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 401 183
+WARNING 2025-07-16 19:50:35,039 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 401 183
+INFO 2025-07-16 19:50:41,417 basehttp "POST /api/auth/login/user/ HTTP/1.1" 200 624
+WARNING 2025-07-16 19:50:43,016 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 19:50:43,016 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+WARNING 2025-07-16 19:50:43,032 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 19:50:43,033 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+INFO 2025-07-16 19:50:43,265 basehttp "GET /api/auth/me/ HTTP/1.1" 200 127
+INFO 2025-07-16 19:50:43,405 basehttp "OPTIONS /api/attendance/punch-records/159/ HTTP/1.1" 200 0
+INFO 2025-07-16 19:50:43,442 basehttp "GET /api/auth/me/ HTTP/1.1" 200 127
+INFO 2025-07-16 19:50:43,510 basehttp "GET /api/attendance/punch-records/159/ HTTP/1.1" 200 761
+INFO 2025-07-16 19:50:43,564 basehttp "GET /api/auth/me/ HTTP/1.1" 200 127
+INFO 2025-07-16 19:50:43,759 basehttp "GET /api/attendance/punch-records/159/ HTTP/1.1" 200 761
+INFO 2025-07-16 19:50:43,829 basehttp "GET /api/auth/me/ HTTP/1.1" 200 127
+INFO 2025-07-16 19:50:44,128 basehttp "GET /api/attendance/punch-records/159/ HTTP/1.1" 200 761
+WARNING 2025-07-16 19:50:45,073 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 19:50:45,074 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 19:50:45,084 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 19:50:45,084 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 19:50:52,191 log Method Not Allowed: /api/employees/logout/
+WARNING 2025-07-16 19:50:52,191 basehttp "POST /api/employees/logout/ HTTP/1.1" 405 41
+WARNING 2025-07-16 19:50:55,018 log Unauthorized: /api/admin/attendance/history/
+WARNING 2025-07-16 19:50:55,021 log Unauthorized: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 19:50:55,023 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 401 183
+WARNING 2025-07-16 19:50:55,023 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 401 183
+WARNING 2025-07-16 19:51:05,019 log Unauthorized: /api/admin/attendance/history/
+WARNING 2025-07-16 19:51:05,021 log Unauthorized: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 19:51:05,021 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 401 183
+WARNING 2025-07-16 19:51:05,021 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 401 183
+INFO 2025-07-16 19:51:05,552 basehttp "POST /api/auth/login/user/ HTTP/1.1" 200 641
+WARNING 2025-07-16 19:51:06,768 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 19:51:06,768 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+WARNING 2025-07-16 19:51:06,801 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 19:51:06,802 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+INFO 2025-07-16 19:51:06,829 basehttp "GET /api/auth/me/ HTTP/1.1" 200 144
+INFO 2025-07-16 19:51:06,919 basehttp "GET /api/auth/me/ HTTP/1.1" 200 144
+INFO 2025-07-16 19:51:06,991 basehttp "GET /api/auth/me/ HTTP/1.1" 200 144
+INFO 2025-07-16 19:51:07,067 basehttp "GET /api/auth/me/ HTTP/1.1" 200 144
+INFO 2025-07-16 19:51:07,113 basehttp "OPTIONS /api/attendance/punch-records/134/ HTTP/1.1" 200 0
+INFO 2025-07-16 19:51:07,113 basehttp "OPTIONS /api/attendance/punch-records/134/ HTTP/1.1" 200 0
+INFO 2025-07-16 19:51:07,195 basehttp "GET /api/attendance/punch-records/134/ HTTP/1.1" 200 336
+INFO 2025-07-16 19:51:07,363 basehttp "GET /api/attendance/punch-records/134/ HTTP/1.1" 200 336
+INFO 2025-07-16 19:51:07,432 basehttp "GET /api/attendance/punch-records/134/ HTTP/1.1" 200 336
+WARNING 2025-07-16 19:51:15,118 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 19:51:15,119 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 19:51:15,125 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 19:51:15,125 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+INFO 2025-07-16 19:51:16,676 basehttp "GET /api/auth/me/ HTTP/1.1" 200 144
+INFO 2025-07-16 19:51:16,758 basehttp "OPTIONS /api/attendance/punch-in/134/ HTTP/1.1" 200 0
+WARNING 2025-07-16 19:51:16,877 log Bad Request: /api/attendance/punch-in/134/
+WARNING 2025-07-16 19:51:16,878 basehttp "POST /api/attendance/punch-in/134/ HTTP/1.1" 400 57
+WARNING 2025-07-16 19:51:25,104 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 19:51:25,104 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 19:51:25,108 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 19:51:25,109 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+INFO 2025-07-16 19:52:03,035 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 19:52:06,074 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 19:52:16,795 basehttp "GET /api/auth/me/ HTTP/1.1" 200 144
+WARNING 2025-07-16 19:52:16,935 log Bad Request: /api/attendance/punch-in/134/
+WARNING 2025-07-16 19:52:16,936 basehttp "POST /api/attendance/punch-in/134/ HTTP/1.1" 400 36
+WARNING 2025-07-16 19:52:21,417 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 19:52:21,418 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+WARNING 2025-07-16 19:52:21,436 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 19:52:21,437 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+INFO 2025-07-16 19:52:21,589 basehttp "GET /api/auth/me/ HTTP/1.1" 200 144
+INFO 2025-07-16 19:52:21,678 basehttp "GET /api/auth/me/ HTTP/1.1" 200 144
+INFO 2025-07-16 19:52:21,803 basehttp "GET /api/auth/me/ HTTP/1.1" 200 144
+INFO 2025-07-16 19:52:21,835 basehttp "GET /api/attendance/punch-records/134/ HTTP/1.1" 200 702
+INFO 2025-07-16 19:52:21,900 basehttp "GET /api/auth/me/ HTTP/1.1" 200 144
+INFO 2025-07-16 19:52:21,933 basehttp "GET /api/attendance/punch-records/134/ HTTP/1.1" 200 702
+INFO 2025-07-16 19:52:22,735 basehttp "GET /api/attendance/punch-records/134/ HTTP/1.1" 200 702
+WARNING 2025-07-16 19:52:25,138 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 19:52:25,138 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 19:52:25,142 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 19:52:25,143 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+INFO 2025-07-16 19:52:32,193 basehttp "GET /api/auth/me/ HTTP/1.1" 200 144
+INFO 2025-07-16 19:52:32,276 basehttp "OPTIONS /api/attendance/punch-out/134/ HTTP/1.1" 200 0
+INFO 2025-07-16 19:52:32,409 basehttp "POST /api/attendance/punch-out/134/ HTTP/1.1" 200 442
+INFO 2025-07-16 19:52:32,593 basehttp "GET /api/attendance/punch-records/134/ HTTP/1.1" 200 777
+WARNING 2025-07-16 19:52:36,882 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 19:52:36,882 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+WARNING 2025-07-16 19:52:36,901 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 19:52:36,902 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+INFO 2025-07-16 19:52:36,944 basehttp "GET /api/auth/me/ HTTP/1.1" 200 144
+INFO 2025-07-16 19:52:37,023 basehttp "GET /api/auth/me/ HTTP/1.1" 200 144
+INFO 2025-07-16 19:52:37,148 basehttp "GET /api/auth/me/ HTTP/1.1" 200 144
+INFO 2025-07-16 19:52:37,227 basehttp "GET /api/auth/me/ HTTP/1.1" 200 144
+INFO 2025-07-16 19:52:37,287 basehttp "GET /api/attendance/punch-records/134/ HTTP/1.1" 200 777
+INFO 2025-07-16 19:52:37,389 basehttp "GET /api/attendance/punch-records/134/ HTTP/1.1" 200 777
+INFO 2025-07-16 19:52:37,485 basehttp "GET /api/attendance/punch-records/134/ HTTP/1.1" 200 777
+WARNING 2025-07-16 19:52:46,044 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 19:52:46,044 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 19:52:46,054 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 19:52:46,055 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 19:52:48,715 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 19:52:48,716 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 19:52:48,942 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 19:52:48,942 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 19:52:48,947 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 19:52:48,948 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 19:52:49,047 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 19:52:49,048 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 19:52:49,139 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 19:52:49,140 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 19:52:49,245 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 19:52:49,246 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 19:52:53,918 log Method Not Allowed: /api/employees/logout/
+WARNING 2025-07-16 19:52:53,919 basehttp "POST /api/employees/logout/ HTTP/1.1" 405 41
+INFO 2025-07-16 19:53:06,005 basehttp "POST /api/auth/login/admin/ HTTP/1.1" 200 598
+INFO 2025-07-16 19:53:07,187 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1074
+INFO 2025-07-16 19:53:07,377 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1074
+INFO 2025-07-16 19:53:07,497 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39621
+INFO 2025-07-16 19:53:07,926 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39621
+INFO 2025-07-16 19:53:08,386 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39621
+INFO 2025-07-16 19:53:08,717 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39621
+INFO 2025-07-16 19:53:14,730 basehttp "OPTIONS /api/attendance/approve-reason/41/ HTTP/1.1" 200 0
+INFO 2025-07-16 19:53:14,803 basehttp "PATCH /api/attendance/approve-reason/41/ HTTP/1.1" 200 190
+INFO 2025-07-16 19:53:15,116 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:53:15,200 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:53:17,185 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:53:17,457 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:53:27,173 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:53:27,434 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:53:37,160 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:53:37,401 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:53:48,091 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:53:48,392 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:53:58,121 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:53:58,387 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:54:08,107 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:54:08,363 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:54:18,078 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:54:18,540 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:54:28,107 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:54:28,345 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:54:38,958 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:54:39,348 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:54:48,235 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:54:48,525 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:55:01,430 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:55:01,546 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:55:09,645 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:55:10,048 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:55:16,667 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:55:16,776 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:55:16,994 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:55:17,416 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:55:17,788 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:55:18,129 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:55:27,147 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:55:27,503 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:55:37,818 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:55:38,029 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:55:46,722 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:55:46,946 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:55:47,055 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:55:47,654 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:55:48,509 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:55:49,258 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:55:57,112 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:55:57,370 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:56:07,107 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:56:07,371 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:56:17,083 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:56:17,450 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:56:27,088 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:56:27,393 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:56:36,711 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:56:37,358 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:56:39,046 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:56:39,170 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:56:39,411 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:56:40,042 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:56:40,353 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:56:40,668 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:56:49,062 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:56:49,297 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:56:59,047 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:56:59,286 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:57:09,115 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:57:09,354 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:57:19,142 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:57:19,383 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:57:29,108 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:57:29,335 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:57:39,433 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:57:39,743 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:57:49,085 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:57:49,532 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:57:59,135 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:57:59,480 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:58:09,076 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:58:09,397 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:58:19,106 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:58:19,391 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:58:29,057 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:58:29,335 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:58:39,111 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:58:39,364 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:58:49,113 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:58:49,353 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:58:59,107 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:58:59,387 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:59:09,113 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:59:09,344 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:59:19,135 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:59:19,407 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:59:29,213 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:59:29,597 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:59:39,061 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:59:39,346 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:59:49,128 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:59:49,390 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 19:59:59,106 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 19:59:59,350 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:00:09,100 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:00:09,367 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:00:19,100 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:00:19,329 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:00:29,095 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:00:29,377 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:00:39,114 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:00:39,346 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:01:25,178 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:01:25,767 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:01:29,048 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:01:29,366 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:01:39,181 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:01:39,432 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:01:49,102 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:01:49,362 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:01:59,068 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:01:59,334 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:02:09,064 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:02:09,310 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:02:19,050 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:02:19,325 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:02:29,137 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:02:29,381 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:02:40,449 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:02:40,511 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:02:49,098 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:02:49,375 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:03:09,892 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:03:10,923 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:03:20,018 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:03:20,556 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:03:24,407 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:03:24,604 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:03:25,139 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:03:25,705 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:03:26,087 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:03:26,387 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:03:34,931 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:03:35,199 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:03:44,352 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:03:44,638 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:03:55,094 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:03:55,352 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:05:45,805 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:05:46,335 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:05:54,373 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:05:54,737 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:06:04,375 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:06:04,628 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:06:14,390 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:06:15,184 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:06:24,413 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:06:24,902 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:06:34,403 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:06:34,783 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:06:45,646 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:06:45,947 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:06:55,071 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:06:55,388 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:07:05,100 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:07:05,340 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:09:01,395 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:09:01,624 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:09:25,144 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:09:25,408 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:10:25,135 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:10:25,380 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:11:25,140 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:11:25,377 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:12:25,126 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:12:25,403 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:13:25,153 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:13:25,368 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:14:25,138 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:14:25,361 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:15:25,139 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:15:25,387 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:16:25,134 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:16:25,381 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:17:25,131 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:17:25,384 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:18:25,139 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:18:25,415 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:19:25,140 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:19:25,377 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:20:25,135 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:20:25,373 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:21:25,138 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:21:25,414 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:22:25,142 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:22:25,379 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:23:25,144 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:23:25,372 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:24:25,156 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:24:25,424 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:25:25,153 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:25:25,371 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:26:25,151 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:26:25,380 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:27:25,135 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:27:25,385 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:28:25,483 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:28:25,699 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:29:25,135 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:29:25,373 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:30:25,134 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:30:25,389 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:31:25,127 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:31:25,369 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:32:25,144 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:32:25,367 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:33:25,148 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:33:25,389 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:34:25,143 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:34:25,393 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:35:25,161 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:35:25,402 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:36:25,140 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:36:25,383 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:37:25,132 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:37:25,356 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:38:25,155 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:38:25,400 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:39:25,142 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:39:25,421 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:40:25,145 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:40:25,389 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:41:25,130 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:41:25,375 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:42:25,142 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:42:25,436 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:43:25,150 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:43:25,378 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:44:25,123 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:44:25,466 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:45:25,117 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:45:25,467 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:46:25,133 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:46:25,374 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:47:25,138 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:47:25,377 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:48:25,148 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:48:25,417 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:49:25,137 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:49:25,386 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:50:25,172 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:50:25,405 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:51:25,170 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:51:25,420 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:52:25,141 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:52:25,362 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:53:25,143 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:53:25,386 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:54:25,147 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:54:25,424 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:55:25,139 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:55:25,395 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:56:25,159 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:56:25,403 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:57:25,135 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:57:25,381 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:58:25,459 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:58:25,673 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 20:59:25,194 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 20:59:25,416 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:00:25,128 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:00:25,386 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:01:25,131 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:01:25,506 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:02:25,150 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:02:25,373 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:03:25,133 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:03:25,402 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:04:25,142 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:04:25,409 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:05:25,124 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:05:25,389 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:06:25,151 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:06:25,429 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:07:25,147 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:07:25,373 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:08:25,143 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:08:25,371 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:09:25,152 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:09:25,394 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:10:25,142 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:10:25,364 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:11:25,144 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:11:25,372 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:12:25,144 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:12:25,437 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:13:25,139 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:13:25,384 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:14:25,149 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:14:25,395 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:15:25,134 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:15:25,409 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:16:25,152 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:16:25,399 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:17:25,135 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:17:25,357 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:18:25,162 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:18:25,409 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:19:25,128 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:19:25,387 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:20:25,154 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:20:25,381 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:21:25,136 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:21:25,432 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:21:34,388 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:21:34,747 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:21:44,402 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:21:44,802 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:21:54,455 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:21:54,768 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:22:04,436 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:22:04,748 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:22:14,407 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:22:14,669 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:22:24,384 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:22:24,680 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:22:34,381 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:22:34,645 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:22:44,409 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:22:44,694 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:22:54,381 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:22:54,682 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:23:04,390 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:23:04,730 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:23:14,361 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:23:14,602 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:23:24,364 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:23:24,605 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:23:34,377 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:23:34,633 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:23:45,114 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:23:45,340 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:23:55,107 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:23:55,349 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:24:05,111 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:24:05,342 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:24:15,109 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:24:15,336 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:24:25,105 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:24:25,357 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:24:35,105 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1075
+INFO 2025-07-16 21:24:35,331 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39622
+INFO 2025-07-16 21:25:19,015 basehttp "GET /api/auth/me/ HTTP/1.1" 200 101
+INFO 2025-07-16 21:25:19,069 basehttp "OPTIONS /api/attendance/punch-in/207/ HTTP/1.1" 200 0
+WARNING 2025-07-16 21:25:19,280 log Bad Request: /api/attendance/punch-in/207/
+WARNING 2025-07-16 21:25:19,280 basehttp "POST /api/attendance/punch-in/207/ HTTP/1.1" 400 57
+INFO 2025-07-16 21:25:25,114 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:25:25,349 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+WARNING 2025-07-16 21:25:53,240 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 21:25:53,242 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+WARNING 2025-07-16 21:25:53,262 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 21:25:53,266 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+INFO 2025-07-16 21:25:53,319 basehttp "GET /api/auth/me/ HTTP/1.1" 200 101
+INFO 2025-07-16 21:25:53,416 basehttp "GET /api/auth/me/ HTTP/1.1" 200 101
+INFO 2025-07-16 21:25:53,499 basehttp "GET /api/auth/me/ HTTP/1.1" 200 101
+INFO 2025-07-16 21:25:53,627 basehttp "GET /api/auth/me/ HTTP/1.1" 200 101
+INFO 2025-07-16 21:25:54,022 basehttp "GET /api/attendance/punch-records/207/ HTTP/1.1" 200 659
+INFO 2025-07-16 21:25:54,106 basehttp "GET /api/attendance/punch-records/207/ HTTP/1.1" 200 659
+INFO 2025-07-16 21:25:54,190 basehttp "GET /api/attendance/punch-records/207/ HTTP/1.1" 200 659
+INFO 2025-07-16 21:26:25,119 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:26:25,450 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+WARNING 2025-07-16 21:26:38,236 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 21:26:38,237 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+WARNING 2025-07-16 21:26:38,254 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 21:26:38,264 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+INFO 2025-07-16 21:26:38,321 basehttp "GET /api/auth/me/ HTTP/1.1" 200 101
+INFO 2025-07-16 21:26:38,399 basehttp "GET /api/auth/me/ HTTP/1.1" 200 101
+INFO 2025-07-16 21:26:38,515 basehttp "GET /api/auth/me/ HTTP/1.1" 200 101
+INFO 2025-07-16 21:26:38,679 basehttp "GET /api/auth/me/ HTTP/1.1" 200 101
+INFO 2025-07-16 21:26:38,790 basehttp "GET /api/attendance/punch-records/207/ HTTP/1.1" 200 659
+INFO 2025-07-16 21:26:38,888 basehttp "GET /api/attendance/punch-records/207/ HTTP/1.1" 200 659
+INFO 2025-07-16 21:26:38,965 basehttp "GET /api/attendance/punch-records/207/ HTTP/1.1" 200 659
+INFO 2025-07-16 21:27:22,635 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:27:22,892 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:27:24,284 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:27:24,386 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:27:24,687 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:27:25,068 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:27:25,472 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:27:25,835 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:27:35,413 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:27:35,646 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:27:44,301 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:27:44,548 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:27:55,118 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:27:55,408 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:28:05,108 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:28:05,404 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:28:15,657 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:28:16,066 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:28:25,319 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:28:25,621 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:28:40,011 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:28:40,316 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:28:45,099 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:28:45,376 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:28:55,098 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:28:55,337 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:29:05,100 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:29:05,339 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:29:15,108 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:29:15,350 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:29:25,112 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:29:25,363 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:29:35,106 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:29:35,371 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:30:21,993 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:30:22,249 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:30:24,311 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:30:24,590 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:30:35,095 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:30:35,363 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:30:45,101 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:30:45,351 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:30:55,125 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:30:55,534 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:31:05,045 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:31:05,464 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:31:14,308 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:31:14,570 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:31:25,114 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:31:25,392 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:31:35,128 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:31:35,392 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:31:44,772 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:31:45,381 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:31:54,290 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:31:54,545 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:32:05,097 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:32:05,333 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:32:15,121 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:32:15,361 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:32:25,102 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:32:25,421 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:32:34,210 basehttp "OPTIONS /api/admin/attendance/history/ HTTP/1.1" 200 0
+INFO 2025-07-16 21:32:34,211 basehttp "OPTIONS /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 0
+INFO 2025-07-16 21:32:34,302 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:32:34,585 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:32:44,275 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:32:44,634 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:32:56,075 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:32:56,466 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:33:05,097 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:33:05,339 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:33:15,111 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:33:15,362 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:33:25,262 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:33:25,551 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:33:34,432 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:33:34,743 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:33:45,105 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:33:45,332 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:33:55,100 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:33:55,382 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:34:05,091 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:34:05,391 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:34:15,106 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:34:15,399 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:34:25,102 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:34:25,406 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:34:35,088 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:34:35,321 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:34:48,053 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 21:34:50,352 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 21:34:55,686 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 21:34:59,516 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 21:35:25,472 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:35:25,742 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:36:25,195 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:36:25,512 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39657
+INFO 2025-07-16 21:36:52,953 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 21:36:54,727 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 21:36:59,513 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 21:37:00,982 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 21:37:03,627 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 21:37:05,330 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 21:37:07,373 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 21:37:09,146 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 21:37:11,710 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 21:37:14,460 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 21:37:25,921 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 21:37:28,744 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 21:37:40,147 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 21:37:43,726 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 21:38:04,252 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:38:04,594 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:38:10,955 basehttp "OPTIONS /api/admin/reports/132/reply/ HTTP/1.1" 200 0
+ERROR 2025-07-16 21:38:11,079 views Error creating reply: get() returned more than one DailyWorkReport -- it returned 2!
+ERROR 2025-07-16 21:38:11,080 log Internal Server Error: /api/admin/reports/132/reply/
+ERROR 2025-07-16 21:38:11,081 basehttp "POST /api/admin/reports/132/reply/ HTTP/1.1" 500 54
+INFO 2025-07-16 21:38:16,084 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:38:16,444 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:38:24,285 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:38:24,603 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:38:35,371 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:38:35,632 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:38:45,122 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:38:45,466 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:38:55,118 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:38:55,365 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:39:04,296 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:39:04,601 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+WARNING 2025-07-16 21:39:05,293 log Method Not Allowed: /api/employees/logout/
+WARNING 2025-07-16 21:39:05,331 basehttp "POST /api/employees/logout/ HTTP/1.1" 405 41
+INFO 2025-07-16 21:39:22,641 basehttp "OPTIONS /api/auth/login/admin/ HTTP/1.1" 200 0
+INFO 2025-07-16 21:39:23,950 basehttp "POST /api/auth/login/admin/ HTTP/1.1" 200 598
+INFO 2025-07-16 21:39:25,206 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:39:25,413 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:39:25,609 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:39:26,072 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:39:26,503 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:39:26,820 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:39:35,165 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:39:35,473 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:39:45,169 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:39:45,417 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:39:55,159 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:39:55,457 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:39:57,436 basehttp "OPTIONS /api/admin/reports/7/reply/ HTTP/1.1" 200 0
+WARNING 2025-07-16 21:39:57,541 log Not Found: /api/admin/reports/7/reply/
+WARNING 2025-07-16 21:39:57,542 basehttp "POST /api/admin/reports/7/reply/ HTTP/1.1" 404 28
+INFO 2025-07-16 21:40:06,127 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:40:06,577 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:40:16,092 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:40:16,338 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:40:26,098 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:40:26,333 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:40:36,111 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:40:36,357 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:40:45,191 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:40:45,471 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+WARNING 2025-07-16 21:40:46,278 log Not Found: /api/admin/reports/7/reply/
+WARNING 2025-07-16 21:40:46,283 basehttp "POST /api/admin/reports/7/reply/ HTTP/1.1" 404 28
+WARNING 2025-07-16 21:40:46,319 log Not Found: /api/admin/reports/7/reply/
+WARNING 2025-07-16 21:40:46,321 basehttp "POST /api/admin/reports/7/reply/ HTTP/1.1" 404 28
+WARNING 2025-07-16 21:40:47,445 log Not Found: /api/admin/reports/7/reply/
+WARNING 2025-07-16 21:40:47,445 basehttp "POST /api/admin/reports/7/reply/ HTTP/1.1" 404 28
+WARNING 2025-07-16 21:40:47,479 log Not Found: /api/admin/reports/7/reply/
+WARNING 2025-07-16 21:40:47,479 basehttp "POST /api/admin/reports/7/reply/ HTTP/1.1" 404 28
+INFO 2025-07-16 21:43:19,520 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 21:43:22,406 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 21:43:49,297 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 21:43:52,665 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 21:43:56,982 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 21:43:58,159 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 21:44:02,037 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 21:44:04,088 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 21:44:12,429 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 21:44:14,923 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 21:44:20,008 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:44:20,337 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+ERROR 2025-07-16 21:44:23,343 views Error creating reply: AdminReply() got unexpected keyword arguments: 'replied_at'
+ERROR 2025-07-16 21:44:23,343 log Internal Server Error: /api/admin/reports/7/reply/
+ERROR 2025-07-16 21:44:23,344 basehttp "POST /api/admin/reports/7/reply/ HTTP/1.1" 500 54
+INFO 2025-07-16 21:44:25,264 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:44:25,574 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:44:32,879 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:44:33,093 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:44:33,381 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:44:33,904 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:44:34,468 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:44:34,936 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:44:43,162 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:44:43,438 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+ERROR 2025-07-16 21:44:49,878 views Error creating reply: AdminReply() got unexpected keyword arguments: 'replied_at'
+ERROR 2025-07-16 21:44:49,879 log Internal Server Error: /api/admin/reports/7/reply/
+ERROR 2025-07-16 21:44:49,879 basehttp "POST /api/admin/reports/7/reply/ HTTP/1.1" 500 54
+INFO 2025-07-16 21:44:52,471 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:44:52,736 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:45:02,420 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:45:02,683 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:45:13,110 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:45:13,352 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:45:23,105 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:45:23,445 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:45:33,154 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:45:33,412 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:45:43,100 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:45:43,448 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:45:53,095 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:45:53,360 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:46:03,087 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:46:03,333 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:46:25,132 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:46:25,386 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:47:19,567 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 21:47:22,963 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 21:47:25,552 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:47:25,843 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:47:32,415 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:47:32,722 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:47:42,447 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:47:42,826 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:47:52,433 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:47:52,749 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:48:02,466 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:48:02,757 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:48:12,416 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:48:12,716 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:48:22,421 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:48:22,735 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:48:32,415 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:48:32,685 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:48:42,429 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:48:42,726 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:48:52,427 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:48:52,669 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:49:02,423 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:49:02,666 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:49:12,435 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:49:12,688 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:49:22,443 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:49:22,694 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:49:32,439 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:49:32,679 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:49:42,429 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:49:42,688 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:49:52,417 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:49:52,662 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:50:02,427 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:50:02,719 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:50:13,102 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:50:13,331 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:50:23,113 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:50:23,450 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:50:33,092 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:50:33,390 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:50:43,131 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:50:43,394 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:50:53,133 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:50:53,414 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:51:03,088 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:51:03,348 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:51:25,166 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:51:25,474 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:52:00,551 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 21:52:02,864 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 21:52:25,493 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:52:25,725 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:53:20,790 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:53:21,072 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:53:23,018 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:53:23,313 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:53:26,387 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:53:26,537 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:53:26,742 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:53:27,129 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:53:27,598 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:53:28,158 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 21:53:36,039 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 21:53:36,345 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+ERROR 2025-07-16 21:53:40,678 views Error creating reply: AdminReply() got unexpected keyword arguments: 'replied_at'
+ERROR 2025-07-16 21:53:40,679 log Internal Server Error: /api/admin/reports/7/reply/
+ERROR 2025-07-16 21:53:40,679 basehttp "POST /api/admin/reports/7/reply/ HTTP/1.1" 500 54
+INFO 2025-07-16 22:42:45,477 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 22:42:47,292 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 22:42:54,127 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 22:42:54,433 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 22:42:56,232 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 22:42:56,470 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 22:43:07,265 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 22:43:07,629 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+ERROR 2025-07-16 22:43:09,342 views Error creating reply: AdminReply() got unexpected keyword arguments: 'replied_at'
+ERROR 2025-07-16 22:43:09,344 log Internal Server Error: /api/admin/reports/7/reply/
+ERROR 2025-07-16 22:43:09,346 basehttp "POST /api/admin/reports/7/reply/ HTTP/1.1" 500 54
+INFO 2025-07-16 22:43:29,524 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 22:43:32,455 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 22:43:33,127 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 22:43:33,408 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 22:43:36,377 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 22:43:36,648 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 22:43:48,190 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 22:43:48,547 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 22:43:49,663 views Admin 207 replied to report 7
+INFO 2025-07-16 22:43:49,666 basehttp "POST /api/admin/reports/7/reply/ HTTP/1.1" 201 139
+INFO 2025-07-16 22:43:56,118 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 1302
+INFO 2025-07-16 22:43:56,451 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 200 39671
+INFO 2025-07-16 22:44:03,348 basehttp "OPTIONS /api/employees/logout/ HTTP/1.1" 200 0
+WARNING 2025-07-16 22:44:03,350 log Method Not Allowed: /api/employees/logout/
+WARNING 2025-07-16 22:44:03,350 basehttp "POST /api/employees/logout/ HTTP/1.1" 405 41
+WARNING 2025-07-16 22:44:06,016 log Unauthorized: /api/admin/attendance/history/
+WARNING 2025-07-16 22:44:06,018 log Unauthorized: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 22:44:06,018 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 401 183
+WARNING 2025-07-16 22:44:06,019 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 401 183
+WARNING 2025-07-16 22:44:16,027 log Unauthorized: /api/admin/attendance/history/
+WARNING 2025-07-16 22:44:16,028 log Unauthorized: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 22:44:16,029 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 401 183
+WARNING 2025-07-16 22:44:16,029 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 401 183
+INFO 2025-07-16 22:44:17,613 basehttp "OPTIONS /api/auth/login/user/ HTTP/1.1" 200 0
+INFO 2025-07-16 22:44:18,812 basehttp "POST /api/auth/login/user/ HTTP/1.1" 200 630
+INFO 2025-07-16 22:44:20,003 basehttp "OPTIONS /api/late-login-reasons/ HTTP/1.1" 200 0
+INFO 2025-07-16 22:44:20,003 basehttp "OPTIONS /api/auth/me/ HTTP/1.1" 200 0
+INFO 2025-07-16 22:44:20,003 basehttp "OPTIONS /api/auth/me/ HTTP/1.1" 200 0
+WARNING 2025-07-16 22:44:20,036 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 22:44:20,037 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+WARNING 2025-07-16 22:44:20,058 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 22:44:20,063 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+INFO 2025-07-16 22:44:20,099 basehttp "GET /api/auth/me/ HTTP/1.1" 200 133
+INFO 2025-07-16 22:44:20,200 basehttp "GET /api/auth/me/ HTTP/1.1" 200 133
+INFO 2025-07-16 22:44:20,271 basehttp "GET /api/auth/me/ HTTP/1.1" 200 133
+INFO 2025-07-16 22:44:20,334 basehttp "GET /api/auth/me/ HTTP/1.1" 200 133
+INFO 2025-07-16 22:44:20,356 basehttp "OPTIONS /api/attendance/punch-records/132/ HTTP/1.1" 200 0
+INFO 2025-07-16 22:44:20,356 basehttp "OPTIONS /api/attendance/punch-records/132/ HTTP/1.1" 200 0
+INFO 2025-07-16 22:44:20,496 basehttp "GET /api/attendance/punch-records/132/ HTTP/1.1" 200 1041
+INFO 2025-07-16 22:44:20,576 basehttp "GET /api/attendance/punch-records/132/ HTTP/1.1" 200 1041
+INFO 2025-07-16 22:44:20,689 basehttp "GET /api/attendance/punch-records/132/ HTTP/1.1" 200 1041
+INFO 2025-07-16 22:44:21,498 basehttp "OPTIONS /api/attendance/admin-replies/132/ HTTP/1.1" 200 0
+INFO 2025-07-16 22:44:21,573 basehttp "GET /api/attendance/admin-replies/132/ HTTP/1.1" 200 144
+WARNING 2025-07-16 22:44:26,087 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 22:44:26,089 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:44:26,101 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 22:44:26,101 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+INFO 2025-07-16 22:44:35,372 basehttp "GET /api/auth/me/ HTTP/1.1" 200 133
+INFO 2025-07-16 22:44:35,439 basehttp "OPTIONS /api/attendance/punch-out/132/ HTTP/1.1" 200 0
+INFO 2025-07-16 22:44:35,552 basehttp "POST /api/attendance/punch-out/132/ HTTP/1.1" 200 439
+INFO 2025-07-16 22:44:35,648 basehttp "GET /api/attendance/punch-records/132/ HTTP/1.1" 200 1114
+WARNING 2025-07-16 22:44:36,103 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 22:44:36,104 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:44:36,106 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 22:44:36,110 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:44:45,510 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 22:44:45,512 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+WARNING 2025-07-16 22:44:45,531 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 22:44:45,533 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+INFO 2025-07-16 22:44:45,578 basehttp "GET /api/auth/me/ HTTP/1.1" 200 133
+INFO 2025-07-16 22:44:45,677 basehttp "GET /api/auth/me/ HTTP/1.1" 200 133
+INFO 2025-07-16 22:44:45,751 basehttp "GET /api/auth/me/ HTTP/1.1" 200 133
+INFO 2025-07-16 22:44:45,831 basehttp "GET /api/auth/me/ HTTP/1.1" 200 133
+WARNING 2025-07-16 22:44:46,119 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 22:44:46,124 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 22:44:46,125 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:44:46,127 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+INFO 2025-07-16 22:44:46,264 basehttp "GET /api/attendance/punch-records/132/ HTTP/1.1" 200 1114
+INFO 2025-07-16 22:44:46,381 basehttp "GET /api/attendance/punch-records/132/ HTTP/1.1" 200 1114
+INFO 2025-07-16 22:44:46,469 basehttp "GET /api/attendance/punch-records/132/ HTTP/1.1" 200 1114
+WARNING 2025-07-16 22:44:56,083 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 22:44:56,084 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:44:56,089 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 22:44:56,091 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:45:25,199 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 22:45:25,200 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:45:25,245 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 22:45:25,245 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:46:25,671 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 22:46:25,672 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:46:25,679 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 22:46:25,683 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:47:25,096 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 22:47:25,096 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:47:25,101 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 22:47:25,101 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:48:25,298 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 22:48:25,323 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:48:25,349 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 22:48:25,383 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:48:47,310 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 22:48:47,311 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+WARNING 2025-07-16 22:48:47,345 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 22:48:47,351 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+INFO 2025-07-16 22:48:47,368 basehttp "GET /api/auth/me/ HTTP/1.1" 200 133
+INFO 2025-07-16 22:48:47,449 basehttp "GET /api/auth/me/ HTTP/1.1" 200 133
+INFO 2025-07-16 22:48:47,526 basehttp "GET /api/auth/me/ HTTP/1.1" 200 133
+INFO 2025-07-16 22:48:47,630 basehttp "GET /api/auth/me/ HTTP/1.1" 200 133
+INFO 2025-07-16 22:48:48,680 basehttp "GET /api/attendance/punch-records/132/ HTTP/1.1" 200 1114
+INFO 2025-07-16 22:48:48,762 basehttp "GET /api/attendance/punch-records/132/ HTTP/1.1" 200 1114
+INFO 2025-07-16 22:48:48,898 basehttp "GET /api/attendance/punch-records/132/ HTTP/1.1" 200 1114
+WARNING 2025-07-16 22:49:25,082 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 22:49:25,082 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 22:49:25,083 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:49:25,083 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:49:31,659 log Method Not Allowed: /api/employees/logout/
+WARNING 2025-07-16 22:49:31,659 basehttp "POST /api/employees/logout/ HTTP/1.1" 405 41
+INFO 2025-07-16 22:49:42,207 basehttp "POST /api/auth/login/user/ HTTP/1.1" 200 622
+WARNING 2025-07-16 22:49:43,429 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 22:49:43,434 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+WARNING 2025-07-16 22:49:43,448 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 22:49:43,449 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+INFO 2025-07-16 22:49:43,592 basehttp "GET /api/auth/me/ HTTP/1.1" 200 125
+INFO 2025-07-16 22:49:43,742 basehttp "OPTIONS /api/attendance/punch-records/145/ HTTP/1.1" 200 0
+INFO 2025-07-16 22:49:43,764 basehttp "GET /api/auth/me/ HTTP/1.1" 200 125
+INFO 2025-07-16 22:49:43,856 basehttp "GET /api/auth/me/ HTTP/1.1" 200 125
+INFO 2025-07-16 22:49:43,876 basehttp "GET /api/attendance/punch-records/145/ HTTP/1.1" 200 328
+INFO 2025-07-16 22:49:43,980 basehttp "GET /api/auth/me/ HTTP/1.1" 200 125
+INFO 2025-07-16 22:49:43,981 basehttp "GET /api/attendance/punch-records/145/ HTTP/1.1" 200 328
+INFO 2025-07-16 22:49:44,191 basehttp "GET /api/attendance/punch-records/145/ HTTP/1.1" 200 328
+INFO 2025-07-16 22:49:49,661 basehttp "GET /api/auth/me/ HTTP/1.1" 200 125
+INFO 2025-07-16 22:49:49,740 basehttp "OPTIONS /api/attendance/punch-in/145/ HTTP/1.1" 200 0
+WARNING 2025-07-16 22:49:49,852 log Bad Request: /api/attendance/punch-in/145/
+WARNING 2025-07-16 22:49:49,858 basehttp "POST /api/attendance/punch-in/145/ HTTP/1.1" 400 57
+WARNING 2025-07-16 22:50:25,150 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 22:50:25,151 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:50:25,156 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 22:50:25,156 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:51:25,143 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 22:51:25,143 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:51:25,146 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 22:51:25,146 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:52:25,128 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 22:52:25,129 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 22:52:25,130 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:52:25,130 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:53:25,122 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 22:53:25,122 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:53:25,128 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 22:53:25,129 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:54:25,154 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 22:54:25,154 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:54:25,159 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 22:54:25,159 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:55:25,169 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 22:55:25,171 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:55:25,237 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 22:55:25,238 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+INFO 2025-07-16 22:55:29,989 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 22:55:33,414 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 22:55:36,696 autoreload F:\hrms\BE\attendance\views.py changed, reloading.
+INFO 2025-07-16 22:55:40,078 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 22:55:46,034 basehttp "GET /api/auth/me/ HTTP/1.1" 200 125
+WARNING 2025-07-16 22:55:46,221 log Bad Request: /api/attendance/punch-in/145/
+WARNING 2025-07-16 22:55:46,222 basehttp "POST /api/attendance/punch-in/145/ HTTP/1.1" 400 36
+WARNING 2025-07-16 22:55:50,360 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 22:55:50,365 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+WARNING 2025-07-16 22:55:50,382 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 22:55:50,401 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+INFO 2025-07-16 22:55:50,424 basehttp "GET /api/auth/me/ HTTP/1.1" 200 125
+INFO 2025-07-16 22:55:50,508 basehttp "GET /api/auth/me/ HTTP/1.1" 200 125
+INFO 2025-07-16 22:55:50,591 basehttp "GET /api/auth/me/ HTTP/1.1" 200 125
+INFO 2025-07-16 22:55:50,659 basehttp "GET /api/auth/me/ HTTP/1.1" 200 125
+INFO 2025-07-16 22:55:50,991 basehttp "GET /api/attendance/punch-records/145/ HTTP/1.1" 200 683
+INFO 2025-07-16 22:55:51,101 basehttp "GET /api/attendance/punch-records/145/ HTTP/1.1" 200 683
+INFO 2025-07-16 22:55:51,175 basehttp "GET /api/attendance/punch-records/145/ HTTP/1.1" 200 683
+WARNING 2025-07-16 22:55:54,906 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 22:55:54,911 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+WARNING 2025-07-16 22:55:54,928 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 22:55:54,942 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+INFO 2025-07-16 22:55:54,969 basehttp "GET /api/auth/me/ HTTP/1.1" 200 125
+INFO 2025-07-16 22:55:55,056 basehttp "GET /api/auth/me/ HTTP/1.1" 200 125
+INFO 2025-07-16 22:55:55,246 basehttp "GET /api/auth/me/ HTTP/1.1" 200 125
+INFO 2025-07-16 22:55:55,326 basehttp "GET /api/auth/me/ HTTP/1.1" 200 125
+INFO 2025-07-16 22:55:55,399 basehttp "GET /api/attendance/punch-records/145/ HTTP/1.1" 200 683
+INFO 2025-07-16 22:55:55,478 basehttp "GET /api/attendance/punch-records/145/ HTTP/1.1" 200 683
+INFO 2025-07-16 22:55:55,720 basehttp "GET /api/attendance/punch-records/145/ HTTP/1.1" 200 683
+WARNING 2025-07-16 22:55:57,450 log Method Not Allowed: /api/employees/logout/
+WARNING 2025-07-16 22:55:57,450 basehttp "POST /api/employees/logout/ HTTP/1.1" 405 41
+INFO 2025-07-16 22:56:08,436 basehttp "POST /api/auth/login/user/ HTTP/1.1" 200 644
+WARNING 2025-07-16 22:56:09,671 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 22:56:09,674 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+WARNING 2025-07-16 22:56:09,690 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 22:56:09,693 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+INFO 2025-07-16 22:56:09,734 basehttp "GET /api/auth/me/ HTTP/1.1" 200 147
+INFO 2025-07-16 22:56:09,819 basehttp "GET /api/auth/me/ HTTP/1.1" 200 147
+INFO 2025-07-16 22:56:09,885 basehttp "GET /api/auth/me/ HTTP/1.1" 200 147
+INFO 2025-07-16 22:56:09,959 basehttp "GET /api/auth/me/ HTTP/1.1" 200 147
+INFO 2025-07-16 22:56:10,000 basehttp "OPTIONS /api/attendance/punch-records/183/ HTTP/1.1" 200 0
+INFO 2025-07-16 22:56:10,074 basehttp "GET /api/attendance/punch-records/183/ HTTP/1.1" 200 339
+INFO 2025-07-16 22:56:10,155 basehttp "GET /api/attendance/punch-records/183/ HTTP/1.1" 200 339
+INFO 2025-07-16 22:56:10,228 basehttp "GET /api/attendance/punch-records/183/ HTTP/1.1" 200 339
+INFO 2025-07-16 22:56:14,857 basehttp "GET /api/auth/me/ HTTP/1.1" 200 147
+INFO 2025-07-16 22:56:14,915 basehttp "OPTIONS /api/attendance/punch-in/183/ HTTP/1.1" 200 0
+WARNING 2025-07-16 22:56:15,085 log Bad Request: /api/attendance/punch-in/183/
+WARNING 2025-07-16 22:56:15,085 basehttp "POST /api/attendance/punch-in/183/ HTTP/1.1" 400 57
+WARNING 2025-07-16 22:56:25,123 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 22:56:25,123 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:56:25,133 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 22:56:25,134 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:56:31,519 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 22:56:31,526 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+WARNING 2025-07-16 22:56:31,540 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 22:56:31,542 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+INFO 2025-07-16 22:56:31,710 basehttp "GET /api/auth/me/ HTTP/1.1" 200 147
+INFO 2025-07-16 22:56:31,795 basehttp "GET /api/auth/me/ HTTP/1.1" 200 147
+INFO 2025-07-16 22:56:31,904 basehttp "GET /api/auth/me/ HTTP/1.1" 200 147
+INFO 2025-07-16 22:56:31,926 basehttp "GET /api/attendance/punch-records/183/ HTTP/1.1" 200 707
+INFO 2025-07-16 22:56:32,034 basehttp "GET /api/auth/me/ HTTP/1.1" 200 147
+INFO 2025-07-16 22:56:32,071 basehttp "GET /api/attendance/punch-records/183/ HTTP/1.1" 200 707
+INFO 2025-07-16 22:56:32,275 basehttp "GET /api/attendance/punch-records/183/ HTTP/1.1" 200 707
+WARNING 2025-07-16 22:57:25,127 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 22:57:25,128 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:57:25,134 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 22:57:25,135 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+INFO 2025-07-16 22:57:45,659 autoreload F:\hrms\BE\attendance\models.py changed, reloading.
+INFO 2025-07-16 22:57:47,417 autoreload Watching for file changes with StatReloader
+WARNING 2025-07-16 22:58:25,478 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 22:58:25,479 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:58:25,481 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 22:58:25,481 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:59:25,128 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 22:59:25,128 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 22:59:25,140 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 22:59:25,141 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:00:25,129 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:00:25,130 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:00:25,135 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:00:25,135 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:01:25,121 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:01:25,122 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:01:25,129 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:01:25,131 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:02:25,121 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:02:25,121 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:02:25,125 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:02:25,158 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:03:25,137 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:03:25,138 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:03:25,144 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:03:25,145 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:04:25,127 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:04:25,127 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:04:25,135 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:04:25,136 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:05:25,123 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:05:25,124 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:05:25,135 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:05:25,135 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:06:25,122 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:06:25,123 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:06:25,129 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:06:25,129 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:07:25,123 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:07:25,124 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:07:25,130 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:07:25,131 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:08:25,117 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:08:25,118 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:08:25,124 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:08:25,125 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:09:25,125 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:09:25,126 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:09:25,127 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:09:25,128 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:10:25,115 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:10:25,116 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:10:25,121 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:10:25,122 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:11:25,129 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:11:25,129 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:11:25,134 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:11:25,135 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:12:25,131 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:12:25,132 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:12:25,143 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:12:25,144 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:13:25,126 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:13:25,127 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:13:25,134 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:13:25,135 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:14:25,115 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:14:25,116 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:14:25,125 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:14:25,126 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:15:25,129 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:15:25,129 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:15:25,138 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:15:25,139 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:16:25,123 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:16:25,124 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:16:25,126 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:16:25,127 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:17:25,121 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:17:25,123 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:17:25,127 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:17:25,128 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:18:25,118 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:18:25,118 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:18:25,126 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:18:25,127 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:19:25,123 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:19:25,124 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:19:25,130 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:19:25,131 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:20:25,117 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:20:25,118 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:20:25,125 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:20:25,125 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:21:25,119 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:21:25,119 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:21:25,125 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:21:25,126 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:22:25,115 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:22:25,116 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:22:25,122 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:22:25,123 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:23:25,119 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:23:25,119 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:23:25,123 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:23:25,124 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:24:25,119 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:24:25,120 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:24:25,124 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:24:25,124 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:25:25,118 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:25:25,118 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:25:25,211 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:25:25,212 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:26:25,116 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:26:25,116 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:26:25,126 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:26:25,126 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:27:25,124 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:27:25,125 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:27:25,141 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:27:25,141 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:28:25,443 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:28:25,444 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:28:25,444 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:28:25,444 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:29:25,116 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:29:25,116 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:29:25,119 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:29:25,120 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:30:25,122 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:30:25,123 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:30:25,130 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:30:25,131 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:31:25,117 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:31:25,118 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:31:25,126 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:31:25,126 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:32:25,119 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:32:25,119 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:32:25,125 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:32:25,125 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+INFO 2025-07-16 23:33:25,058 basehttp "OPTIONS /api/admin/attendance/late-login-reasons/ HTTP/1.1" 200 0
+INFO 2025-07-16 23:33:25,058 basehttp "OPTIONS /api/admin/attendance/history/ HTTP/1.1" 200 0
+WARNING 2025-07-16 23:33:25,123 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:33:25,124 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:33:25,132 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:33:25,132 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:34:25,120 log Forbidden: /api/admin/attendance/history/
+WARNING 2025-07-16 23:34:25,121 log Forbidden: /api/admin/attendance/late-login-reasons/
+WARNING 2025-07-16 23:34:25,121 basehttp "GET /api/admin/attendance/late-login-reasons/ HTTP/1.1" 403 63
+WARNING 2025-07-16 23:34:25,121 basehttp "GET /api/admin/attendance/history/ HTTP/1.1" 403 63
+INFO 2025-07-16 23:36:06,521 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 23:40:44,120 basehttp "POST /api/auth/login/user/ HTTP/1.1" 200 640
+WARNING 2025-07-16 23:40:45,857 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 23:40:45,858 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+WARNING 2025-07-16 23:40:45,874 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 23:40:45,877 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+INFO 2025-07-16 23:40:45,905 basehttp "GET /api/auth/me/ HTTP/1.1" 200 143
+INFO 2025-07-16 23:40:45,983 basehttp "GET /api/auth/me/ HTTP/1.1" 200 143
+INFO 2025-07-16 23:40:46,062 basehttp "GET /api/auth/me/ HTTP/1.1" 200 143
+INFO 2025-07-16 23:40:46,117 basehttp "OPTIONS /api/attendance/punch-records/133/ HTTP/1.1" 200 0
+INFO 2025-07-16 23:40:46,148 basehttp "GET /api/auth/me/ HTTP/1.1" 200 143
+INFO 2025-07-16 23:40:46,298 basehttp "GET /api/attendance/punch-records/133/ HTTP/1.1" 200 337
+INFO 2025-07-16 23:40:46,373 basehttp "GET /api/attendance/punch-records/133/ HTTP/1.1" 200 337
+INFO 2025-07-16 23:40:46,454 basehttp "GET /api/attendance/punch-records/133/ HTTP/1.1" 200 337
+INFO 2025-07-16 23:40:55,833 basehttp "GET /api/auth/me/ HTTP/1.1" 200 143
+INFO 2025-07-16 23:40:55,904 basehttp "OPTIONS /api/attendance/punch-in/133/ HTTP/1.1" 200 0
+WARNING 2025-07-16 23:40:56,039 log Bad Request: /api/attendance/punch-in/133/
+WARNING 2025-07-16 23:40:56,040 basehttp "POST /api/attendance/punch-in/133/ HTTP/1.1" 400 58
+INFO 2025-07-16 23:41:31,952 autoreload F:\hrms\BE\attendance\models.py changed, reloading.
+INFO 2025-07-16 23:41:33,737 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 23:41:38,710 autoreload F:\hrms\BE\attendance\models.py changed, reloading.
+INFO 2025-07-16 23:41:40,525 autoreload Watching for file changes with StatReloader
+INFO 2025-07-16 23:41:46,303 basehttp "GET /api/auth/me/ HTTP/1.1" 200 143
+WARNING 2025-07-16 23:41:46,450 log Bad Request: /api/attendance/punch-in/133/
+WARNING 2025-07-16 23:41:46,451 basehttp "POST /api/attendance/punch-in/133/ HTTP/1.1" 400 36
+WARNING 2025-07-16 23:41:48,740 log Method Not Allowed: /api/employees/logout/
+WARNING 2025-07-16 23:41:48,740 basehttp "POST /api/employees/logout/ HTTP/1.1" 405 41
+INFO 2025-07-16 23:42:02,223 basehttp "POST /api/auth/login/user/ HTTP/1.1" 200 637
+WARNING 2025-07-16 23:42:03,476 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 23:42:03,477 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+WARNING 2025-07-16 23:42:03,492 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 23:42:03,501 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+INFO 2025-07-16 23:42:03,525 basehttp "GET /api/auth/me/ HTTP/1.1" 200 140
+INFO 2025-07-16 23:42:03,611 basehttp "GET /api/auth/me/ HTTP/1.1" 200 140
+INFO 2025-07-16 23:42:03,687 basehttp "GET /api/auth/me/ HTTP/1.1" 200 140
+INFO 2025-07-16 23:42:03,803 basehttp "GET /api/auth/me/ HTTP/1.1" 200 140
+INFO 2025-07-16 23:42:03,834 basehttp "OPTIONS /api/attendance/punch-records/138/ HTTP/1.1" 200 0
+INFO 2025-07-16 23:42:03,835 basehttp "OPTIONS /api/attendance/punch-records/138/ HTTP/1.1" 200 0
+INFO 2025-07-16 23:42:03,909 basehttp "GET /api/attendance/punch-records/138/ HTTP/1.1" 200 336
+INFO 2025-07-16 23:42:03,996 basehttp "GET /api/attendance/punch-records/138/ HTTP/1.1" 200 336
+INFO 2025-07-16 23:42:04,072 basehttp "GET /api/attendance/punch-records/138/ HTTP/1.1" 200 336
+INFO 2025-07-16 23:42:08,388 basehttp "GET /api/auth/me/ HTTP/1.1" 200 140
+INFO 2025-07-16 23:42:08,444 basehttp "OPTIONS /api/attendance/punch-in/138/ HTTP/1.1" 200 0
+WARNING 2025-07-16 23:42:08,576 log Bad Request: /api/attendance/punch-in/138/
+WARNING 2025-07-16 23:42:08,577 basehttp "POST /api/attendance/punch-in/138/ HTTP/1.1" 400 138
+INFO 2025-07-16 23:42:22,896 autoreload F:\hrms\BE\attendance\models.py changed, reloading.
+INFO 2025-07-16 23:42:24,725 autoreload Watching for file changes with StatReloader
+WARNING 2025-07-16 23:44:19,990 log Method Not Allowed: /api/employees/logout/
+WARNING 2025-07-16 23:44:19,991 basehttp "POST /api/employees/logout/ HTTP/1.1" 405 41
+INFO 2025-07-16 23:44:28,752 basehttp "POST /api/auth/login/user/ HTTP/1.1" 200 625
+WARNING 2025-07-16 23:44:29,955 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 23:44:29,957 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+WARNING 2025-07-16 23:44:29,979 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 23:44:29,982 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+INFO 2025-07-16 23:44:30,018 basehttp "GET /api/auth/me/ HTTP/1.1" 200 128
+INFO 2025-07-16 23:44:30,121 basehttp "GET /api/auth/me/ HTTP/1.1" 200 128
+INFO 2025-07-16 23:44:30,199 basehttp "GET /api/auth/me/ HTTP/1.1" 200 128
+INFO 2025-07-16 23:44:30,269 basehttp "GET /api/auth/me/ HTTP/1.1" 200 128
+INFO 2025-07-16 23:44:30,269 basehttp "OPTIONS /api/attendance/punch-records/140/ HTTP/1.1" 200 0
+INFO 2025-07-16 23:44:30,276 basehttp "OPTIONS /api/attendance/punch-records/140/ HTTP/1.1" 200 0
+INFO 2025-07-16 23:44:30,443 basehttp "GET /api/attendance/punch-records/140/ HTTP/1.1" 200 334
+INFO 2025-07-16 23:44:30,515 basehttp "GET /api/attendance/punch-records/140/ HTTP/1.1" 200 334
+INFO 2025-07-16 23:44:30,585 basehttp "GET /api/attendance/punch-records/140/ HTTP/1.1" 200 334
+INFO 2025-07-16 23:54:38,787 basehttp "GET /api/auth/me/ HTTP/1.1" 200 128
+INFO 2025-07-16 23:54:38,799 basehttp "OPTIONS /api/attendance/punch-in/140/ HTTP/1.1" 200 0
+WARNING 2025-07-16 23:54:38,877 log Bad Request: /api/attendance/punch-in/140/
+WARNING 2025-07-16 23:54:38,878 basehttp "POST /api/attendance/punch-in/140/ HTTP/1.1" 400 58
+INFO 2025-07-16 23:54:54,950 autoreload F:\hrms\BE\attendance\models.py changed, reloading.
+INFO 2025-07-16 23:54:56,796 autoreload Watching for file changes with StatReloader
+WARNING 2025-07-16 23:55:44,837 log Method Not Allowed: /api/employees/logout/
+WARNING 2025-07-16 23:55:44,838 basehttp "POST /api/employees/logout/ HTTP/1.1" 405 41
+WARNING 2025-07-16 23:55:54,977 log Unauthorized: /api/auth/login/user/
+WARNING 2025-07-16 23:55:54,978 basehttp "POST /api/auth/login/user/ HTTP/1.1" 401 63
+WARNING 2025-07-16 23:55:56,637 log Unauthorized: /api/auth/login/user/
+WARNING 2025-07-16 23:55:56,638 basehttp "POST /api/auth/login/user/ HTTP/1.1" 401 63
+WARNING 2025-07-16 23:55:58,382 log Unauthorized: /api/auth/login/user/
+INFO 2025-07-16 23:55:58,382 basehttp - Broken pipe from ('127.0.0.1', 50415)
+INFO 2025-07-16 23:56:07,275 basehttp "POST /api/auth/login/user/ HTTP/1.1" 200 633
+WARNING 2025-07-16 23:56:08,609 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 23:56:08,624 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+WARNING 2025-07-16 23:56:08,649 log Not Found: /api/late-login-reasons/
+WARNING 2025-07-16 23:56:08,661 basehttp "GET /api/late-login-reasons/ HTTP/1.1" 404 21637
+INFO 2025-07-16 23:56:08,671 basehttp "GET /api/auth/me/ HTTP/1.1" 200 136
+INFO 2025-07-16 23:56:08,842 basehttp "GET /api/auth/me/ HTTP/1.1" 200 136
+INFO 2025-07-16 23:56:08,909 basehttp "GET /api/auth/me/ HTTP/1.1" 200 136
+INFO 2025-07-16 23:56:08,960 basehttp "OPTIONS /api/attendance/punch-records/128/ HTTP/1.1" 200 0
+INFO 2025-07-16 23:56:08,977 basehttp "GET /api/auth/me/ HTTP/1.1" 200 136
+INFO 2025-07-16 23:56:09,096 basehttp "GET /api/attendance/punch-records/128/ HTTP/1.1" 200 333
+INFO 2025-07-16 23:56:09,169 basehttp "GET /api/attendance/punch-records/128/ HTTP/1.1" 200 333
+INFO 2025-07-16 23:56:09,243 basehttp "GET /api/attendance/punch-records/128/ HTTP/1.1" 200 333
+INFO 2025-07-16 23:56:16,626 basehttp "GET /api/auth/me/ HTTP/1.1" 200 136
+INFO 2025-07-16 23:56:16,645 basehttp "OPTIONS /api/attendance/punch-in/128/ HTTP/1.1" 200 0
+INFO 2025-07-16 23:56:16,779 basehttp "POST /api/attendance/punch-in/128/ HTTP/1.1" 201 406
+INFO 2025-07-16 23:56:16,884 basehttp "GET /api/attendance/punch-records/128/ HTTP/1.1" 200 696
+INFO 2025-07-16 23:56:16,953 basehttp "GET /api/attendance/punch-records/128/ HTTP/1.1" 200 696
+INFO 2025-07-16 23:56:31,372 basehttp "GET /api/auth/me/ HTTP/1.1" 200 136
+INFO 2025-07-16 23:56:31,443 basehttp "OPTIONS /api/attendance/punch-out/128/ HTTP/1.1" 200 0
+INFO 2025-07-16 23:56:31,632 basehttp "POST /api/attendance/punch-out/128/ HTTP/1.1" 200 438
+INFO 2025-07-16 23:56:31,734 basehttp "GET /api/attendance/punch-records/128/ HTTP/1.1" 200 771
+INFO 2025-07-16 23:56:31,813 basehttp "GET /api/attendance/punch-records/128/ HTTP/1.1" 200 771
