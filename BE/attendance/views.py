@@ -942,7 +942,7 @@ class UserAdminRepliesView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, user_id):
-        reports = DailyWorkReport.objects.filter(user_id=user_id).select_related('replied_by')
+        reports = DailyWorkReport.objects.filter(user_id=user_id)
 
         data = []
         for report in reports:
@@ -956,8 +956,10 @@ class UserAdminRepliesView(APIView):
                     "replied_by": report.replied_by.get_full_name() if report.replied_by else None,
                     "replied_at": report.replied_at
                 })
+        print(data)
 
         return Response(data, status=status.HTTP_200_OK)
+    
 class PunchRecordsView(APIView):
     permission_classes = [IsAuthenticated]
     
@@ -1007,43 +1009,30 @@ class AdminReplyToReportView(APIView):
         try:
             # Get the report
             report = DailyWorkReport.objects.get(id=report_id)
-            
-            # Validate request data
-            message = request.data.get('message', '').strip()
-            if not message:
-                return Response(
-                    {"message": ["This field is required."]},
-                    status=status.HTTP_400_BAD_REQUEST
-                )
-            
-            # Create the reply
-            reply = AdminReply.objects.create(
-                report=report,
-                admin=request.user,
-                message=message,
-            )
-            
-            # Update the report's replied_at timestamp
-            report.save()
-            
-            # Log the action
-            logger.info(f"Admin {request.user.id} replied to report {report_id}")
-            
-            # Return the created reply
-            serializer = AdminReplySerializer(reply)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-            
         except DailyWorkReport.DoesNotExist:
             return Response(
-                {"error": "Report not found"},
+                {"error": "Report not found."},
                 status=status.HTTP_404_NOT_FOUND
             )
-        except Exception as e:
-            logger.error(f"Error creating reply: {str(e)}")
+
+        # Validate request data
+        message = request.data.get('message', '').strip()
+        if not message:
             return Response(
-                {"error": "An error occurred while creating the reply"},
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+                {"message": ["This field is required."]},
+                status=status.HTTP_400_BAD_REQUEST
             )
+
+        report.admin_reply = message
+        report.replied_at = timezone.now()
+        report.replied_by = request.user
+        report.save()
+
+        # Log the action
+        logger.info(f"Admin {request.user.id} replied to report {report_id}")
+
+        # Optional: return updated report data (if needed)
+        return Response({"detail": "Reply added successfully."}, status=status.HTTP_201_CREATED)
 
 
 class ReportRepliesView(APIView):

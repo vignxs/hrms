@@ -853,8 +853,8 @@ const AttendanceCard = () => {
     });
   }, [attendanceRecords]);
 
-  console.log("formattedAttendanceRecords", formattedAttendanceRecords);
-  console.log("attendanceRecords", attendanceRecords);
+  // console.log("formattedAttendanceRecords", formattedAttendanceRecords);
+  // console.log("attendanceRecords", attendanceRecords);
   useEffect(() => {
     const fetchPunchStatus = async () => {
       try {
@@ -1715,7 +1715,7 @@ const AttendanceCard = () => {
               console.log("Fetching replies for userId:", userId);
               if (response.ok) {
                 const data = await response.json();
-                console.log(data);
+                console.log("reply data" , data);
                 const latest =
                   Array.isArray(data) && data.length > 0
                     ? data[data.length - 1].admin_reply ||
