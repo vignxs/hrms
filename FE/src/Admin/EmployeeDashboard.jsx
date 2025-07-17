@@ -503,7 +503,7 @@ function EmployeeDashboard() {
 
     // Prepare data for export
     const exportData = filteredData.map((emp) => ({
-      Name: `${emp.first_name} ${emp.last_name}` || "-",
+      Name: emp.name,
       Email: emp.email || "-",
       Department: emp.department || "N/A",
       Position: emp.position || "N/A",

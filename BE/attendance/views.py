@@ -904,7 +904,8 @@ class PunchOutView(APIView):
             if not record or not record.punch_in:
                 return Response({"error": "No punch-in record found for today"}, status=status.HTTP_400_BAD_REQUEST)
 
-            reason = request.data.get('punch_out_reason', '').strip()  
+            reason = request.data.get('punch_out_reason', '').strip()
+            print("Punch out reason", reason)  
             early_departure_time = user_tz.localize(datetime.combine(today, time(18, 30)))
             is_early_departure = now < early_departure_time
 
@@ -921,18 +922,25 @@ class PunchOutView(APIView):
                 minutes = int((delta.total_seconds() % 3600) // 60)
                 record.hours_worked = f"{hours}h {minutes}m"
 
-            if is_early_departure:
+            if reason:
                 record.punch_out_reason = reason
                 record.punch_out_reason_status = 'pending'
 
             record.status = 'Present'
             record.save()
-
+            print("Punch out time", record.punch_out)
+            print("Punch out reason", record.punch_out_reason)
+            print("Punch out reason status", record.punch_out_reason_status)
+            print("Punch out status", record.status)
             return Response(AttendancePunchSerializer(record).data, status=status.HTTP_200_OK)
+            print("Punch out successful")
+       
 
         except User.DoesNotExist:
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
+            import traceback
+            traceback.print_exc()
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 import logging
