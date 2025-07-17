@@ -1534,7 +1534,7 @@ class AdminAttendanceHistoryView(APIView):
             attendance_data = {
                 'punch_in_time': attendance.punch_in_time if attendance else '',
                 'punch_out_time': attendance.punch_out_time if attendance else '',
-                'hours_worked': attendance.hours_worked if attendance else '0h qqqw',
+                'hours_worked': attendance.hours_worked if attendance else '0h 0m',
                 'status': attendance.status if attendance else 'No Attendance',
                 'punch_in_reason': attendance.punch_in_reason if attendance else '',
                 'punch_out_reason': attendance.punch_out_reason if attendance else '',

@@ -102,6 +102,7 @@ function EmployeeDashboard() {
       }
 
       return {
+        a_id:emp.a_id,
         id: emp.id,
         name: `${emp.first_name || ''} ${emp.last_name || ''}`.trim(),
         email: emp.email || '',
@@ -110,7 +111,8 @@ function EmployeeDashboard() {
         hours_worked: emp.hours_worked || '0h 0m',
         report_status: emp.report_status || "Not Submitted",
         report_details: emp.report_details || "No details",
-        has_report: emp.has_report || false,
+        has_report: emp.dailyReportSent ? true : false,
+        dailyReportSent: emp.dailyReportSent,
         punch_in_reason: emp.punch_in_reason || "",
         punch_out_reason: emp.punch_out_reason || "",
         punch_in_reason_status: emp.punch_in_reason_status || "pending",
@@ -231,6 +233,9 @@ function EmployeeDashboard() {
       align: "left",
       renderCell: (params) => {
         const hasReport = params.row.has_report;
+        
+        // console.log("hasReport", hasReport);
+        // console.log("params", params.row.name);
         return (
           <Box
             sx={{
@@ -284,10 +289,10 @@ function EmployeeDashboard() {
                 color="primary"
                 size="small"
                 onClick={() => {
-                  setSelectedReasonId(params.row.id);
+                  setSelectedReasonId(params.row.a_id);
                   setSelectedReason(reason);
                   setSelectedName(
-                    `${params.row.first_name} ${params.row.last_name}`
+                params.row.name
                   );
                   setReasonDialogOpen(true);
                   setSelectedPunchInReason(params.row.punch_in_reason);
@@ -404,10 +409,10 @@ function EmployeeDashboard() {
     // Get the work details
     const workDetails = reportData || "No report submitted";
     console.log("Work details:", workDetails);
-    setSelectedReportId(row.dailyReportSent.report_id);
+    setSelectedReportId(row.dailyReportSent?.report_id);
     setSelectedReportContent(workDetails);
     setSelectedEmail(row?.email || "");
-    setSelectedName(row?.employee_name || "");
+    setSelectedName(row?.first_name || "");
     setReplyMode(false);
     setReplyText("");
     setOpenDialog(true);
@@ -415,7 +420,7 @@ function EmployeeDashboard() {
     // Debug full row
     console.log("Full row data:", {
       email: row?.email,
-      name: row?.employee_name,
+      name: row?.first_name,
       report: row?.dailyReportSent,
       report_id: row?.dailyReportSent?.report_id,
     });
@@ -651,8 +656,6 @@ function EmployeeDashboard() {
         throw new Error(data.error || `Failed to update ${reasonType} reason status`);
       }
 
-      // Refresh data
-      await fetchAttendanceData();
       await fetchLastLoginReasons();
       
       // Reset state
