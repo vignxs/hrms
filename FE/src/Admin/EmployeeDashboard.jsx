@@ -115,6 +115,7 @@ function EmployeeDashboard() {
         punch_out_reason: emp.punch_out_reason || "",
         punch_in_reason_status: emp.punch_in_reason_status || "pending",
         punch_out_reason_status: emp.punch_out_reason_status || "pending",
+        
         status: displayStatus,
       };
     }).filter(Boolean); // Remove null entries
