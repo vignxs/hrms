@@ -60,7 +60,6 @@ const AttendanceCard = () => {
   const [userName, setUserName] = useState("");
   const [employeeId, setEmployeeId] = useState(null);
   const [reasonApprovalStatus, setReasonApprovalStatus] = useState("");
-
   const [attendanceRecords, setAttendanceRecords] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -269,15 +268,12 @@ const AttendanceCard = () => {
           return;
         }
 
-        const response = await fetch(
-          "http://localhost:8000/api/auth/me/",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const response = await fetch("http://localhost:8000/api/auth/me/", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
 
         if (!response.ok) {
           const error = await response.json().catch(() => ({}));
@@ -285,8 +281,13 @@ const AttendanceCard = () => {
         }
 
         const profileData = await response.json();
+        console.log("profile ndaya", JSON.stringify(profileData, null, 2));
         setUserProfile(profileData);
-        setUserName(profileData.first_name || profileData.last_name);
+        setUserName(
+          `${profileData.first_name || ""} ${
+            profileData.last_name || ""
+          }`.trim()
+        );
         setEmployeeId(profileData.id);
         setReasonApprovalStatus(profileData.reason_approval_status || "");
       } catch (error) {
@@ -635,38 +636,41 @@ const AttendanceCard = () => {
           id: `record_${record.id}`,
           date: record.date || new Date().toISOString().split("T")[0],
           dateDisplay: formatDate(record.date),
-          
+          username: record.user_name,
           punch_in: record.punch_in || record.punch_in_time,
           punch_out: record.punch_out || record.punch_out_time,
-          
+
           punch_in_display: formatTime(record.punch_in),
           punch_out_display: formatTime(record.punch_out),
-          
+
           hours: calculateHours(
             record.punch_in || record.punch_in_time,
-            record.punch_out || record.punch_out_time 
-          ),
-          hoursDisplay: formatHours(calculateHours(
-            record.punch_in || record.punch_in_time,
             record.punch_out || record.punch_out_time
-          )),
-          
+          ),
+          hoursDisplay: formatHours(
+            calculateHours(
+              record.punch_in || record.punch_in_time,
+              record.punch_out || record.punch_out_time
+            )
+          ),
+
           punch_in_reason: record.punch_in_reason || "",
           punch_out_reason: record.punch_out_reason || "",
           punch_in_reason_status: record.punch_in_reason_status || "pending",
           punch_out_reason_status: record.punch_out_reason_status || "pending",
-          
+
           punch_in_admin_comment: record.punch_in_admin_comment || "",
           punch_out_admin_comment: record.punch_out_admin_comment || "",
-          
+
           status: record.status || "Pending",
           statusDisplay: record.status,
-          
-          user_name: record.user_name || data.user?.email?.split("@")[0] || "Unknown",
-          
+
+          user_name:
+            record.user_name || data.user?.email?.split("@")[0] || "Unknown",
+
           is_late: record.is_late || false,
           hours_worked: record.hours_worked || "0h 0m",
-          
+
           created_at: record.created_at,
         }));
 
@@ -697,6 +701,15 @@ const AttendanceCard = () => {
       setLoading(false);
     }
   };
+  // useEffect(() => {
+  //   fetchPunchRecords();
+
+  //   const interval = setInterval(() => {
+  //     fetchPunchRecords();
+
+  //   }, 10000); // 10,000 ms = 10 seconds
+  //   return () => clearInterval(interval); // Cleanup interval on component unmount
+  // },);
   useEffect(() => {
     const fetchPunchRecords = async () => {
       if (!employeeId) {
@@ -741,38 +754,42 @@ const AttendanceCard = () => {
             id: `record_${record.id}`,
             date: record.date || new Date().toISOString().split("T")[0],
             dateDisplay: formatDate(record.date),
-            
+
             punch_in: record.punch_in || record.punch_in_time,
             punch_out: record.punch_out || record.punch_out_time,
-            
+
             punch_in_display: formatTime(record.punch_in),
             punch_out_display: formatTime(record.punch_out),
-            
+
             hours: calculateHours(
               record.punch_in || record.punch_in_time,
-              record.punch_out || record.punch_out_time 
-            ),
-            hoursDisplay: formatHours(calculateHours(
-              record.punch_in || record.punch_in_time,
               record.punch_out || record.punch_out_time
-            )),
-            
+            ),
+            hoursDisplay: formatHours(
+              calculateHours(
+                record.punch_in || record.punch_in_time,
+                record.punch_out || record.punch_out_time
+              )
+            ),
+
             punch_in_reason: record.punch_in_reason || "",
             punch_out_reason: record.punch_out_reason || "",
             punch_in_reason_status: record.punch_in_reason_status || "pending",
-            punch_out_reason_status: record.punch_out_reason_status || "pending",
-            
+            punch_out_reason_status:
+              record.punch_out_reason_status || "pending",
+
             punch_in_admin_comment: record.punch_in_admin_comment || "",
             punch_out_admin_comment: record.punch_out_admin_comment || "",
-            
+
             status: record.status || "Pending",
             statusDisplay: record.status,
-            
-            user_name: record.user_name || data.user?.email?.split("@")[0] || "Unknown",
-            
+
+            user_name:
+              record.user_name || data.user?.email?.split("@")[0] || "Unknown",
+
             is_late: record.is_late || false,
             hours_worked: record.hours_worked || "0h 0m",
-            
+
             created_at: record.created_at,
           }));
 
@@ -841,7 +858,7 @@ const AttendanceCard = () => {
         statusDisplay: record.status,
         reasonDisplay: record.reason,
         punch_in_reason: record.punch_in_reason,
-        punch_out_reason :record.punch_out_reason,
+        punch_out_reason: record.punch_out_reason,
         punch_in_reason_status: record.punch_in_reason_status,
         punch_out_reason_status: record.punch_out_reason_status,
         user_nameDisplay: record.user_name,
@@ -1047,10 +1064,13 @@ const AttendanceCard = () => {
       }
 
       const data = await response.json();
-      fetchPunchRecords();
-      setPunchInTime(now);
-
       setIsPunchedIn(true);
+      setPunchInTime(now);
+      setPunchOutTime(null); // Reset punch out time
+      setElapsedSeconds(0); // Reset timer
+      setTotalHours("00:00:00"); // Reset total hours
+
+      fetchPunchRecords();
       setSuccess(`Successfully punched in at ${now.toLocaleTimeString()}`);
 
       // Update the attendance table data
@@ -1147,10 +1167,9 @@ const AttendanceCard = () => {
 
       const data = await response.json();
 
-      // Update UI state immediately
-      fetchPunchRecords();
       setPunchOutTime(now);
       setIsPunchedIn(false);
+      fetchPunchRecords();
       setSuccess(`Successfully punched out at ${now.toLocaleTimeString()}`);
 
       // Update the attendance table data
@@ -1208,24 +1227,23 @@ const AttendanceCard = () => {
         setOpenReasonDialog(false);
         setReasonType("");
       }
-    } else {
+    }else {
       const confirmPunchOut = window.confirm(
         "Are you sure you want to punch out?"
       );
       if (!confirmPunchOut) return;
-
-      // Update local state
-      setPunchOutTime(now);
-      setIsPunchedIn(false);
-
-      // Show dialog only if after 6:30 PM
-      if (!isAfterTime(18, 30, now)) {
-        setOpenReasonDialog(false);
-        setReasonType("");
-        await punchOut(""); // Punch out directly before 6:30 PM
-      } else {
+  
+      // Show dialog if after 6:30 PM, otherwise punch out directly
+      if (isAfterTime(18, 30, now)) {
         setOpenReasonDialog(true);
         setReasonType("out");
+      } else {
+        // Only update state after successful punch out
+        const result = await punchOut("");
+        if (result) {
+          setPunchOutTime(now);
+          setIsPunchedIn(false);
+        }
       }
     }
   };
@@ -1235,8 +1253,8 @@ const AttendanceCard = () => {
     (date.getHours() === hour && date.getMinutes() > minute);
 
   const formatReasonStatus = (reason, status) => {
-    if (!reason || reason.trim() === '') {
-      return '-';
+    if (!reason || reason.trim() === "") {
+      return "-";
     }
     return status;
   };
@@ -1427,7 +1445,11 @@ const AttendanceCard = () => {
             variant="contained"
             fullWidth
             onClick={handlePunch}
-            disabled={isPunchOutDisabled && isPunchedIn || isPunchingIn || isPunchingOut}
+            disabled={
+              (isPunchOutDisabled && isPunchedIn) ||
+              isPunchingIn ||
+              isPunchingOut
+            }
             sx={{
               backgroundColor: isPunchedIn ? "#1b5e20" : "#1b5e20",
               color: "white",
@@ -1715,7 +1737,7 @@ const AttendanceCard = () => {
               console.log("Fetching replies for userId:", userId);
               if (response.ok) {
                 const data = await response.json();
-                console.log("reply data" , data);
+                console.log("reply data", data);
                 const latest =
                   Array.isArray(data) && data.length > 0
                     ? data[data.length - 1].admin_reply ||
@@ -2127,9 +2149,19 @@ const AttendanceCard = () => {
                       />
                     </TableCell>
                     <TableCell>{row.punch_in_reason}</TableCell>
-                    <TableCell>{formatReasonStatus(row.punch_in_reason, row.punch_in_reason_status)}</TableCell>
+                    <TableCell>
+                      {formatReasonStatus(
+                        row.punch_in_reason,
+                        row.punch_in_reason_status
+                      )}
+                    </TableCell>
                     <TableCell>{row.punch_out_reason}</TableCell>
-                    <TableCell>{formatReasonStatus(row.punch_out_reason, row.punch_out_reason_status)}</TableCell>
+                    <TableCell>
+                      {formatReasonStatus(
+                        row.punch_out_reason,
+                        row.punch_out_reason_status
+                      )}
+                    </TableCell>
                   </TableRow>
                 ))
               )}
