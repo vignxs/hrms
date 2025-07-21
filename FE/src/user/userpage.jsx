@@ -1001,7 +1001,6 @@ const AttendanceCard = () => {
     }
   };
 
-  console.log(attendanceRecords);
   const punchIn = async (reason = "") => {
     try {
       setIsPunchingIn(true);

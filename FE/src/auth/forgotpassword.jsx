@@ -14,8 +14,9 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MailOutline as MailOutlineIcon } from "@mui/icons-material";
 import axios from 'axios';
+import { DEV_BASE_URL } from "../ApiConfig";
 
-const API_BASE_URL = 'http://localhost:8000/api'; // Update with your backend URL
+const API_BASE_URL = `${DEV_BASE_URL}/api`; // Update with your backend URL
 
 export default function ForgotPassword() {
     const [email, setEmail] = useState("");

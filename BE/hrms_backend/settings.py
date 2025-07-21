@@ -144,9 +144,10 @@ AUTH_USER_MODEL = 'auth.User'
 ASGI_APPLICATION = 'hrms_backend.asgi.application'
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer',  # Use Redis in production
-    },
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    }
 }
+
 
 # WebSocket URL
 WEBSOCKET_URL = os.getenv('WEBSOCKET_URL', 'ws://localhost:8000/ws/')

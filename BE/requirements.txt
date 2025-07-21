@@ -11,3 +11,4 @@ Pillow
 channels==4.0.0
 channels-redis==4.1.0
 redis==4.6.0
+daphne
