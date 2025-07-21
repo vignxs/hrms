@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from .models_chat import ChatRoom, Message, UserStatus
 from rest_framework.views import APIView
 from rest_framework import permissions, status
-
+from rest_framework.response import Response
 User = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
