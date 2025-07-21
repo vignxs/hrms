@@ -32,7 +32,7 @@ from .views_auth import (
     UserListView,
     
 )
-from .views_chat import ChatRoomViewSet, UserStatusViewSet, websocket_urlpatterns
+from .views_chat import ChatRoomViewSet, UserStatusViewSet, UserListView, websocket_urlpatterns, MessageCreateView, get_room_messages, UserChatRoomsView, RoomMessagesView
 
 router = DefaultRouter()
 router.register(r'employees', UserViewSet, basename='employee')
@@ -77,12 +77,17 @@ urlpatterns = [
     path('employees/<int:pk>/login/', UserViewSet.as_view({'post': 'login'}), name='employee-login'),
     path('employees/<int:pk>/logout/', UserViewSet.as_view({'post': 'logout'}), name='employee-logout'),
     path('employees/<int:pk>/status/', UserViewSet.as_view({'post': 'update_status'}), name='update-status'),
-    
+    path('users/', UserListView.as_view(), name='user-list'),
+
     # Chat endpoints
     path('chat/rooms/<int:pk>/messages/', ChatRoomViewSet.as_view({'get': 'messages'}), name='chat-messages'),
     path('chat/status/update/', UserStatusViewSet.as_view({'post': 'update_status'}), name='update-chat-status'),
     path('chat/', include(websocket_urlpatterns)),
     path('attendance/admin-replies/<int:user_id>/', UserAdminRepliesView.as_view(), name='admin-replies-by-user'),
+    path('chat/messages/create/', MessageCreateView.as_view(), name='create-message'),
+    path('rooms/<int:room_id>/messages/', get_room_messages, name='room-messages'),
+    path('chat-rooms/<int:user_id>/', UserChatRoomsView.as_view(), name='user-chat-rooms'),
+    path('chat-rooms/<int:room_id>/messages/', RoomMessagesView.as_view(), name='room-messages'),
 
     # Admin reports and replies
     path('admin/reports/employees/', AdminEmployeeReportView.as_view(), name='admin-employee-reports'),

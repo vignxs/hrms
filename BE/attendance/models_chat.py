@@ -1,8 +1,8 @@
 from django.db import models
-from django.contrib.auth import get_user_model
+from django.conf import settings
 from django.utils import timezone
 
-User = get_user_model()
+User = settings.AUTH_USER_MODEL
 
 class ChatRoom(models.Model):
     """Represents a chat room between users"""
@@ -15,7 +15,7 @@ class ChatRoom(models.Model):
     participants = models.ManyToManyField(
         User,
         related_name='chat_rooms',
-        blank=True
+        blank=True                 
     )
     room_type = models.CharField(max_length=10, choices=ROOM_TYPES, default='direct')
     created_by = models.ForeignKey(
@@ -46,6 +46,9 @@ class ChatRoom(models.Model):
             users = list(self.participants.all())
             return f"Chat: {users[0].get_full_name()} and {users[1].get_full_name()}"
         return f"Chat Room {self.id}"
+
+
+
 
 class Message(models.Model):
     """Represents a message in a chat room"""

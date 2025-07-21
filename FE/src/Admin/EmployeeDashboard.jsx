@@ -54,7 +54,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-
+import { DEV_BASE_URL } from '../ApiConfig';
 function EmployeeDashboard() {
   const navigate = useNavigate();
   const [employeeData, setEmployeeData] = useState([]);
@@ -323,7 +323,7 @@ function EmployeeDashboard() {
       const token = localStorage.getItem("access_token");
 
       const response = await fetch(
-        `http://localhost:8000/api/admin/attendance/history/`,
+        `${DEV_BASE_URL}/api/admin/attendance/history/`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -360,7 +360,7 @@ function EmployeeDashboard() {
     try {
       const token = localStorage.getItem("access_token");
       const response = await fetch(
-        `http://localhost:8000/api/admin/attendance/late-login-reasons/`,
+        `${DEV_BASE_URL}/api/admin/attendance/late-login-reasons/`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -429,7 +429,7 @@ function EmployeeDashboard() {
   const handleLogout = async () => {
     try {
       const token = localStorage.getItem("access_token");
-      await fetch(`http://localhost:8000/api/employees/logout/`, {
+      await fetch(`${DEV_BASE_URL}/api/employees/logout/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -463,7 +463,7 @@ function EmployeeDashboard() {
       const token = localStorage.getItem("access_token");
   
       const res = await fetch(
-        `http://localhost:8000/api/admin/reports/${selectedReportId}/reply/`,
+        `${DEV_BASE_URL}/api/admin/reports/${selectedReportId}/reply/`,
         {
           method: "POST",
           headers: {
@@ -509,17 +509,12 @@ function EmployeeDashboard() {
       Position: emp.position || "N/A",
       Status: emp.status || "No Attendance",
       Login:
-        emp.punch_in_time && emp.punch_in_time !== "-"
-          ? new Date(emp.punch_in_time).toLocaleString()
-          : "-",
+        emp.punch_in,
       Logout:
-        emp.punch_out_time && emp.punch_out_time !== "-"
-          ? new Date(emp.punch_out_time).toLocaleString()
-          : "-",
+        emp.punch_out,
       "Hours Worked": emp.hours_worked || "0h 0m",
       "Daily Report": emp.report_status || "Not Submitted",
-      "Report Details": emp.report_details || "No details",
-      "Has Report": emp.has_report ? "Yes" : "No",
+"Report Details": emp.dailyReportSent?.work_details || "No details",      "Has Report": emp.has_report ? "Yes" : "No",
       "Last Updated": new Date().toLocaleString(),
     }));
 
@@ -633,7 +628,7 @@ function EmployeeDashboard() {
     try {
       const token = localStorage.getItem("access_token");
       
-      const url = `http://localhost:8000/api/attendance/approve-reason/${selectedReasonId}/`;
+      const url = `${DEV_BASE_URL}/api/attendance/approve-reason/${selectedReasonId}/`;
 
       const payload = {
         status: approvalStatus, // "approved" or "rejected"

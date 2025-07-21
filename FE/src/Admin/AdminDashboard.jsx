@@ -27,6 +27,7 @@ import { useNavigate } from 'react-router-dom';
  import logo from '../assets/logo.png';
 import EmployeeDashboard from './EmployeeDashboard';
 import EmployeeChat from './EmployeeChat';
+import { DEV_BASE_URL } from '../ApiConfig';
  
 const drawerWidth = 200;
  
@@ -61,7 +62,7 @@ function AdminDashboard() {
  const handleLogout = async () => {
       try {
         const token = localStorage.getItem("access_token");
-        await fetch(`http://localhost:8000/api/employees/logout/`, {
+        await fetch(`${DEV_BASE_URL}/api/employees/logout/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

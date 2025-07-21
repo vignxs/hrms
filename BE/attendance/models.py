@@ -6,6 +6,7 @@ from django.core.exceptions import ValidationError
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 import pytz
+from .models_chat import ChatRoom, Message
 
 
 
@@ -69,8 +70,6 @@ class AdminReply(models.Model):
         return f"Reply to {self.report} by {self.admin.get_full_name()}"
 
 
-from django.db import models
-from datetime import timedelta
 
 
 class Attendance(models.Model):

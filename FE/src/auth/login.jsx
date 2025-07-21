@@ -32,7 +32,7 @@ import {
 } from "@mui/icons-material";
 import { useAuth } from "../context/AuthContext";
 import illustration from "../assets/login-illustration.png"; // your left side image
- 
+import { DEV_BASE_URL } from "../ApiConfig";
 const Login = ({ onLoginSuccess }) => {
   const navigate = useNavigate();
   const { login: authLogin } = useAuth();
@@ -92,8 +92,8 @@ const Login = ({ onLoginSuccess }) => {
     try {
       // Determine the correct API endpoint based on login mode
       const endpoint = loginMode === 'admin' 
-        ? 'http://localhost:8000/api/auth/login/admin/'
-        : 'http://localhost:8000/api/auth/login/user/';
+        ? `${DEV_BASE_URL}/api/auth/login/admin/`
+        : `${DEV_BASE_URL}/api/auth/login/user/`;
 
       const response = await fetch(endpoint, {
         method: "POST",
